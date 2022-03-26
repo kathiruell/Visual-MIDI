@@ -1,5 +1,3 @@
-window.pref = [];
-
 document.querySelectorAll(".setup-category").forEach(function (button) {
   // Show the corresponding popup for each category button.
   button.addEventListener("click", function () {
@@ -25,18 +23,6 @@ document.querySelectorAll(".setup-popup").forEach(function (popup) {
   });
 });
 
-function prefSet(parameter, value) {
-  window.pref[parameter] = value;
-  console.log("set", parameter, value);
-  // window.sessionStorage.setItem(parameter, value);
-}
-
-function prefGet(parameter) {
-  return window.pref[parameter];
-  // return window.sessionStorage.getItem(parameter);
-}
-
 $("[data-pref-set]").click(function () {
-  console.log("pref set click");
-  prefSet($(this).attr("data-parameter"), $(this).attr("data-value"));
+  preferences.set($(this).attr("data-parameter"), $(this).attr("data-value"));
 });

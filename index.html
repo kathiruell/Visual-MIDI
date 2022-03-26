@@ -19,13 +19,17 @@
     <script src="js/lib/tonal.js"></script>
     <script src="js/lib/typewriter.js"></script>
 
-    <!-- Animations -->
-    <script src="js/animations/BriskClearLuminous.js"></script>
-    <script src="js/animations/DetailedMellowIntimate.js"></script>
-    <script src="js/animations/MassiveEmbossedGloom.js"></script>
+    <!-- Visualizer -->
+    <script src="js/visualizer/Renderer.js"></script>
+    <script src="js/visualizer/Shape.js"></script>
+    <script src="js/visualizer/BackgroundShape.js"></script>
+    <script src="js/visualizer/BackgroundShapeBlackout.js"></script>
+    <script src="js/visualizer/Note.js"></script>
+    <script src="js/visualizer/Preferences.js"></script>
+    <script src="js/visualizer/Conf.js"></script>
+    <script src="js/visualizer/conf/shapes.js"></script>
 
     <!-- Lists -->
-    <script src="js/arrays/conf.js"></script>
     <script src="js/arrays/colorscale2.js"></script>
     <script src="js/arrays/circleAnimations.js"></script>
     <script src="js/arrays/tonetable.js"></script>
@@ -64,9 +68,9 @@
         </div>
         <div class="setup-popup" data-category="shape" hidden="true">
           <div class="center">
-            <button data-pref-set data-parameter="shape" data-value="detailed">detailed,</button><br />
-            <button data-pref-set data-parameter="shape" data-value="brisk">brisk,</button><br />
-            <button data-pref-set data-parameter="shape" data-value="massive">or massive</button><br />
+            <button data-pref-set data-parameter="shape_style" data-value="detailed">detailed,</button><br />
+            <button data-pref-set data-parameter="shape_style" data-value="brisk">brisk,</button><br />
+            <button data-pref-set data-parameter="shape_style" data-value="massive">or massive</button><br />
           </div>
         </div>
         <div class="setup-popup" data-category="movement" hidden="true">
