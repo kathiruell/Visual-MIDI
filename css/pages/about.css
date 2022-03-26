@@ -1,0 +1,49 @@
+#about-page {
+  overflow: auto;
+  margin-top: 5rem;
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-family: "acumin-pro", sans-serif;
+  font-style: normal;
+  font-size: 2rem;
+}
+
+.text-box {
+  float: left;
+}
+
+#about-page {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5rem;
+}
+#about-page h1 {
+  text-align: center;
+}
+.about-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 2rem;
+}
+.about-block-text {
+  grid-column: 1 / span 2;
+  background-color: aquamarine;
+}
+.about-block-info {
+  background-color: gold;
+  grid-column: 3;
+}
+.about-block-columns {
+  columns: 3;
+  column-gap: 2rem;
+}
+.about-block-columns .no-break {
+  break-inside: avoid;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0;
+}
+.about-block-columns h3 {
+  font-size: normal;
+  text-transform: uppercase;
+}

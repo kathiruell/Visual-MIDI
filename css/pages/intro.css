@@ -1,0 +1,29 @@
+#intro-page {
+  box-sizing: border-box;
+  /* background-color: black; */
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 80%,
+    rgba(255, 255, 255, 1) 95%
+  );
+
+  color: white;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: "acumin-pro", sans-serif;
+  font-style: normal;
+}
+
+.typewriter {
+  position: sticky;
+  top: 0;
+  padding: 1%;
+  margin-bottom: 150px;
+  line-height: 8rem;
+}
+
+.other-font {
+  font-family: "ARK-ES";
+  font-style: normal;
+  font-weight: normal;
+}

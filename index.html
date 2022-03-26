@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- Code -->
+    <script src="js/utils.js"></script>
+
+    <!-- Libraries -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"></script>
+    <script src="js/lib/p5.js"></script>
+    <script src="js/lib/midi.js"></script>
+    <script src="js/lib/tonal.js"></script>
+    <script src="js/lib/typewriter.js"></script>
+
+    <!-- Animations -->
+    <script src="js/animations/BriskClearLuminous.js"></script>
+    <script src="js/animations/DetailedMellowIntimate.js"></script>
+    <script src="js/animations/MassiveEmbossedGloom.js"></script>
+
+    <!-- Lists -->
+    <script src="js/arrays/conf.js"></script>
+    <script src="js/arrays/colorscale2.js"></script>
+    <script src="js/arrays/circleAnimations.js"></script>
+    <script src="js/arrays/tonetable.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/ncw6oai.css" />
+
+    <!-- Page styles -->
+    <link rel="stylesheet" href="css/pages/intro.css" />
+    <link rel="stylesheet" href="css/pages/about.css" />
+    <link rel="stylesheet" href="css/pages/setup.css" />
+
+  </head>
+  <body>
+    <div class="page" id="first-page">
+      <div class="page" id="intro-page">
+        <div class="typewriter"></div>
+      </div>
+      <div class="page" id="setup-page">
+        <a href="#about-page" class="blur-about">ABOUT</a>
+        <a href="#visualizer-page" class="blur-visualiser">VISUALISER</a>
+        <div class="setup-sentence">VISUALIZE YOUR MUSIC LIKE</div>
+
+        <!-- <button class="setup-category">massive,</button><br />
+        <button class="setup-category">embossed,</button><br />
+        <button class="setup-category">&gloom</button> -->
+
+        <div class="setup-categories center">
+          <button class="setup-category" data-category="shape">brisk,</button
+          ><br />
+          <button class="setup-category" data-category="movement">clear,</button
+          ><br />
+          <button class="setup-category" data-category="color">&luminous</button>
+        </div>
+        <div class="setup-popup" data-category="shape" hidden="true">
+          <div class="center">
+            <button data-pref-set data-parameter="shape" data-value="detailed">detailed,</button><br />
+            <button data-pref-set data-parameter="shape" data-value="brisk">brisk,</button><br />
+            <button data-pref-set data-parameter="shape" data-value="massive">or massive</button><br />
+          </div>
+        </div>
+        <div class="setup-popup" data-category="movement" hidden="true">
+          <div class="center">
+            <button data-value="mellow,">mellow,</button><br />
+            <button data-value="clear,">clear,</button><br />
+            <button data-value="embossed,">or embossed</button>
+          </div>
+        </div>
+        <div class="setup-popup" data-category="color" hidden="true">
+          <div class="center">
+            <button data-value="&intimate">intimate,</button><br />
+            <button data-value="&luminous">luminous,</button><br />
+            <button data-value="&gloom"> or gloom</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page" id="visualizer-page"></div>
+
+    <div class="page" id="about-page">
+      <h1>Überschrift</h1>
+      <div class="stichworte">
+        VISUAL AUDITION AUDITIVE VISON
+        <div class="text-box">"CHROMESTESIA"</div>
+        <div class="text-box">"COLOR"</div>
+        <div class="text-box">"DESIGN (PRACTICE)"</div>
+        <div class="text-box">"DESIGN (PERCEPTION)"</div>
+        <div class="text-box">"GESTURE"</div>
+        <div class="text-box">"IMPROVISATION"</div>
+        <div class="text-box">"LIVENESS"</div>
+        <div class="text-box">"MOVEMENT"</div>
+      </div>
+      <div class="about-block">
+        <div class="about-block-text">Lorem ipsium...</div>
+        <div class="about-block-info">
+          block info
+        </div>
+      </div>
+      <div class="about-block-columns">
+        <div class="about-block-columns-block">
+          <div class="no-break">
+            <h3>SENSES</h3>
+            <p>Oluptate cupta dolest maio te volor aut ad maximol uptatur? Vid eos etur, quam rehenimet eicius aut fuga. Itas nonseriae exceaqu ideliquiat aute eum, adit que sitatem que nosanti orecaborpore solo blabor same nissitatenis aut dolorem. Fugitius, sanihil licienis dolores tecaboressi occusam fugia et assi tem sitiis plaboribus, occuptaturit alis sum quas everiam exerferrumet dolluptatum faceaque asiti conserum es eos dolora si unto mintiam iminum haribus nossi unt officipsam reptus. Ilis aus dem hocaet nihil ut vilnest? Opionsu legera que confec moverce rioraris, diis. Ego untiam peremperi ilibem dem comnostidet; huidemus ia vis, P. Ego con haliu intella egil veria consule moratusatum lostabefacia conum inesterfici se fente, derem ponscris, nium tatque faci se antemur sultiam orem, sume nunicipiem elintemquam omnonsu isquide rfecris. Etrena, ocatus confiribut deroribus ina, nonsulv issenihi, tua ret viribunum pra, sentratis essu vem aperfes adductala cre con iam praessente aris diendincepse ete, C. Satus, Catu mo vid dit fuerei se nimunclum te, Palabeme te retempo ptinam horum prorem pere, utemurs praride ffrempliumum nonsilin am dem no. Onlostrum, st porum egerion di, tem is, non tiu cae enihili</p>
+          </div>
+          <div class="no-break">
+            <h3>PERCEPTION</h3>
+            <p>Oluptate cupta dolest maio te volor aut ad maximol uptatur? Vid eos etur, quam rehenimet eicius aut fuga. Itas nonseriae exceaqu ideliquiat aute eum, adit que sitatem que nosanti orecaborpore solo blabor same nissitatenis aut dolorem. Fugitius, sanihil licienis dolores tecaboressi occusam fugia et assi tem sitiis plaboribus, occuptaturit alis sum quas everiam exerferrumet dolluptatum faceaque asiti conserum es eos dolora si unto mintiam iminum haribus nossi unt officipsam reptus. Ilis aus dem hocaet nihil ut vilnest? Opionsu legera que confec moverce rioraris, diis. Ego untiam peremperi ilibem dem comnostidet; huidemus ia vis, P. Ego con haliu intella egil veria consule moratusatum lostabefacia conum inesterfici se fente, derem ponscris, nium tatque faci se antemur sultiam orem, sume nunicipiem elintemquam omnonsu isquide rfecris. Etrena, ocatus confiribut deroribus ina, nonsulv issenihi, tua ret viribunum pra, sentratis essu vem aperfes adductala cre con iam praessente aris diendincepse ete, C. Satus, Catu mo vid dit fuerei se nimunclum te, Palabeme te retempo ptinam horum prorem pere, utemurs praride ffrempliumum nonsilin am dem no. Onlostrum, st porum egerion di, tem is, non tiu cae enihili</p>
+          </div>
+      </div>
+      
+    </div>
+
+    <!-- Code -->
+    <script src="main.js"></script>
+
+    <!-- Pages code -->
+    <script src="js/pages/intro.js"></script>
+    <script src="js/pages/setup.js"></script>
+    <script src="js/pages/visualizer.js"></script>
+  </body>
+</html>
