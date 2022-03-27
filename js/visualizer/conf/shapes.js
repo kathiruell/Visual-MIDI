@@ -1,8 +1,7 @@
 let shapes_array = {
     "000": {
-        color_scheme: 2,
-        shape_type: SHAPE_TYPE_PLAIN,
-        blur: "blurry",
+        color_style: 2,
+        shape_type: SHAPE_TYPE_BLURRY,
         texture: "none",
         inner_size: 1,
         blend_mode: "normal",
@@ -16,14 +15,20 @@ let shapes_array = {
             },
         ],
     },
-    "001": {
-        color_scheme: 2,
-        blur: "blurry",
+    "010": {
+        color_style: 2,
+        shape_type: SHAPE_TYPE_PLAIN,
         texture: "none",
         inner_size: 1,
         blend_mode: "normal",
-        opacity: 0.5,
-        fade_time: 100,
+        opacity: 1,
         scale: 1.2,
+        animations: [
+            {
+                param: 'opacity',
+                frames: 100,
+                goal: 0,
+            },
+        ],
     },
 };

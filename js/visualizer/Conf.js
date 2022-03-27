@@ -9,28 +9,36 @@ class Conf {
         return {x: random(0, canvas.width), y: random(0, canvas.height)};
     }
 
-    getColorScheme() {
-        return this.shapes[preferences.getId()].color_scheme
+    getColorStyle() {
+        return this.getByPref("color_style")
     }
 
     getOpacity() {
-        return this.shapes[preferences.getId()].opacity
+        return this.getByPref("opacity")
     }
 
     getShapeType() {
-        return this.shapes[preferences.getId()].shape_type
+        return this.getByPref("shape_type")
+    }
+
+    getAnimations() {
+        return this.getByPref("animations")
     }
 
     isAnimated(key) {
         return 'animations' in this.shapes[preferences.getId()] 
-            && this.shapes[preferences.getId()].animations.some(elem => elem.param === key)
+            && this.getByPref("animations").some(elem => elem.param === key)
     }
 
     getAnimation(key) {
         try {
-            return this.shapes[preferences.getId()].animations.find(elem => elem.param === key)
+            return this.getByPref("animations").find(elem => elem.param === key)
         } catch (error) {
             return undefined;
         }
+    }
+
+    getByPref(key) {
+        return this.shapes[preferences.getId()][key]
     }
 }

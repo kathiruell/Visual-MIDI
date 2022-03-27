@@ -16,7 +16,7 @@ class Preferences {
 
     init() {
         this.set('shape_style', SHAPE_STYLE_MELLOW)
-        this.set('color_scheme', COLOR_STYLE_INTIMATE)
+        this.set('color_style', COLOR_STYLE_INTIMATE)
         this.set('animation_style', ANIMATION_STYLE_DETAILED )
     }
     setShapeStyle(value) {
@@ -25,11 +25,11 @@ class Preferences {
     getShapeStyle() {
         return this.get('shape_style')
     }
-    setColorScheme(value) {
-        this.set('color_scheme', value)
+    setColorStyle(value) {
+        this.set('color_style', value)
     }
-    getColorScheme() {
-        return this.get('color_scheme')
+    getColorStyle() {
+        return this.get('color_style')
     }
     setAnimationStyle(value) {
         this.set('animation_style', value)
@@ -39,6 +39,7 @@ class Preferences {
     }
     
     set(key, value) {
+        console.log("pref set ", key, value)
         window.sessionStorage.setItem(key, value);
     }
     get(key) {
@@ -46,6 +47,6 @@ class Preferences {
     }
 
     getId() {
-        return "" + this.getAnimationStyle() + this.getShapeStyle() + this.getColorScheme();
+        return "" + this.getAnimationStyle() + this.getShapeStyle() + this.getColorStyle();
     }
 }

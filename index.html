@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
-    <!-- Code -->
-    <script src="js/utils.js"></script>
-
     <!-- Libraries -->
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -56,36 +53,32 @@
         <a href="#visualizer-page" class="blur-visualiser">VISUALISER</a>
         <div class="setup-sentence">VISUALIZE YOUR MUSIC LIKE</div>
 
-        <!-- <button class="setup-category">massive,</button><br />
-        <button class="setup-category">embossed,</button><br />
-        <button class="setup-category">&gloom</button> -->
-
         <div class="setup-categories center">
-          <button class="setup-category" data-category="shape">brisk,</button
+          <button data-pref-preview class="setup-key" data-key="animation_style" data-format="key,"></button
           ><br />
-          <button class="setup-category" data-category="movement">clear,</button
+          <button data-pref-preview class="setup-key" data-key="shape_style" data-format="key,"></button
           ><br />
-          <button class="setup-category" data-category="color">&luminous</button>
+          <button data-pref-preview class="setup-key" data-key="color_style" data-format="&key"></button>
         </div>
-        <div class="setup-popup" data-category="shape" hidden="true">
+        <div class="setup-popup" data-key="shape_style" hidden="true">
           <div class="center">
-            <button data-pref-set data-parameter="shape_style" data-value="detailed">detailed,</button><br />
-            <button data-pref-set data-parameter="shape_style" data-value="brisk">brisk,</button><br />
-            <button data-pref-set data-parameter="shape_style" data-value="massive">or massive</button><br />
+            <button data-pref-set data-key="shape_style" data-value="0" data-format="key,"></button><br />
+            <button data-pref-set data-key="shape_style" data-value="1" data-format="key,"></button><br />
+            <button data-pref-set data-key="shape_style" data-value="2" data-format="or key"></button><br />
           </div>
         </div>
-        <div class="setup-popup" data-category="movement" hidden="true">
+        <div class="setup-popup" data-key="animation_style" hidden="true">
           <div class="center">
-            <button data-value="mellow,">mellow,</button><br />
-            <button data-value="clear,">clear,</button><br />
-            <button data-value="embossed,">or embossed</button>
+            <button data-pref-set data-key="animation_style" data-value="0" data-format="key,"></button><br />
+            <button data-pref-set data-key="animation_style" data-value="1" data-format="key,"></button><br />
+            <button data-pref-set data-key="animation_style" data-value="2" data-format="or key"></button><br />
           </div>
         </div>
-        <div class="setup-popup" data-category="color" hidden="true">
+        <div class="setup-popup" data-key="color_style" hidden="true">
           <div class="center">
-            <button data-value="&intimate">intimate,</button><br />
-            <button data-value="&luminous">luminous,</button><br />
-            <button data-value="&gloom"> or gloom</button>
+            <button data-pref-set data-key="color_style" data-value="0" data-format="key,"></button><br />
+            <button data-pref-set data-key="color_style" data-value="1" data-format="key,"></button><br />
+            <button data-pref-set data-key="color_style" data-value="2" data-format="or key"></button><br />
           </div>
         </div>
       </div>
@@ -132,6 +125,6 @@
     <!-- Pages code -->
     <script src="js/pages/intro.js"></script>
     <script src="js/pages/setup.js"></script>
-    <script src="js/pages/visualizer.js"></script>
+    <script src="js/visualizer/visualizer.js"></script>
   </body>
 </html>

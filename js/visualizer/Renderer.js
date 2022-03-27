@@ -1,4 +1,8 @@
+/**
+ * manages the shapes
+ */
 class Renderer {
+
     static canvas = undefined;
     static background_shape = undefined;
     shapes = []
@@ -19,6 +23,9 @@ class Renderer {
 
     draw() {
         background(0)
+
+        // clear dead shapes
+        this.shapes = this.shapes.filter(shape => shape.isAlive())
 
         // shapes
         this.shapes.forEach(shape => shape.update())
