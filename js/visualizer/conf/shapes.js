@@ -1,16 +1,20 @@
-let conf = {
+let shapes_array = {
     "000": {
         color_scheme: 2,
+        shape_type: SHAPE_TYPE_PLAIN,
         blur: "blurry",
         texture: "none",
         inner_size: 1,
         blend_mode: "normal",
-        opacity: 0.5,
+        opacity: 1,
         scale: 1.2,
-        animation: {
-			frames: 150,
-			opacity: 0,
-        }
+        animations: [
+            {
+                param: 'opacity',
+                frames: 100,
+                goal: 0,
+            },
+        ],
     },
     "001": {
         color_scheme: 2,
@@ -23,5 +27,3 @@ let conf = {
         scale: 1.2,
     },
 };
-
-window.conf = conf;

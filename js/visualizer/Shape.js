@@ -1,26 +1,48 @@
+const SHAPE_TYPE_PLAIN = 'plain',
+    SHAPE_TYPE_BLURRY = 'blurry',
+    SHAPE_TYPE_3D = '3d';
+
 class Shape {
 
-    shapes = [];
-
-    constructor(note, conf) {
+    constructor(note) {
         this.note = note
         this.conf = conf
         console.log("Shape const", this.conf)
-        this.shapes = this.getShapes();
         this.opacity = this.getOpacity();
-        // this.shapes.forEach(x => x.show());
-
+        this.lifetime = 0
     }
 
+    /**
+     * 
+     * @returns 0 < opacity < 1
+     */
     getOpacity() {
-        return this.conf.getOpacity()
+        let animation = this.conf.getAnimation('opacity')
+        if (animation !== undefined && this.lifetime > 0) {
+            if (this.lifetime >= animation.frames) {
+                return animation.goal
+            } else {
+                let step = animation.goal - this.opacity * (1 / animation.frames)
+                let opacity = this.opacity + (this.lifetime * step)
+                return opacity
+            }
+        } else {
+            return this.conf.getOpacity()
+        }
     }
 
-    getShapes() {
-        return [
-            ellipse(this.getPosition().x, this.getPosition().y, this.getSize().x, this.getSize().y),
-            this.getBlur(),
-        ];
+    draw() {
+        switch (this.conf.getShapeType()) {
+            case SHAPE_TYPE_PLAIN:
+                console.log(...this.getColor(), this.getOpacity())
+                fill(...this.getColor(), this.getOpacity())
+                ellipse(this.getPosition().x, this.getPosition().y, this.getSize().x, this.getSize().y)
+                break;
+
+            case SHAPE_TYPE_BLURRY:
+            case SHAPE_TYPE_3D:
+                break;
+        }
     }
 
     getBlur() {
@@ -41,7 +63,12 @@ class Shape {
         }
     }
 
+    /**
+     * 
+     * @returns rgb array
+     */
     getColor() {
+        return [255,255,0];
         return this.getColorScheme(conf)[note];
     }
 
@@ -65,6 +92,8 @@ class Shape {
     }
 
     update() {
-
+        this.lifetime++
+        
+        this.draw()
     }
 }

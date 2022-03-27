@@ -15,41 +15,37 @@ class Preferences {
     }
 
     init() {
-        this.args = {
-            shape_style: SHAPE_STYLE_CLEAR,
-            color_scheme: COLOR_STYLE_GLOOM,
-            animation_style: ANIMATION_STYLE_BRISK,
-        }
-        console.log("init", this.args)
+        this.set('shape_style', SHAPE_STYLE_MELLOW)
+        this.set('color_scheme', COLOR_STYLE_INTIMATE)
+        this.set('animation_style', ANIMATION_STYLE_DETAILED )
     }
     setShapeStyle(value) {
         this.set('shape_style', value)
     }
     getShapeStyle() {
-        this.get('shape_style')
+        return this.get('shape_style')
     }
     setColorScheme(value) {
         this.set('color_scheme', value)
     }
     getColorScheme() {
-        this.get('color_scheme')
+        return this.get('color_scheme')
     }
     setAnimationStyle(value) {
         this.set('animation_style', value)
     }
     getAnimationStyle() {
-        this.get('animation_style')
+        return this.get('animation_style')
     }
     
     set(key, value) {
-        this.args[key] = value
+        window.sessionStorage.setItem(key, value);
     }
     get(key) {
-        return this.args[key];
+        return window.sessionStorage.getItem(key);
     }
 
     getId() {
-        console.log("animation_style", this.getAnimationStyle())
         return "" + this.getAnimationStyle() + this.getShapeStyle() + this.getColorScheme();
     }
 }

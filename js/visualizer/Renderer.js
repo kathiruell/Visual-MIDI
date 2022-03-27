@@ -18,6 +18,8 @@ class Renderer {
     }
 
     draw() {
+        background(0)
+
         // shapes
         this.shapes.forEach(shape => shape.update())
 
