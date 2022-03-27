@@ -49,7 +49,7 @@ class Preferences {
     }
 
     getId() {
-        console.log(this.getAnimationStyle())
+        console.log("animation_style", this.getAnimationStyle())
         return "" + this.getAnimationStyle() + this.getShapeStyle() + this.getColorScheme();
     }
 }
