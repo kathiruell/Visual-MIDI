@@ -39,10 +39,8 @@ class Shape {
     }
 
     draw() {
-        fill(255,255,255, 255)
-        ellipse(10,10,10,10)
         // console.log("Shape", this.id, "drawing frame", this.lifetime_frames, this.lifetime_ms, "ms")
-        // console.log("opacity", this.getOpacity(), "shape type", this.conf.getShapeType())
+        // console.log("opacity", this.getOpacity(), "shape type", this.conf.getShapeType(), "color", this.getColor().join(','), "pos", this.getPosition(), "size", this.getSize())
 
         noStroke()
         switch (this.conf.getShapeType()) {
@@ -57,7 +55,7 @@ class Shape {
                     this.getPosition().y,
                     this.getSize() / 6,
                     this.getColor(),
-                    255 * this.getOpacity(),
+                    Math.round(255 * this.getOpacity()),
                     this.getPosition().x,
                     this.getPosition().y,
                     this.getSize() / 2,

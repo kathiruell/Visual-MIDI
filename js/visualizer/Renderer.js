@@ -22,7 +22,7 @@ class Renderer {
     }
 
     draw() {
-        console.log("Renderer.draw() shapes", this.shapes.map(x => x.id).join(','))
+        // console.log("Renderer.draw() shapes", this.shapes.map(x => x.id).join(','))
 
         // background
         this.background_shape.draw()
