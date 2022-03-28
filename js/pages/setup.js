@@ -2,7 +2,7 @@ $(function() {
     // init preview values
     $("[data-pref-preview]").each(function() {
         let key = $(this).attr('data-key')
-        let value = preferences.get(key)
+        let value = visualizer.preferences.get(key)
         $(this).attr('data-value', value)
     });
     
@@ -18,7 +18,7 @@ $("[data-pref-preview]").click(function() {
 });
 $("[data-pref-set]").click(function() {
     // set user preference
-    preferences.set($(this).attr("data-key"), $(this).attr("data-value"));
+    visualizer.preferences.set($(this).attr("data-key"), $(this).attr("data-value"));
 
     // hide popup, show preview, set new label for preview
     $(this).closest('.setup-popup').hide()
@@ -29,13 +29,12 @@ $("[data-pref-set]").click(function() {
 $.fn.prefButtonLabel = function() {
     $(this).each(function() {
         let key = $(this).attr('data-key')
-        let value = preferences.get(key)
+        let value = visualizer.preferences.get(key)
         if ($(this).is('[data-pref-set]')) {
             value = $(this).attr('data-value')
         }
         let s = $(this).attr('data-format')
         let name = labels[key][value]
-        console.log("name", name)
         s = s.replace('key', name)
         $(this).text(s)
     });

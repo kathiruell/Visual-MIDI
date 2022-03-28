@@ -10,7 +10,7 @@ let shapes_array = {
         animations: [
             {
                 param: 'opacity',
-                frames: 100,
+                time_ms: 1000,
                 goal: 0,
             },
         ],
@@ -26,7 +26,7 @@ let shapes_array = {
         animations: [
             {
                 param: 'opacity',
-                frames: 100,
+                time_ms: 1000,
                 goal: 0,
             },
         ],

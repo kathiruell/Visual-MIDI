@@ -2,31 +2,29 @@
 
 const visualizerPage = document.querySelector("#visualizer-page");
 
+let visualizer = {
+    conf: new Conf(),
+    preferences: new Preferences(),
+    renderer: undefined,
+    canvas: undefined,
+}
 let myChords = null;
 let playingNotes = [];
 let lastNote = playingNotes[playingNotes.length - 1];
-let visualizer_conf = undefined;
-let preferences = new Preferences();
-let conf = new Conf();
-let renderer = undefined;
-let canvas = undefined;
 
 function setup() {
-	frameRate(30);
-    noLoop();
+    visualizer.canvas = createCanvas(windowWidth, windowHeight);
+    visualizer.canvas.parent("visualizer-page");
 
-    canvas = createCanvas(windowWidth, windowHeight);
-    canvas.parent("visualizer-page");
+    visualizerPage.addEventListener("show", () => visualizer.renderer.start());
+    visualizerPage.addEventListener("hide", () => visualizer.renderer.stop());
 
-    visualizerPage.addEventListener("show", loop);
-    visualizerPage.addEventListener("hide", noLoop);
-
-    renderer = new Renderer(
-        canvas, 
+    visualizer.renderer = new Renderer(
+        visualizer.canvas, 
         new BackgroundShapeBlackout(new Note(0, 0)), 
-        preferences
+        visualizer.preferences.getFramerate()
     )
-	renderer.start()
+	visualizer.renderer.start()
 
     setupMidi(handleNoteOn, handleNoteOff);
     myChords = getChord();
@@ -34,15 +32,15 @@ function setup() {
 }
 
 function draw() {
-    renderer.draw()
+    visualizer.renderer.draw()
 }
 
 function handleNoteOn(pitch, vel) {
     let note = new Note(pitch, vel)
     playingNotes.push(note);
 
-    let shape = new Shape(note, visualizer_conf);
-    renderer.renderShape(shape)
+    let shape = new Shape(note);
+    visualizer.renderer.renderShape(shape)
 }
 
 function handleNoteOff(pitch, vel) {

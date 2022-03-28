@@ -7,10 +7,10 @@ class Renderer {
     static background_shape = undefined;
     shapes = []
 
-    constructor(canvas, background_shape, conf) {
+    constructor(canvas, background_shape, frame_rate) {
         this.canvas = canvas
         this.background_shape = background_shape
-        this.conf = conf
+        this.setFramerate(frame_rate)
     }
     
     renderShape(shape) {
@@ -28,7 +28,7 @@ class Renderer {
         this.shapes = this.shapes.filter(shape => shape.isAlive())
 
         // shapes
-        this.shapes.forEach(shape => shape.update())
+        this.shapes.forEach(shape => shape.draw())
 
         return;
         // background
@@ -40,9 +40,21 @@ class Renderer {
 
     start() {
         loop()
+        console.log("Renderer start", this.getFramerateTarget(), "fps target")
     }
     stop() {
         noLoop()
+    }
+
+    getFramerateTarget() {
+        return this.framerate_target
+    }
+    getFramerateActual() {
+        return frameRate()
+    }
+    setFramerate(frame_rate) {
+        this.framerate_target = frame_rate
+        frameRate(parseFloat(this.framerate_target))
     }
 
 }

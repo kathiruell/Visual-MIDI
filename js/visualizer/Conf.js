@@ -26,8 +26,7 @@ class Conf {
     }
 
     isAnimated(key) {
-        return 'animations' in this.shapes[preferences.getId()] 
-            && this.getByPref("animations").some(elem => elem.param === key)
+        return this.getAnimation(key) !== undefined
     }
 
     getAnimation(key) {
@@ -39,6 +38,6 @@ class Conf {
     }
 
     getByPref(key) {
-        return this.shapes[preferences.getId()][key]
+        return this.shapes[visualizer.preferences.getStyleId()][key]
     }
 }
