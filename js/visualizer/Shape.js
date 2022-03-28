@@ -39,19 +39,19 @@ class Shape {
     }
 
     draw() {
-        console.log("Shape", this.id, "drawing frame", this.lifetime_frames, this.lifetime_ms, "ms")
-        console.log("opacity", this.getOpacity())
+        fill(255,255,255, 255)
+        ellipse(10,10,10,10)
+        // console.log("Shape", this.id, "drawing frame", this.lifetime_frames, this.lifetime_ms, "ms")
+        // console.log("opacity", this.getOpacity(), "shape type", this.conf.getShapeType())
 
         noStroke()
         switch (this.conf.getShapeType()) {
             case SHAPE_TYPE_PLAIN:
-                console.log("shape_type plain")
                 fill(...this.getColor(), Math.round(255 * this.getOpacity()))
                 ellipse(this.getPosition().x, this.getPosition().y, this.getSize(), this.getSize())
                 break;
 
             case SHAPE_TYPE_BLURRY:
-                console.log("shape_type blurry")
                 radialGradient(
                     this.getPosition().x,
                     this.getPosition().y,
@@ -69,6 +69,9 @@ class Shape {
 
             case SHAPE_TYPE_3D:
                 break;
+
+            default:
+                console.log("ERROR shape type not defined", this.conf.getShapeType())
         }
 
         // go to next frame
