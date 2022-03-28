@@ -4,13 +4,13 @@
 class Renderer {
 
     static canvas = undefined;
-    static background_shape = undefined;
     shapes = []
+    static background_shape = undefined;
 
-    constructor(canvas, background_shape, frame_rate) {
+    constructor(canvas, frame_rate) {
         this.canvas = canvas
-        this.background_shape = background_shape
         this.setFramerate(frame_rate)
+        this.background_shape = new BackgroundShapeBlackout()
     }
     
     renderShape(shape) {
@@ -22,7 +22,10 @@ class Renderer {
     }
 
     draw() {
-        background(0)
+        console.log("Renderer.draw() shapes", this.shapes.map(x => x.id).join(','))
+
+        // background
+        this.background_shape.draw()
 
         // clear dead shapes
         this.shapes = this.shapes.filter(shape => shape.isAlive())
@@ -30,15 +33,10 @@ class Renderer {
         // shapes
         this.shapes.forEach(shape => shape.draw())
 
-        return;
-        // background
-        if (getChord()) {
-            this.background_shape.update();
-        }
-
     }
 
     start() {
+        this.shapes = []
         loop()
         console.log("Renderer start", this.getFramerateTarget(), "fps target")
     }

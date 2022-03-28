@@ -21,7 +21,6 @@ function setup() {
 
     visualizer.renderer = new Renderer(
         visualizer.canvas, 
-        new BackgroundShapeBlackout(new Note(0, 0)), 
         visualizer.preferences.getFramerate()
     )
 	visualizer.renderer.start()
