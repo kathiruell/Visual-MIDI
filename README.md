@@ -4,24 +4,25 @@ Ich kommentier alle Tasks mit @kathiruell, an denen ich gerne erstmal selbst kno
 Spannend für dich sind wahrscheinlich mehr die Logiken ;) Nehm dir hier ruhig Zeit, dir ein Überblick zu verschaffen. Ich hab es selbst mehrmals lesen müssen.
 Hab ein paar weitere Überlegungen in der Navigation gemacht, zum Verständnis hab ich das visualisiert im pdf, dass ich dir schicken werde...
 
-////////////////////// TOOL-LOGIK //////////////////////
+#////////////////////// TOOL-LOGIK //////////////////////
 
-# Visualizer ON/OFF
+## Visualizer ON/OFF
 
 - Visualizer soll erst funktionieren, wenn Visualizer geöffnet ist
 - Wenn man Visualizer verlässt, sollte p5 gestoppt werden.
+@kathiruell -> Renderer.start() / Renderer.stop() sind schon implementiert, müssen nur noch vom UI getriggered werden
 
-# Tone Positions
+## Tone Positions
 
 - Random, aber feste Positionen für jeden Ton.
   Array?
 
-# First Tone
+## First Tone
 
 - Erster Ton sollte Weiß sein, weil noch kein Bezugs-Ton
   Wann ist erster Ton? --> Wenn kein Midi-Signal für 15 Sekunden eingeht
 
-# Konsonant, Dissonant – Die Beziehungen der Töne und Tonarten zueinander
+## Konsonant, Dissonant – Die Beziehungen der Töne und Tonarten zueinander
 
 @linobino1 jetzt wird es etwas komplizierter; hier hatte ich dir schon ein paar Visualisierungen geschickt. Vergiss die!
 Im Grunde genommen geht es einfach darum, die Abstände zwischen den Tönen zu kalkulieren (und das unter bestimmten Umständen).
@@ -36,25 +37,25 @@ ABSTÄNDE
 
 - zum Grundton ist der nachfolgende Ton immer entweder konsonant, halbsonant oder dissonant
 
-# Abstände FÜR ohne Tonart
+## Abstände FÜR ohne Tonart
 
 konsonant (Abstände 12,7,5)
 halbsonant (Abstände 9,4,3,8)
 oder dissonant (Abstände 10,2,11,1,6)
 
-# Abstände FÜR MAJOR
+## Abstände FÜR MAJOR
 
 konsonant (Abstände 12,7,5,4)
 halbsonant (Abstände 9,2,11)
 oder dissonant (Abstände 3,8,10,1,6)
 
-# Abstände FÜR minor
+## Abstände FÜR minor
 
 konsonant (Abstände 12,7,5,3)
 halbsonant (Abstände 8,10,2)
 oder dissonant (Abstände 9,4,11,1,6)
 
-# Color-Schemes
+## Color-Schemes
 
 – Es soll 3 Color Schemes geben
 1 intimate
@@ -79,10 +80,18 @@ oder dissonant (Abstände 9,4,11,1,6)
   If (47 < midi < 60) {-/+ im rgb-Wert ??}
   ...
   @linobino1 mir ist noch nicht ganz klar, ob man die RGB-Farbwerte mit prozentualer Erhöhung oder Senkung parametrisch dunkler oder heller bekommt…
+  *@kathiruell ja, denn `rgb(0,0,0) == schwarz` und `rgb(255,255,255) == weiss`*
+  ```
+    function rgbModBrightness(rgb,factor) {
+        return [Math.round(rgb[0] * factor), Math.round(rgb[1] * factor), Math.round(rgb[2] * factor)];
+    }
+  ```
+  
 
-# Interval-Tones-to-Colors (Before 1. Chord played)
+## Interval-Tones-to-Colors (Before 1. Chord played)
 
 - Wenn zweiter Ton nach zuvor gespieltem Ton in weniger als 15 Sekunden eingeht
+    *@kathiruell Vorschlag: die Note class erweitern um einen Parameter `timestamp`, der speichert, wann die Note gespielt wurde*
 - Wenn noch kein Akkord gespielt wurde, befinden wir uns in "Abstände ohne Tonart"
 - Errechne Abstand zu zuvor gespieltem Ton mit Hinblick auf Oktaven
   Midi2 - Midi1 = Abstand = x
@@ -91,13 +100,15 @@ oder dissonant (Abstände 9,4,11,1,6)
   If (x > 23) {x - 24}
   If (x > 35) {x - 36}
   ...
+  *@kathiruell das macht der sog. Modulo-Operator (der Rest einer bei einer Division): `7 % 12 = 7, 15 % 12 = 3, 12 % 12 = 0, ...`*
+
 
 - Bei 3. gespielten Ton, ist "tonales Zentrum" nicht mehr "Ton 1" sondern "Ton 2", heißt der zuvor gespielte Ton ist immer "tonales Zentrum".
   --> Bedeutet, dass davon ausgegangen werden muss, dass jeder der 12 Töne "Grundton" oder "tonales Zentrum" sein kann
   --> Bedeutet, dass es 15 verschiedene Farbkombinationen/Farbabfolgen geben muss, da wir 15 Farben in unserem Colorscheme haben.
   --> Also Array von 15 Farblisten?
 
-# Interval-Chord-to-Colors (After 1. Chord played)
+## Interval-Chord-to-Colors (After 1. Chord played)
 
 - Selbe Logik wie zuvor, nur dass von den Akkorden immer der Grundton bestimmt werden muss
 - Wenn Chord detected, dann bestimme Grundton & Tonart (Major or minor)
@@ -106,15 +117,32 @@ oder dissonant (Abstände 9,4,11,1,6)
 - Chord zeigt immer Hintergrund-Verlauf, basierend auf "Grundton-Farben"
 - Farbtöne kalkulieren sich genau wie im Fall zuvor, nur dass die Farbabfolgen auf Major or minor angepasst sind.
 
-////////////////////// NAVIGATION //////////////////////
+### Generelles Vorgehen Tonabstände
+- `visualizer.notes = []` wird alle bisher gespielten Töne aufbewahren: 
+`visualizer.notes.push(new Note(pitch, vel, Date.now())`
+- in jedem handleNoteOn() wird das tonale Zentrum anhand von `visualizer.notes` berechnet
+- `Note` Klasse wird erweitert um property `timestamp` 
 
-# No MIDI-Supported
 
-Visualizer sollte anzeigen, falls Web-Midi nicht supported wird.
+#////////////////////// NAVIGATION //////////////////////
+
+## No MIDI-Supported
+
+- Visualizer sollte anzeigen, falls Web-Midi nicht supported wird.
 @linobino1 Kann Tool abfragen, welcher Browser benutzt wird und dann Meldung aktivieren?
-Visualizer sollte anzeigen, falls kein Midi-Device angeschlossen ist.
+*@kathiruell `if (!navigator.requestMIDIAccess) alert("Midi not supported in this browser")`*
+- Visualizer sollte anzeigen, falls kein Midi-Device angeschlossen ist.
+```
+navigator.requestMIDIAccess()
+    .then((midi) => {
+        // wie gehabt
+    })
+    .catch(() => {
+        alert("No midi device connected)
+    })
+```
 
-# Visualizer
+## Visualizer
 
 Visualizer braucht doch noch Esc & Setup-Infos;
 diese blenden nur ein wenn Cursor im Bereich ist (Ähnlich wie Apple-Dock)
@@ -135,20 +163,22 @@ diese blenden nur ein wenn Cursor im Bereich ist (Ähnlich wie Apple-Dock)
   Blurry alles; bei Hover: entblurrt; bei Click: Wechsel zum nächsten Pref
   Cursor verlässt unteren Bereich wieder; Setup-Infos blenden wieder mit Animation aus
 
-//////////////////// DESIGN-DETAILS ////////////////////
+#//////////////////// DESIGN-DETAILS ////////////////////
 
-# Allgemein
+## Allgemein
 
 - Font-Ratio errechnen; Schrift sollte sich der Fenstergröße anpassen // @kathiruell
+*@kathiruell probier mal font-size in `vw`anzugeben*
 - Ist noch was an Fenstergröße anzupassen? Muss nicht mobil funktionieren, Schriften und Abstände sollen allerdings unabhängig von Browser gut sitzen.
 
-# Intro Typewriter
+## Intro Typewriter
 
 - @linobino1 Ist es möglich, nachdem Satz animiert wurde ihn komplett zu löschen und nicht letter by letter?
 - Textanimation soll sticky sein, Weißer Blur & Setup-Page soll darüber scrollen.
   @linobino1 Vielleicht muss ich nicht Intro Page schwarz-zu-transparent Blur-Hintergrund geben, sondern SetupPage Weiß-zu-Transparent Blur? Maybe, maybe not?
+  *@kathiruell um was zu erreichen?*
 
-# Setup
+## Setup
 
 - Setup Popup soll nicht untereinander stehen, nebeneinander zentriert
   Popup soll sich visuell von Setup Categories unterscheiden // @kathiruell
@@ -158,17 +188,26 @@ diese blenden nur ein wenn Cursor im Bereich ist (Ähnlich wie Apple-Dock)
   Setup: No Vignette | Vignette Blur Edges | Vignette Blur Edges Round
   @linobino1 Hier benutz ich am Besten auch ein Bild, dass ich einfach darüber lege?
 
-# About
+## About
 
 - Aufbau der Text-Seite // @kathiruell
 
-////////////////////////////////////////////////////////
+#////////////////////////////////////////////////////////
 
-# Notes
+## Notes
 
-movement: 0 detailed 1 brisk 2 massive
-shape: 0 mellow 1 clear 2 embossed
-color: 0 intimate 1 luminous 2 gloom
+### movement: 
+0 detailed
+1 brisk 
+2 massive
+### shape: 
+0 mellow 
+1 clear 
+2 embossed
+### color: 
+0 intimate 
+1 luminous 
+2 gloom
 
 ---
 
