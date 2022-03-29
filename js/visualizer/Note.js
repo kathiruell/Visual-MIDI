@@ -1,16 +1,19 @@
-const NOTE_NAMES = "C C# D D# E F F# G G# A A# B".split(" ")
-
 class MusicalEvent {
 
     constructor() {
         this.timestamp = Date.now()
     }
+
+    static noteName(pitch) {
+        return NOTE_NAMES[pitch % 12]
+    }
 }
 
 class Chord extends MusicalEvent {
 
-    constructor(name) {
-        this.name = name    // A#maj7/C#
+    constructor(alternatives) {
+        super()
+        this.alternatives = alternatives    // array of chord names
     }
 
     /**
@@ -18,15 +21,29 @@ class Chord extends MusicalEvent {
      */
     getBaseNote() {
         // TODO how to fetch from tonal.js?
-        s = this.name.match(/(.#?)/)
-        return NOTE_NAMES.findIndex(s)
+        let s = this.getName().match(/(.[#b]?)/)[1]
+        return NOTE_NAMES.findIndex((i) => i == s)
+    }
+
+    getInterval() {
+        return (this.pitch % 12 - this.getBaseNote()) % 12
+    }
+
+    getOctave() {
+        return Math.ceil(this.pitch / 12)
     }
 
     getName() {
-        return this.name
+        return this.alternatives[0]
     }
-    getMode() {
 
+    getMode() {
+        let s = this.getName().match(/.[#b]?([m|M])/)[1]    // m or M
+        if (s === 'm') {
+            return MODE_MINOR;
+        } else {
+            return MODE_MAJOR;
+        }
     }
 }
 
@@ -39,6 +56,10 @@ class Note extends MusicalEvent {
         super()
         this.pitch = pitch
         this.vel = vel
+    }
+
+    getBaseNote() {
+        return this.pitch % 12
     }
 
 }

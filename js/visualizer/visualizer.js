@@ -30,7 +30,7 @@ function draw() {
     visualizer.renderer.draw()
 }
 
-function handleNoteOn(pitch, vel) {
+function handleNoteOn(ch, pitch, vel) {
     let note = new Note(pitch, vel)
     visualizer.music.addNote(note);
 
@@ -47,7 +47,7 @@ function handleNoteOn(pitch, vel) {
     }
 }
 
-function handleNoteOff(pitch, vel) {
+function handleNoteOff(ch, pitch, vel) {
     // TODO
     // playingNotes = playingNotes.filter((note) => note.pitch !== pitch);
 }
