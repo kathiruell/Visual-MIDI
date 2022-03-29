@@ -7,10 +7,8 @@ let visualizer = {
     preferences: new Preferences(),
     renderer: undefined,
     canvas: undefined,
+    music: new Music(),
 }
-let myChords = null;
-let playingNotes = [];
-let lastNote = playingNotes[playingNotes.length - 1];
 
 function setup() {
     visualizer.canvas = createCanvas(windowWidth, windowHeight);
@@ -26,8 +24,6 @@ function setup() {
 	visualizer.renderer.start()
 
     setupMidi(handleNoteOn, handleNoteOff);
-    myChords = getChord();
-    chordIsMajor = isMajor(myChords);
 }
 
 function draw() {
@@ -36,15 +32,24 @@ function draw() {
 
 function handleNoteOn(pitch, vel) {
     let note = new Note(pitch, vel)
-    playingNotes.push(note);
+    visualizer.music.addNote(note);
 
     let shape = new Shape(note);
     visualizer.renderer.renderShape(shape)
+
+    // chord?
+    if (isChord()) {
+        let chord = new Chord(getChord())
+        visualizer.music.addChord(chord);
+
+        let background = new BackgroundShape(getChord())
+        visualizer.renderer.renderShape(background)
+    }
 }
 
 function handleNoteOff(pitch, vel) {
     // TODO
-    playingNotes = playingNotes.filter((note) => note.pitch !== pitch);
+    // playingNotes = playingNotes.filter((note) => note.pitch !== pitch);
 }
 
 function windowResized() {

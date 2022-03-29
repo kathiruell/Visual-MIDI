@@ -6,8 +6,9 @@ let shapes_id=0
 
 class Shape {
 
-    constructor(note) {
+    constructor(note, base_note) {
         this.note = note
+        this.base_note = base_note
         this.conf = visualizer.conf
         this.position = this.getPosition();
         this.opacity = this.getOpacity();
