@@ -10,7 +10,7 @@ Hab ein paar weitere Überlegungen in der Navigation gemacht, zum Verständnis h
 
 - Visualizer soll erst funktionieren, wenn Visualizer geöffnet ist
 - Wenn man Visualizer verlässt, sollte p5 gestoppt werden.
-@kathiruell -> Renderer.start() / Renderer.stop() sind schon implementiert, müssen nur noch vom UI getriggered werden
+  @kathiruell -> Renderer.start() / Renderer.stop() sind schon implementiert, müssen nur noch vom UI getriggered werden
 
 ## Tone Positions
 
@@ -80,18 +80,17 @@ oder dissonant (Abstände 9,4,11,1,6)
   If (47 < midi < 60) {-/+ im rgb-Wert ??}
   ...
   @linobino1 mir ist noch nicht ganz klar, ob man die RGB-Farbwerte mit prozentualer Erhöhung oder Senkung parametrisch dunkler oder heller bekommt…
-  *@kathiruell ja, denn `rgb(0,0,0) == schwarz` und `rgb(255,255,255) == weiss`*
+  _@kathiruell ja, denn `rgb(0,0,0) == schwarz` und `rgb(255,255,255) == weiss`_
   ```
     function rgbModBrightness(rgb,factor) {
         return [Math.round(rgb[0] * factor), Math.round(rgb[1] * factor), Math.round(rgb[2] * factor)];
     }
   ```
-  
 
 ## Interval-Tones-to-Colors (Before 1. Chord played)
 
 - Wenn zweiter Ton nach zuvor gespieltem Ton in weniger als 15 Sekunden eingeht
-    *@kathiruell Vorschlag: die Note class erweitern um einen Parameter `timestamp`, der speichert, wann die Note gespielt wurde*
+  _@kathiruell Vorschlag: die Note class erweitern um einen Parameter `timestamp`, der speichert, wann die Note gespielt wurde_
 - Wenn noch kein Akkord gespielt wurde, befinden wir uns in "Abstände ohne Tonart"
 - Errechne Abstand zu zuvor gespieltem Ton mit Hinblick auf Oktaven
   Midi2 - Midi1 = Abstand = x
@@ -100,8 +99,7 @@ oder dissonant (Abstände 9,4,11,1,6)
   If (x > 23) {x - 24}
   If (x > 35) {x - 36}
   ...
-  *@kathiruell das macht der sog. Modulo-Operator (der Rest einer bei einer Division): `7 % 12 = 7, 15 % 12 = 3, 12 % 12 = 0, ...`*
-
+  _@kathiruell das macht der sog. Modulo-Operator (der Rest einer bei einer Division): `7 % 12 = 7, 15 % 12 = 3, 12 % 12 = 0, ...`_
 
 - Bei 3. gespielten Ton, ist "tonales Zentrum" nicht mehr "Ton 1" sondern "Ton 2", heißt der zuvor gespielte Ton ist immer "tonales Zentrum".
   --> Bedeutet, dass davon ausgegangen werden muss, dass jeder der 12 Töne "Grundton" oder "tonales Zentrum" sein kann
@@ -118,20 +116,21 @@ oder dissonant (Abstände 9,4,11,1,6)
 - Farbtöne kalkulieren sich genau wie im Fall zuvor, nur dass die Farbabfolgen auf Major or minor angepasst sind.
 
 ### Generelles Vorgehen Tonabstände
-- `visualizer.notes = []` wird alle bisher gespielten Töne aufbewahren: 
-`visualizer.notes.push(new Note(pitch, vel, Date.now())`
-- in jedem handleNoteOn() wird das tonale Zentrum anhand von `visualizer.notes` berechnet
-- `Note` Klasse wird erweitert um property `timestamp` 
 
+- `visualizer.notes = []` wird alle bisher gespielten Töne aufbewahren:
+  `visualizer.notes.push(new Note(pitch, vel, Date.now())`
+- in jedem handleNoteOn() wird das tonale Zentrum anhand von `visualizer.notes` berechnet
+- `Note` Klasse wird erweitert um property `timestamp`
 
 #////////////////////// NAVIGATION //////////////////////
 
 ## No MIDI-Supported
 
 - Visualizer sollte anzeigen, falls Web-Midi nicht supported wird.
-@linobino1 Kann Tool abfragen, welcher Browser benutzt wird und dann Meldung aktivieren?
-*@kathiruell `if (!navigator.requestMIDIAccess) alert("Midi not supported in this browser")`*
+  @linobino1 Kann Tool abfragen, welcher Browser benutzt wird und dann Meldung aktivieren?
+  _@kathiruell `if (!navigator.requestMIDIAccess) alert("Midi not supported in this browser")`_
 - Visualizer sollte anzeigen, falls kein Midi-Device angeschlossen ist.
+
 ```
 navigator.requestMIDIAccess()
     .then((midi) => {
@@ -168,7 +167,7 @@ diese blenden nur ein wenn Cursor im Bereich ist (Ähnlich wie Apple-Dock)
 ## Allgemein
 
 - Font-Ratio errechnen; Schrift sollte sich der Fenstergröße anpassen // @kathiruell
-*@kathiruell probier mal font-size in `vw`anzugeben*
+  _@kathiruell probier mal font-size in `vw`anzugeben_
 - Ist noch was an Fenstergröße anzupassen? Muss nicht mobil funktionieren, Schriften und Abstände sollen allerdings unabhängig von Browser gut sitzen.
 
 ## Intro Typewriter
@@ -176,7 +175,7 @@ diese blenden nur ein wenn Cursor im Bereich ist (Ähnlich wie Apple-Dock)
 - @linobino1 Ist es möglich, nachdem Satz animiert wurde ihn komplett zu löschen und nicht letter by letter?
 - Textanimation soll sticky sein, Weißer Blur & Setup-Page soll darüber scrollen.
   @linobino1 Vielleicht muss ich nicht Intro Page schwarz-zu-transparent Blur-Hintergrund geben, sondern SetupPage Weiß-zu-Transparent Blur? Maybe, maybe not?
-  *@kathiruell um was zu erreichen?*
+  _@kathiruell um was zu erreichen?_
 
 ## Setup
 
@@ -196,17 +195,22 @@ diese blenden nur ein wenn Cursor im Bereich ist (Ähnlich wie Apple-Dock)
 
 ## Notes
 
-### movement: 
+### movement:
+
 0 detailed
-1 brisk 
+1 brisk
 2 massive
-### shape: 
-0 mellow 
-1 clear 
+
+### shape:
+
+0 mellow
+1 clear
 2 embossed
-### color: 
-0 intimate 
-1 luminous 
+
+### color:
+
+0 intimate
+1 luminous
 2 gloom
 
 ---
@@ -317,3 +321,64 @@ intervals ohne FÜR 0 = [
 11: [dissonant],
 12: [konsonant],
 ]
+
+Farbskalen
+GLOOM
+
+01: [59,24,63],
+02: [123,0,151],
+03: [120,21,84],
+04: [167,0,99],
+05: [96,0,108]
+
+01: [59,216,169],
+02: [0,120,106],
+03: [0,98,116],
+04: [96,131,137],
+05: [0,87,73]
+
+01: [221,156,0],
+02: [173,112,53],
+03: [214,166,0],
+04: [231,203,0],
+05: [255,255,0]
+
+LUMINOUS
+
+01: [237,111,36],
+02: [255,76,84],
+03: [255,115,0],
+04: [255,153,29],
+05: [255,72,83]
+
+01: [0,214,0],
+02: [0,147,0],
+03: [0,207,119],
+04: [101,255,25],
+05: [53,197,31]
+
+01: [0,85,156],
+02: [17,80,204],
+03: [0,0,138],
+04: [59,36,187],
+05: [0,60,255]
+
+INTIMATE
+
+01: [195,155,167],
+02: [237,193,198],
+03: [241,158,156],
+04: [237,193,198],
+05: [219,156,155]
+
+01: [237,216,161],
+02: [227,213,196],
+03: [235,220,161],
+04: [241,229,141],
+05: [255,255,129]
+
+01: [192,241,184],
+02: [165,210,158],
+03: [120,218,164],
+04: [218,254,192],
+05: [186,230,172]
