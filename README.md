@@ -4,7 +4,7 @@ Ich kommentier alle Tasks mit @kathiruell, an denen ich gerne erstmal selbst kno
 Spannend für dich sind wahrscheinlich mehr die Logiken ;) Nehm dir hier ruhig Zeit, dir ein Überblick zu verschaffen. Ich hab es selbst mehrmals lesen müssen.
 Hab ein paar weitere Überlegungen in der Navigation gemacht, zum Verständnis hab ich das visualisiert im pdf, dass ich dir schicken werde...
 
-#////////////////////// TOOL-LOGIK //////////////////////
+# ////////////////////// TOOL-LOGIK //////////////////////
 
 ## Visualizer ON/OFF
 
@@ -122,7 +122,7 @@ oder dissonant (Abstände 9,4,11,1,6)
 - in jedem handleNoteOn() wird das tonale Zentrum anhand von `visualizer.notes` berechnet
 - `Note` Klasse wird erweitert um property `timestamp`
 
-#////////////////////// NAVIGATION //////////////////////
+# ////////////////////// NAVIGATION //////////////////////
 
 ## No MIDI-Supported
 
@@ -162,7 +162,7 @@ diese blenden nur ein wenn Cursor im Bereich ist (Ähnlich wie Apple-Dock)
   Blurry alles; bei Hover: entblurrt; bei Click: Wechsel zum nächsten Pref
   Cursor verlässt unteren Bereich wieder; Setup-Infos blenden wieder mit Animation aus
 
-#//////////////////// DESIGN-DETAILS ////////////////////
+# //////////////////// DESIGN-DETAILS ////////////////////
 
 ## Allgemein
 
