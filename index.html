@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
-    <!-- Code -->
-    <script src="js/utils.js"></script>
-
     <!-- Libraries -->
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -19,15 +16,19 @@
     <script src="js/lib/tonal.js"></script>
     <script src="js/lib/typewriter.js"></script>
 
-    <!-- Animations -->
-    <script src="js/animations/BriskClearLuminous.js"></script>
-    <script src="js/animations/DetailedMellowIntimate.js"></script>
-    <script src="js/animations/MassiveEmbossedGloom.js"></script>
+    <!-- Visualizer -->
+    <script src="js/visualizer/Renderer.js"></script>
+    <script src="js/visualizer/Shape.js"></script>
+    <script src="js/visualizer/BackgroundShape.js"></script>
+    <script src="js/visualizer/BackgroundShapeBlackout.js"></script>
+    <script src="js/visualizer/Note.js"></script>
+    <script src="js/visualizer/Preferences.js"></script>
+    <script src="js/visualizer/Conf.js"></script>
+    <script src="js/visualizer/util.js"></script>
+    <script src="js/visualizer/conf/shapes.js"></script>
 
     <!-- Lists -->
-    <script src="js/arrays/conf.js"></script>
     <script src="js/arrays/colorscale2.js"></script>
-    <script src="js/arrays/circleAnimations.js"></script>
     <script src="js/arrays/tonetable.js"></script>
 
     <!-- Styles -->
@@ -51,36 +52,32 @@
         <a href="#visualizer-page" class="blur-visualiser">VISUALISER</a>
         <div class="setup-sentence">VISUALIZE YOUR MUSIC LIKE</div>
 
-        <!-- <button class="setup-category">massive,</button><br />
-        <button class="setup-category">embossed,</button><br />
-        <button class="setup-category">&gloom</button> -->
-
         <div class="setup-categories center">
-          <button class="setup-category" data-category="shape">brisk,</button
+          <button data-pref-preview class="setup-key" data-key="animation_style" data-format="key,"></button
           ><br />
-          <button class="setup-category" data-category="movement">clear,</button
+          <button data-pref-preview class="setup-key" data-key="shape_style" data-format="key,"></button
           ><br />
-          <button class="setup-category" data-category="color">&luminous</button>
+          <button data-pref-preview class="setup-key" data-key="color_style" data-format="&key"></button>
         </div>
-        <div class="setup-popup" data-category="shape" hidden="true">
+        <div class="setup-popup" data-key="shape_style" hidden="true">
           <div class="center">
-            <button data-pref-set data-parameter="shape" data-value="detailed">detailed,</button><br />
-            <button data-pref-set data-parameter="shape" data-value="brisk">brisk,</button><br />
-            <button data-pref-set data-parameter="shape" data-value="massive">or massive</button><br />
+            <button data-pref-set data-key="shape_style" data-value="0" data-format="key,"></button><br />
+            <button data-pref-set data-key="shape_style" data-value="1" data-format="key,"></button><br />
+            <button data-pref-set data-key="shape_style" data-value="2" data-format="or key"></button><br />
           </div>
         </div>
-        <div class="setup-popup" data-category="movement" hidden="true">
+        <div class="setup-popup" data-key="animation_style" hidden="true">
           <div class="center">
-            <button data-value="mellow,">mellow,</button><br />
-            <button data-value="clear,">clear,</button><br />
-            <button data-value="embossed,">or embossed</button>
+            <button data-pref-set data-key="animation_style" data-value="0" data-format="key,"></button><br />
+            <button data-pref-set data-key="animation_style" data-value="1" data-format="key,"></button><br />
+            <button data-pref-set data-key="animation_style" data-value="2" data-format="or key"></button><br />
           </div>
         </div>
-        <div class="setup-popup" data-category="color" hidden="true">
+        <div class="setup-popup" data-key="color_style" hidden="true">
           <div class="center">
-            <button data-value="&intimate">intimate,</button><br />
-            <button data-value="&luminous">luminous,</button><br />
-            <button data-value="&gloom"> or gloom</button>
+            <button data-pref-set data-key="color_style" data-value="0" data-format="key,"></button><br />
+            <button data-pref-set data-key="color_style" data-value="1" data-format="key,"></button><br />
+            <button data-pref-set data-key="color_style" data-value="2" data-format="or key"></button><br />
           </div>
         </div>
       </div>
@@ -89,23 +86,41 @@
     <div class="page" id="visualizer-page"></div>
 
     <div class="page" id="about-page">
-      <h1>Überschrift</h1>
-      <div class="stichworte">
-        VISUAL AUDITION AUDITIVE VISON
-        <div class="text-box">"CHROMESTESIA"</div>
-        <div class="text-box">"COLOR"</div>
-        <div class="text-box">"DESIGN (PRACTICE)"</div>
-        <div class="text-box">"DESIGN (PERCEPTION)"</div>
-        <div class="text-box">"GESTURE"</div>
-        <div class="text-box">"IMPROVISATION"</div>
-        <div class="text-box">"LIVENESS"</div>
-        <div class="text-box">"MOVEMENT"</div>
+      <a href="#setup-page" class="blur-setup">SETUP</a>
+      <h1>ViDi</h1>
+      <div class="manifest">
+        <p>…is made for musicians, designers and observers.</p>
+<!-- <p>…empowers the gathering of visual and musical practices.</p>
+<p>…uses the computer as a visual and musical instrument.</p>
+<p>…plays with the commonalities of visual and musical practice: </br> Movement, Time & Space </p>
+<p>…gives the opportunity to inspire during creation or improvisation.</p>
+<p>…translates musical moods into visual worlds of color.</p>
+<p>…is influenced by synaesthetic perceptions and music theory.</p>
+<p>…thinks about a more immediate practice of design and music.</p>
+<p>…puts the moment of creation and perception at eye level.</p>
+<p>…strengthens the emotional and intuitive perception of our senses.</p>
+<p>…pushes multi-sensorial design and cross-modal language.</p> -->
+        
       </div>
       <div class="about-block">
-        <div class="about-block-text">Lorem ipsium...</div>
+        <div class="about-block-text">This Project was created as a part of a graduation project in communication design. It provides a tool that can be used to visualize music. The fusion between musical atmosphere, visual representation and figurative poetic language can be discovered and reinvented through improvisation and dialogue. The Glossary below shows theoretical research and content on the topic.</div>
         <div class="about-block-info">
-          block info
-        </div>
+        DESIGN & CONCEPT<hr>
+        Kathi Rüll, kathiruell.com
+        </br> </br> 
+        SUPPORT & CARE<hr>
+        CODE<span class="tab"> Leo Hilsheimer,</span></br> 
+        <span class="tab">Haram Choi</span></br> 
+        MUSIC<span class="tab">Nils Eberhard,</span></br> 
+        <span class="tab">Immanuel Geissler</span></br> 
+        SCENOGRAFIE<span class="tab">Jannik Lang,</span></br> 
+        <span class="tab">Janina Capelle,</span></br> 
+        <span class="tab">Kamilla Murtzina</span></br> 
+        DESIGN & CONCEPT<span class="tab">James Langdon,</span></br> 
+        <span class="tab">Ivan Weiß,</span></br> 
+        <span class="tab">Michael Kryhenbühl,</span></br> 
+        TECHNICAL<span class="tab">HfG KA        
+      </div>
       </div>
       <div class="about-block-columns">
         <div class="about-block-columns-block">
@@ -120,6 +135,7 @@
       </div>
       
     </div>
+  </div>
 
     <!-- Code -->
     <script src="main.js"></script>
@@ -127,6 +143,6 @@
     <!-- Pages code -->
     <script src="js/pages/intro.js"></script>
     <script src="js/pages/setup.js"></script>
-    <script src="js/pages/visualizer.js"></script>
+    <script src="js/visualizer/visualizer.js"></script>
   </body>
 </html>
