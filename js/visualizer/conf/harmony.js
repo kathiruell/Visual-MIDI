@@ -30,7 +30,7 @@ let harmony_array = {
         11: SEMISONANT,
     },
     // MODE_MINOR
-    0: {
+    2: {
         0: CONSONANT,
         1: DISSONANT,
         2: SEMISONANT,
