@@ -31,9 +31,7 @@ class Chord extends MusicalEvent {
     }
 
     getName() {
-        let res = this.alternatives[0]
-        if (!res.length) throw "chord.getName() return incorrect"
-        return res
+        return this.alternatives[0]
     }
 
     getMode() {

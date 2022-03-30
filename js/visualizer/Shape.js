@@ -100,8 +100,6 @@ class Shape {
 
             // pitch -> parametric
             color = rgbModBrightness(color, this.note.getOctave() / 7)
-        } else {
-            throw "harmony undefined"
         }
         
         return color
