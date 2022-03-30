@@ -62,6 +62,7 @@
   line-height: 1.7vw;
   padding-right: 1vw;
   margin-top: 0%;
+  font-weight: 200;
 }
 
 .tab {
@@ -70,7 +71,7 @@
 }
 
 hr {
-  border-top: 1px solid rgb(255, 255, 255);
+  border-top: 0.5px solid rgb(255, 255, 255);
   margin: 0%;
 }
 
@@ -83,8 +84,26 @@ hr {
   display: flex;
   flex-direction: column;
   row-gap: 0;
+  font-size: 1.7vw;
+  line-height: 2.1vw;
+  font-weight: 200;
+  filter: blur(3px);
+  padding-left: 1vw;
 }
 .about-block-columns h3 {
-  font-size: normal;
-  text-transform: uppercase;
+  font-size: 3.5vw;
+  font-weight: 400;
+  line-height: 3.3vw;
+  margin-top: 0.5vw;
+  margin-bottom: -0.5vw;
+  word-spacing: -0.6vw;
+}
+
+.about-block-columns .no-break:hover {
+  filter: blur(0.1px);
+}
+
+.about-block-columns .no-break .tab {
+  display: inline-block;
+  margin-left: 30px;
 }
