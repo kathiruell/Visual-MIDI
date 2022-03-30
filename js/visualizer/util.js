@@ -20,5 +20,6 @@ function getFrameDuration(frame_rate_hz) {
 }
 
 function rgbModBrightness(rgb,factor) {
+    if (rgb === undefined) throw "color null"
     return [Math.round(rgb[0] * factor), Math.round(rgb[1] * factor), Math.round(rgb[2] * factor)];
 }

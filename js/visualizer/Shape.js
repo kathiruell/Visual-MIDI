@@ -6,16 +6,15 @@ let shapes_id=0
 
 class Shape {
 
-    constructor(note, base_note, mode) {
+    constructor(note) {
         this.note = note
-        this.base_note = base_note
-        this.mode = mode
         this.conf = visualizer.conf
         this.position = this.getPosition();
         this.opacity = this.getOpacity();
         this.lifetime_frames = 0
         this.lifetime_ms = 0
         this.id = ++shapes_id
+        this.color = this.getColor();
     }
 
     isAlive() {
@@ -85,13 +84,25 @@ class Shape {
      * @returns rgb array
      */
     getColor() {
-        let color = undefined;
-        // interval -> conf
+        // color is not animated
+        if (this.color !== undefined) return this.color
 
-        // mode -> conf
+        // default color
+        let color = UNDEFINED_COLOR
+        let harmony = visualizer.music.getHarmony()
+        if (harmony !== undefined) {
 
-        // pitch -> parametric
-        color = rgbModBrightness(color, this.note.getOctave() / 7)
+            // get colorscheme from conf
+            let colors = this.conf.getColorScheme(visualizer.music.getHarmony())
+
+            // pick random color from colorscheme
+            color = colors[Math.ceil(Math.random() * colors.length) - 1]
+
+            // pitch -> parametric
+            color = rgbModBrightness(color, this.note.getOctave() / 7)
+        } else {
+            throw "harmony undefined"
+        }
         
         return color
     }

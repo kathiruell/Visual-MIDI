@@ -1,6 +1,7 @@
 /// <reference types="p5/global" />
 
 const visualizerPage = document.querySelector("#visualizer-page");
+const UNDEFINED_COLOR = [255,255,255]
 
 let visualizer = {
     conf: new Conf(),
@@ -39,10 +40,15 @@ function handleNoteOn(ch, pitch, vel) {
 
     // chord?
     if (isChord()) {
-        let chord = new Chord(getChord())
+        let chord_alternatives = getChord()
+        console.log("getChord", chord_alternatives)
+
+        let chord = new Chord(chord_alternatives)
+        console.log(chord, chord.getBaseNote(),chord.getMode())
+
         visualizer.music.addChord(chord);
 
-        let background = new BackgroundShape(getChord())
+        let background = new BackgroundShape(chord)
         visualizer.renderer.renderShape(background)
     }
 }
