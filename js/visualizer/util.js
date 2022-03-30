@@ -17,5 +17,8 @@ function radialGradient(x1, y1, r1, color1, opacity1, x2, y2, r2, color2, opacit
  */
 function getFrameDuration(frame_rate_hz) {
     return 1000 / (frame_rate_hz)
+}
 
+function rgbModBrightness(rgb,factor) {
+    return [Math.round(rgb[0] * factor), Math.round(rgb[1] * factor), Math.round(rgb[2] * factor)];
 }

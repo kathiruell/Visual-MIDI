@@ -6,8 +6,10 @@ let shapes_id=0
 
 class Shape {
 
-    constructor(note) {
+    constructor(note, base_note, mode) {
         this.note = note
+        this.base_note = base_note
+        this.mode = mode
         this.conf = visualizer.conf
         this.position = this.getPosition();
         this.opacity = this.getOpacity();
@@ -83,23 +85,19 @@ class Shape {
      * @returns rgb array
      */
     getColor() {
-        return [255,255,0];
-        return this.getColorStyle(conf)[note];
+        let color = undefined;
+        // interval -> conf
+
+        // mode -> conf
+
+        // pitch -> parametric
+        color = rgbModBrightness(color, this.note.getOctave() / 7)
+        
+        return color
     }
 
     getColorSecondary() {
         return [0,255,255];
-    }
-
-    getColorStyle() {
-        switch (conf.color) {
-            case 0:
-                return 'color_style_0';
-            case 1:
-                return 'color_style_1';
-            case 2:
-                return 'color_style_2';
-        }
     }
 
     getPosition() {
