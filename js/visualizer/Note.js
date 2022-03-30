@@ -5,10 +5,10 @@ class MusicalEvent {
     }
 
     static noteName(pitch) {
-        return NOTE_NAMES[pitch % 12]
+        return Object.keys(NOTE_NAMES).find(p => NOTE_NAMES[p] === pitch)
     }
     static pitch(note_name) {
-        return NOTE_NAMES.find((x) => x === note_name)
+        return NOTE_NAMES[note_name]
     }
 }
 
@@ -17,21 +17,17 @@ class Chord extends MusicalEvent {
     constructor(alternatives) {
         super()
         this.alternatives = alternatives    // array of chord names
-        console.log("tonal object", this.getTonalObject())
     }
 
     getTonalObject() {
-        return Tonal.Chord.get(this.alternatives[0])
+        let name = this.getName()
+        return Tonal.Chord.get(name.split('/')[0]) // we ignore chord root, since not implemented in tonal.js
     }
     /**
      * returns Note object
      */
     getBaseNote() {
-        // use tonal.js
-        // return MusicalEvent.pitch(this.getTonalObject().tonic)
-
-        let s = this.getName().match(/(.[#b]?)/)[1]
-        return NOTE_NAMES.findIndex((i) => i == s)
+        return MusicalEvent.pitch(this.getTonalObject().tonic)
     }
 
     getName() {
@@ -41,16 +37,8 @@ class Chord extends MusicalEvent {
     }
 
     getMode() {
-        // use tonal.js
-        // let quality = this.getTonalObject().quality
-        // return quality === 'Major' ? MODE_MAJOR : MODE_MINOR;
-
-        let s = this.getName().match(/.[#b]?([m|M])/)[1]    // m or M
-        if (s === 'm') {
-            return MODE_MINOR;
-        } else {
-            return MODE_MAJOR;
-        }
+        let quality = this.getTonalObject().quality
+        return quality === 'Major' ? MODE_MAJOR : MODE_MINOR;
     }
 }
 
