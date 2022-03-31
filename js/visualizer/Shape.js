@@ -43,6 +43,15 @@ class Shape {
         // console.log("Shape", this.id, "drawing frame", this.lifetime_frames, this.lifetime_ms, "ms")
         // console.log("opacity", this.getOpacity(), "shape type", this.conf.getShapeType(), "color", this.getColor().join(','), "pos", this.getPosition(), "size", this.getSize())
 
+        this.drawShape()
+
+        // go to next frame
+        this.lifetime_frames++
+        // could use renderer.getFramerateActual() here for actual processed framerate
+        this.lifetime_ms += getFrameDuration(visualizer.renderer.getFramerateTarget())
+    }
+
+    drawShape() {
         noStroke()
         switch (this.conf.getShapeType()) {
             case SHAPE_TYPE_PLAIN:
@@ -72,11 +81,6 @@ class Shape {
             default:
                 console.log("ERROR shape type not defined", this.conf.getShapeType())
         }
-
-        // go to next frame
-        this.lifetime_frames++
-        // could use renderer.getFramerateActual() here for actual processed framerate
-        this.lifetime_ms += getFrameDuration(visualizer.renderer.getFramerateTarget())
     }
 
     /**
@@ -85,24 +89,26 @@ class Shape {
      */
     getColor() {
         // color is not animated
-        if (this.color !== undefined) return this.color
+        if (this.lifetime_frames == 0) {
 
-        // default color
-        let color = UNDEFINED_COLOR
-        let harmony = visualizer.music.getHarmony()
-        if (harmony !== undefined) {
+            // default color
+            let color = UNDEFINED_COLOR
+            let harmony = visualizer.music.getHarmony(this.note)
+            if (harmony !== undefined) {
 
-            // get colorscheme from conf
-            let colors = this.conf.getColorScheme(visualizer.music.getHarmony())
+                // get colorscheme from conf
+                let colors = this.conf.getColorScheme(visualizer.music.getHarmony(this.note))
 
-            // pick random color from colorscheme
-            color = colors[Math.ceil(Math.random() * colors.length) - 1]
+                // pick random color from colorscheme
+                color = colors[Math.ceil(Math.random() * colors.length) - 1]
 
-            // pitch -> parametric
-            color = rgbModBrightness(color, this.note.getOctave() / 7)
+                // pitch -> parametric
+                color = rgbModBrightness(color, this.note.getOctave() / 7)
+            }
+
+            this.color = color
         }
-        
-        return color
+        return this.color
     }
 
     getColorSecondary() {

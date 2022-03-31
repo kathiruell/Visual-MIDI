@@ -33,6 +33,7 @@ class Renderer {
         // shapes
         this.shapes.forEach(shape => shape.draw())
 
+        // vignette
     }
 
     start() {

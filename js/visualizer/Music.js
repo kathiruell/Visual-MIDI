@@ -32,6 +32,10 @@ class Music {
     notes = [] 
     chords = []
 
+    /**
+     * 
+     * @returns the current base note (either a chords basenote or the last played note)
+     */
     getBaseNote() {
         // last chord ?
         if (this.chords.length) {
@@ -44,7 +48,7 @@ class Music {
     }
 
     /**
-     * @returns MODE_MAJOR, MODE_MINOR or MODE_FREE
+     * @returns current mode as MODE_MAJOR, MODE_MINOR or MODE_FREE
      */
     getMode() {
         if (this.chords.length) {
@@ -57,9 +61,9 @@ class Music {
     /**
      * returns the last played interval
      */
-    getInterval() {
-        if (this.notes.length > 1) {
-            return this.notes[this.notes.length - 1].getInterval(this.notes[this.notes.length - 2])
+    getInterval(note) {
+        if (this.notes.length > 0) {
+            return this.notes[this.notes.length - 1].getInterval(note)
         } else {
             return undefined
         }
@@ -79,10 +83,10 @@ class Music {
         console.log("base:", MusicalEvent.noteName(this.getBaseNote()), "mode:", this.getMode())
     }
 
-    getHarmony() {
-        if (this.getInterval() === undefined) return undefined
+    getHarmony(note) {
+        if (this.getInterval(note) === undefined) return undefined
 
         // depends on Interval and underlying chord 
-        return visualizer.conf.getHarmony(this.getMode(), this.getInterval())
+        return visualizer.conf.getHarmony(this.getMode(), this.getInterval(note))
     }
 }
