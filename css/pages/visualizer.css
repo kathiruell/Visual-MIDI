@@ -1,0 +1,54 @@
+#visualizer-page {
+  font-family: "acumin-pro", sans-serif;
+  font-style: normal;
+  font-size: 2vw;
+}
+
+.outer{
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.backarrow {
+  position: absolute; 
+  text-align: center;
+  padding-left:1vw;
+  height: 100%;
+  width: 100px;
+  background-color: aquamarine;
+  left: -50px;
+  opacity: 0%;
+  transition-duration: 300ms;
+  transition-property: all;
+  transition-timing-function: ease-in-out;
+}
+
+.backarrow:hover {
+  left: 0;
+  opacity: 100%;
+}
+
+.visualizer-setup {
+  text-align: center;
+  position: absolute; 
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  padding-top: 2vw;
+  padding-bottom: 1vw;
+  background-color: aquamarine;
+
+  bottom: -50px;
+  opacity: 0%;
+  transition-duration: 300ms;
+  transition-property: all;
+  transition-timing-function: ease-in-out;
+}
+
+.visualizer-setup:hover {
+  bottom: 0;
+  opacity: 100%;
+}
+
