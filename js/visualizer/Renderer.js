@@ -11,6 +11,7 @@ class Renderer {
         this.canvas = canvas
         this.setFramerate(frame_rate)
         this.background_shape = new BackgroundShapeBlackout()
+        this.vignette = new Vignette()
     }
     
     renderShape(shape) {
@@ -34,6 +35,9 @@ class Renderer {
         this.shapes.forEach(shape => shape.draw())
 
         // vignette
+        if (visualizer.preferences.getVignetteOn()) {
+            this.vignette.draw()
+        }
     }
 
     start() {

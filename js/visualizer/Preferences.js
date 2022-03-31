@@ -43,6 +43,9 @@ class Preferences {
     getStyleId() {
         return "" + this.getAnimationStyle() + this.getShapeStyle() + this.getColorStyle();
     }
+    getVignetteOn() {
+        return true;
+    } 
 
     /**
      * unit fps
