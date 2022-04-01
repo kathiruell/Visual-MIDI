@@ -1,7 +1,8 @@
 #visualizer-page {
   font-family: "acumin-pro", sans-serif;
   font-style: normal;
-  font-size: 2vw;
+  font-size: 2.5vw;
+  font-weight: 200;
 }
 
 .outer{
@@ -11,13 +12,12 @@
   height: 100%;
 }
 
-.backarrow {
+.outer-arrow {
   position: absolute; 
-  text-align: center;
-  padding-left:1vw;
+  padding-top: 40%;
+
   height: 100%;
   width: 100px;
-  background-color: aquamarine;
   left: -50px;
   opacity: 0%;
   transition-duration: 300ms;
@@ -25,30 +25,61 @@
   transition-timing-function: ease-in-out;
 }
 
-.backarrow:hover {
+.backarrow{
+  color: white;
+  filter: blur(2px);
+  text-align: center;
+  padding-left:2vw;
+
+}
+
+.arrow-svg{
+  width: 2vw;
+}
+
+a:hover{
+  color: white;
+  filter: blur(0px);
+}
+
+.outer-arrow:hover {
   left: 0;
   opacity: 100%;
 }
 
-.visualizer-setup {
-  text-align: center;
+.outer-setup {
   position: absolute; 
   bottom: 0;
   width: 100%;
   height: 50px;
   padding-top: 2vw;
   padding-bottom: 1vw;
-  background-color: aquamarine;
-
+  
   bottom: -50px;
   opacity: 0%;
   transition-duration: 300ms;
   transition-property: all;
   transition-timing-function: ease-in-out;
 }
-
-.visualizer-setup:hover {
+.outer-setup:hover {
   bottom: 0;
   opacity: 100%;
+}
+
+.visualizer-setup{
+  width: fit-content;
+  margin: auto;
+
+}
+
+.visualizer-setup .setup-key {
+  color: white;
+  filter: blur(2px);
+  text-align: center;
+}
+
+.visualizer-setup .setup-key:hover {
+  color: white;
+  filter: blur(0px);
 }
 
