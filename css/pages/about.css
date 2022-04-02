@@ -87,8 +87,13 @@ hr {
   font-size: 1.7vw;
   line-height: 2.1vw;
   font-weight: 200;
-  filter: blur(3px);
   padding-left: 1vw;
+  filter: blur(3px);
+  position: relative;
+  overflow: auto;
+}
+.about-block-columns .no-break:hover {
+  filter: blur(.1px);
 }
 .about-block-columns h3 {
   font-size: 3.5vw;
@@ -99,9 +104,19 @@ hr {
   word-spacing: -0.6vw;
 }
 
-.about-block-columns .no-break:hover {
-  filter: blur(0.1px);
+/* .about-block-columns .no-break::before {
+  content: " ";
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  backdrop-filter: blur(3px);
+  background-color: red;
 }
+
+.about-block-columns .no-break::before:hover {
+  content: '';
+  backdrop-filter: blur(0.1px);
+  background-color: none;
+} */
 
 .about-block-columns .no-break .tab {
   display: inline-block;

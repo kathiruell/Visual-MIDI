@@ -8,6 +8,7 @@ $(function() {
     
     // init all labels
     $("[data-pref-preview]").prefButtonLabel()
+    $("[data-pref-preview-and-set]").prefButtonLabel()
     $("button[data-pref-set]").prefButtonLabel()
 });
 $("[data-pref-preview]").click(function() {
@@ -24,6 +25,16 @@ $("[data-pref-set]").click(function() {
     $(this).closest('.setup-popup').hide()
     $('[data-pref-preview]').prefButtonLabel()
     $('[data-pref-preview]').show()
+});
+$("[data-pref-preview-and-set]").click(function() {
+    // hide preview, show popup
+    let key = $(this).attr('data-key')
+
+    // set next value
+    visualizer.preferences.set(key, (visualizer.preferences.get(key) + 1) % 3)
+
+    // update label
+    $(this).prefButtonLabel()
 });
 
 $.fn.prefButtonLabel = function() {

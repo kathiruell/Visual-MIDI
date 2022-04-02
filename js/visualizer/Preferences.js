@@ -10,18 +10,17 @@ const   ANIMATION_STYLE_DETAILED = 0,
 
 class Preferences {
 
-    constructor() {
-        this.init()
+    static DEFAULTS = {
+        'shape_style': SHAPE_STYLE_CLEAR,
+        'animation_style': ANIMATION_STYLE_DETAILED,
+        'color_style': COLOR_STYLE_INTIMATE,
+        'frame_rate': 60,
+    }
 
+    constructor() {
         console.log("Preferences:", "Style", this.getStyleId(), "Framerate", this.getFramerate())
     }
 
-    init() {
-        this.setShapeStyle(this.getShapeStyle() || SHAPE_STYLE_MELLOW)
-        this.setColorStyle(this.getColorStyle() || COLOR_STYLE_INTIMATE)
-        this.setAnimationStyle(this.getAnimationStyle() || ANIMATION_STYLE_DETAILED)
-        this.setFrameRate(this.getFramerate() || 60)
-    }
     setShapeStyle(value) {
         this.set('shape_style', value)
     }
@@ -67,6 +66,6 @@ class Preferences {
         window.sessionStorage.setItem(key, value);
     }
     get(key) {
-        return window.sessionStorage.getItem(key);
+        return window.sessionStorage.getItem(key) || Preferences.DEFAULTS[key]
     }
 }
