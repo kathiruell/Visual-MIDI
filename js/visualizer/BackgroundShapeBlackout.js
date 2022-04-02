@@ -5,12 +5,12 @@ class BackgroundShapeBlackout extends BackgroundShape {
         this.chord = undefined
     }
 
-    draw() {
-        background(0)
-    }
-
     getColor() {
         return [0,0,0]
+    }
+
+    getOpacity() {
+        return 1
     }
 
 }

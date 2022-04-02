@@ -15,6 +15,7 @@ class Renderer {
     }
     
     renderShape(shape) {
+        if (shape instanceof BackgroundShape) throw "for background shapes call renderBackgrounShape()"
         this.shapes.push(shape);
     }
 
@@ -23,13 +24,13 @@ class Renderer {
     }
 
     draw() {
-        // console.log("Renderer.draw() shapes", this.shapes.map(x => x.id).join(','))
+
+        // clear dead shapes
+        if (!this.background_shape.isAlive()) this.background_shape = new BackgroundShapeBlackout()
+        this.shapes = this.shapes.filter(shape => shape.isAlive())
 
         // background
         this.background_shape.draw()
-
-        // clear dead shapes
-        this.shapes = this.shapes.filter(shape => shape.isAlive())
 
         // shapes
         this.shapes.forEach(shape => shape.draw())

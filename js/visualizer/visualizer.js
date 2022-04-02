@@ -49,13 +49,13 @@ function handleNoteOn(ch, pitch, vel) {
         visualizer.music.addChord(chord);
 
         let background = new BackgroundShape(chord)
-        visualizer.renderer.renderShape(background)
+        visualizer.renderer.renderBackgroundShape(background)
     }
 }
 
 function handleNoteOff(ch, pitch, vel) {
     // TODO
-    // playingNotes = playingNotes.filter((note) => note.pitch !== pitch);
+    visualizer.music.noteOff(pitch)
 }
 
 function windowResized() {

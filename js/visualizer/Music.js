@@ -62,8 +62,8 @@ class Music {
      * returns the last played interval
      */
     getInterval(note) {
-        if (this.notes.length > 0) {
-            return this.notes[this.notes.length - 1].getInterval(note)
+        if (this.notes.length > 1) {
+            return this.notes[this.notes.length - 2].getInterval(note)
         } else {
             return undefined
         }
@@ -88,5 +88,10 @@ class Music {
 
         // depends on Interval and underlying chord 
         return visualizer.conf.getHarmony(this.getMode(), this.getInterval(note))
+    }
+
+    noteOff(pitch) {
+        // remove all notes from this.notes with given pitch
+        this.notes = this.notes.filter(note => note.pitch !== pitch)
     }
 }

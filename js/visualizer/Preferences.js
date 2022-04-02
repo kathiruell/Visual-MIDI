@@ -8,7 +8,6 @@ const   ANIMATION_STYLE_DETAILED = 0,
         COLOR_STYLE_LUMINOUS = 1,
         COLOR_STYLE_GLOOM = 2;
 
-
 class Preferences {
 
     static DEFAULTS = {
