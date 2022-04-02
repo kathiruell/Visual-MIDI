@@ -8,7 +8,15 @@ const   ANIMATION_STYLE_DETAILED = 0,
         COLOR_STYLE_LUMINOUS = 1,
         COLOR_STYLE_GLOOM = 2;
 
+
 class Preferences {
+
+    static DEFAULTS = {
+        'shape_style': SHAPE_STYLE_CLEAR,
+        'animation_style': ANIMATION_STYLE_DETAILED,
+        'color_style': COLOR_STYLE_INTIMATE,
+        'frame_rate': 60,
+    }
 
     constructor() {
         console.log("Preferences:", "Style", this.getStyleId(), "Framerate", this.getFramerate())
@@ -18,19 +26,19 @@ class Preferences {
         this.set('shape_style', value)
     }
     getShapeStyle() {
-        return this.get('shape_style') || SHAPE_STYLE_MELLOW
+        return this.get('shape_style')
     }
     setColorStyle(value) {
         this.set('color_style', value)
     }
     getColorStyle() {
-        return this.get('color_style') || COLOR_STYLE_INTIMATE
+        return this.get('color_style')
     }
     setAnimationStyle(value) {
         this.set('animation_style', value)
     }
     getAnimationStyle() {
-        return this.get('animation_style') || ANIMATION_STYLE_DETAILED
+        return this.get('animation_style')
     }
     getStyleId() {
         return "" + this.getAnimationStyle() + this.getShapeStyle() + this.getColorStyle();
@@ -43,7 +51,7 @@ class Preferences {
      * unit fps
      */
     getFramerate() {
-        return this.get('frame_rate') || 60
+        return this.get('frame_rate')
     }
     setFrameRate(value) {
         value = parseFloat(value)
@@ -59,6 +67,6 @@ class Preferences {
         window.sessionStorage.setItem(key, value);
     }
     get(key) {
-        return window.sessionStorage.getItem(key);
+        return window.sessionStorage.getItem(key) || Preferences.DEFAULTS[key]
     }
 }
