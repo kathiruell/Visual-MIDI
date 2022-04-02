@@ -11,34 +11,26 @@ const   ANIMATION_STYLE_DETAILED = 0,
 class Preferences {
 
     constructor() {
-        this.init()
-
         console.log("Preferences:", "Style", this.getStyleId(), "Framerate", this.getFramerate())
     }
 
-    init() {
-        this.setShapeStyle(this.getShapeStyle() || SHAPE_STYLE_MELLOW)
-        this.setColorStyle(this.getColorStyle() || COLOR_STYLE_INTIMATE)
-        this.setAnimationStyle(this.getAnimationStyle() || ANIMATION_STYLE_DETAILED)
-        this.setFrameRate(this.getFramerate() || 60)
-    }
     setShapeStyle(value) {
         this.set('shape_style', value)
     }
     getShapeStyle() {
-        return this.get('shape_style')
+        return this.get('shape_style') || SHAPE_STYLE_MELLOW
     }
     setColorStyle(value) {
         this.set('color_style', value)
     }
     getColorStyle() {
-        return this.get('color_style')
+        return this.get('color_style') || COLOR_STYLE_INTIMATE
     }
     setAnimationStyle(value) {
         this.set('animation_style', value)
     }
     getAnimationStyle() {
-        return this.get('animation_style')
+        return this.get('animation_style') || ANIMATION_STYLE_DETAILED
     }
     getStyleId() {
         return "" + this.getAnimationStyle() + this.getShapeStyle() + this.getColorStyle();
@@ -51,7 +43,7 @@ class Preferences {
      * unit fps
      */
     getFramerate() {
-        return this.get('frame_rate')
+        return this.get('frame_rate') || 60
     }
     setFrameRate(value) {
         value = parseFloat(value)
