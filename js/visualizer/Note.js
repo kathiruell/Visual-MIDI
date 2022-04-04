@@ -2,6 +2,19 @@ class MusicalEvent {
 
     constructor() {
         this.timestamp = Date.now()
+        this.timestamp_note_off = undefined
+    }
+
+    noteOff() {
+        this.timestamp_note_off = Date.now()
+    }
+
+    isOn() {
+        return this.timestamp_note_off === undefined
+    }
+
+    isOff() {
+        return !!this.timestamp_note_off
     }
 
     static noteName(pitch) {
@@ -24,7 +37,7 @@ class Chord extends MusicalEvent {
         return Tonal.Chord.get(name.split('/')[0]) // we ignore chord root, since not implemented in tonal.js
     }
     /**
-     * returns Note object
+     * returns pitch
      */
     getBaseNote() {
         return MusicalEvent.pitch(this.getTonalObject().tonic)
@@ -41,9 +54,6 @@ class Chord extends MusicalEvent {
 }
 
 class Note extends MusicalEvent {
-
-    static pitch
-    static vel
 
     constructor(pitch, vel) {
         super()
@@ -63,5 +73,8 @@ class Note extends MusicalEvent {
         return Math.ceil(this.pitch / 12)
     }
 
+    getPitch() {
+        return this.pitch
+    }
 
 }

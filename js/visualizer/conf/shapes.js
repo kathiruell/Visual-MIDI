@@ -1,19 +1,12 @@
 let shapes_array = {
     "000": {
         color_style: 2,
-        shape_type: SHAPE_TYPE_BLURRY,
+        shape_type: SHAPE_TYPE_PLAIN,
         texture: "none",
         inner_size: 1,
         blend_mode: "normal",
-        opacity: 1,
         scale: 1.2,
-        animations: [
-            {
-                param: 'opacity',
-                time_ms: 1000,
-                goal: 0,
-            },
-        ],
+        opacity: 1,
     },
     "010": {
         color_style: 2,
@@ -21,14 +14,19 @@ let shapes_array = {
         texture: "none",
         inner_size: 1,
         blend_mode: "normal",
-        opacity: 1,
         scale: 1.2,
-        animations: [
-            {
-                param: 'opacity',
-                time_ms: 1000,
-                goal: 0,
-            },
-        ],
+        opacity: () => new AdsrAnimation(
+            [100, 200, 5000, 2000],
+            [1, .8, .6, 0],
+            'linear'
+        ),
     },
 };
+let fn = (() => console.log("function called"));
+
+let fn2 = function() {
+    console.log("test")
+}
+
+
+

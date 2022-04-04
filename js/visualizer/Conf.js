@@ -8,7 +8,7 @@ class Conf {
 
     getPosition(note) {
         if (visualizer.canvas === undefined) throw "canvas not initialized"
-        return {x: random(0, visualizer.canvas.width), y: random(0, visualizer.canvas.height)};
+        return {x: random(0, visualizer.canvas.width), y: random(0, visualizer.canvas.height)}
     }
 
     /**
@@ -30,23 +30,12 @@ class Conf {
         return this.getByPref("shape_type")
     }
 
-    getAnimations() {
-        return this.getByPref("animations")
-    }
-
-    isAnimated(key) {
-        return this.getAnimation(key) !== undefined
-    }
-
-    getAnimation(key) {
-        try {
-            return this.getByPref("animations").find(elem => elem.param === key)
-        } catch (error) {
-            return undefined;
-        }
-    }
-
     getByPref(key) {
-        return this.shapes[visualizer.preferences.getStyleId()][key]
+        let raw = this.shapes[visualizer.preferences.getStyleId()][key]
+        if (typeof raw === 'function') {
+            return new AnimatedParameter(raw())
+        } else {
+            return new Parameter(raw)
+        }
     }
 }

@@ -4,41 +4,45 @@
 class Renderer {
 
     static canvas = undefined;
+    static background = undefined;
     shapes = []
-    static background_shape = undefined;
+    chord_shapes = []
+
 
     constructor(canvas, frame_rate) {
         this.canvas = canvas
         this.setFramerate(frame_rate)
-        this.background_shape = new BackgroundShapeBlackout()
-        this.vignette = new Vignette()
+        this.background = new BackgroundShapeBlackout()
     }
     
     renderShape(shape) {
-        if (shape instanceof BackgroundShape) throw "for background shapes call renderBackgrounShape()"
+        // if (shape instanceof BackgroundShape) throw "for background shapes call renderBackgrounShape()"
         this.shapes.push(shape);
     }
 
-    renderBackgroundShape(background_shape) {
-        this.background_shape = background_shape;
+    // chord shapes are being rendered first (background)
+    renderChordShape(shape) {
+
     }
 
     draw() {
 
         // clear dead shapes
-        if (!this.background_shape.isAlive()) this.background_shape = new BackgroundShapeBlackout()
         this.shapes = this.shapes.filter(shape => shape.isAlive())
 
         // background
-        this.background_shape.draw()
+        this.background.draw()
 
-        // shapes
-        this.shapes.forEach(shape => shape.draw())
+        // chord shapes
+        this.shapes.filter(shape => shape instanceof ChordShape).forEach(shape => shape.draw())
 
-        // vignette
-        if (visualizer.preferences.getVignetteOn()) {
-            this.vignette.draw()
-        }
+        // note shapes
+        this.shapes.filter(shape => shape instanceof NoteShape).forEach(shape => shape.draw())
+
+    }
+
+    noteOff(pitch) {
+        this.shapes.filter(shape => shape.getNote().getPitch() === pitch).forEach(shape => shape.triggerRelease())
     }
 
     start() {
@@ -59,6 +63,12 @@ class Renderer {
     setFramerate(frame_rate) {
         this.framerate_target = frame_rate
         frameRate(parseFloat(this.framerate_target))
+    }
+    getFrameDurationTarget() {
+        return 1000 / this.framerate_target
+    }
+    getFrameDurationActual() {
+        return frameRate()
     }
 
 }
