@@ -92,6 +92,7 @@ class Music {
 
     noteOff(pitch) {
         // remove all notes from this.notes with given pitch
-        this.notes = this.notes.filter(note => note.pitch !== pitch)
+        // this.notes = this.notes.filter(note => note.pitch !== pitch)
+        this.notes.filter(note => note.pitch === pitch).forEach(note => note.noteOff())
     }
 }

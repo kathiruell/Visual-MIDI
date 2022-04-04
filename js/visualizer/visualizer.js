@@ -32,7 +32,7 @@ function handleNoteOn(ch, pitch, vel) {
     let note = new Note(pitch, vel)
     visualizer.music.addNote(note);
 
-    let shape = new Shape(note);
+    let shape = new NoteShape(note);
     visualizer.renderer.renderShape(shape)
 
     // chord?
@@ -45,14 +45,14 @@ function handleNoteOn(ch, pitch, vel) {
 
         visualizer.music.addChord(chord);
 
-        let background = new BackgroundShape(chord)
-        visualizer.renderer.renderBackgroundShape(background)
+        let chord_shape = new ChordShape(chord)
+        visualizer.renderer.renderShape(chord_shape)
     }
 }
 
 function handleNoteOff(ch, pitch, vel) {
-    // TODO
     visualizer.music.noteOff(pitch)
+    visualizer.renderer.noteOff(pitch)
 }
 
 function windowResized() {
