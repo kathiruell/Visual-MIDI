@@ -25,7 +25,7 @@ introPage.addEventListener("first-show", function () {
     )
     .deleteAll(deleteSpeed)
     .typeString(
-      "COLOR CHANGES WHAT WE FEEL.<br />SOUND TRANSFORMS WHAT WE SEE."
+      "COLOR CHANGES WHAT WE FEEL.<br />SOUND <span class='other-font'>TRANSFORMS</span> WHAT WE SEE."
     )
     .callFunction(function () {
       introPage.setAttribute("contenteditable", true);

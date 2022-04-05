@@ -42,9 +42,9 @@
 
     <!-- Page styles -->
     <link rel="stylesheet" href="css/pages/intro.css" />
+    <link rel="stylesheet" href="css/pages/visualizer.css" />
     <link rel="stylesheet" href="css/pages/about.css" />
     <link rel="stylesheet" href="css/pages/setup.css" />
-    <link rel="stylesheet" href="css/pages/visualizer.css" />
 
 
   </head>
@@ -56,6 +56,10 @@
       <div class="page" id="setup-page">
         <a href="#about-page" class="blur-about">ABOUT</a>
         <a href="#visualizer-page" class="blur-visualiser">VISUALISER</a>
+
+        <div class="vignette"></div>
+
+        <div class="setup-complete">
         <div class="setup-sentence">VISUALIZE YOUR MUSIC LIKE</div>
 
         <div class="setup-categories center">
@@ -63,7 +67,7 @@
           ><br />
           <button data-pref-preview class="setup-key" data-key="shape_style" data-format="key,"></button
           ><br />
-          <button data-pref-preview class="setup-key" data-key="color_style" data-format="& key"></button>
+          <button data-pref-preview class="setup-key" data-key="color_style" data-format="&key"></button>
         </div>
         <div class="setup-popup" data-key="shape_style" hidden="true">
           <div class="center">
@@ -86,6 +90,27 @@
             <button data-pref-set data-key="color_style" data-value="2" data-format="or key"></button><br />
           </div>
         </div>
+
+        <div class="vignette-setup">
+
+          <!-- <input type="radio" data-vignette-select="square" class="square">
+          <label for="square"></label>  -->
+
+            <input type="radio" id="v1" name="vignette"/>
+            <label for="v1"></label>
+            <input type="radio" id="v2" name="vignette"/>
+            <label for="v2"></label>
+            <input type="radio" id="v3" name="vignette" />
+            <label for="v3"></label>
+
+          <!-- <button data-vignette-select="square" class="square selected"></button>
+          <button data-vignette-select="round-edge"class="round-edge"></button>
+          <button data-vignette-select="circle"class="circle selected"></button> -->
+       
+        </div>
+
+      </div>
+
       </div>
     </div>
 
@@ -114,8 +139,6 @@
     </div>
   </div>
 
-
-
     <div class="page" id="about-page">
       <a href="#setup-page" class="blur-setup">SETUP</a>
       <h1>ViDi</h1>
@@ -136,21 +159,30 @@
       <div class="about-block">
         <div class="about-block-text">This Project was created as a part of a graduation project in communication design. It provides a tool that can be used to visualize music. The fusion between musical atmosphere, visual representation and figurative poetic language can be discovered and reinvented through improvisation and dialogue. The Glossary below shows theoretical research and content on the topic.</div>
         <div class="about-block-info">
+          <div class= "description">
           DESIGN & CONCEPT<hr>
           Kathi Rüll, kathiruell.com
           </br> </br> 
           SUPPORT & CARE<hr>
-          CODE<span class="tab"> Leo Hilsheimer,</span></br> 
-          <span class="tab">Haram Choi</span></br> 
-          MUSIC<span class="tab">Nils Eberhard,</span></br> 
-          <span class="tab">Immanuel Geissler</span></br> 
-          SCENOGRAFIE<span class="tab">Jannik Lang,</span></br> 
-          <span class="tab">Janina Capelle,</span></br> 
-          <span class="tab">Kamilla Murtzina</span></br> 
-          DESIGN & CONCEPT<span class="tab">James Langdon,</span></br> 
-          <span class="tab">Ivan Weiß,</span></br> 
-          <span class="tab">Michael Kryhenbühl,</span></br> 
-          TECHNICAL<span class="tab">HfG KA        
+          CODE</br></br> 
+          MUSIC</br></br>  
+          SCENOGRAFIE</br></br></br>  
+          DESIGN & CONCEPT</br></br></br>  
+          TECHNICAL     
+           </div>   
+
+          <div class="names">
+          Leo Hilsheimer,</br> 
+          Haram Choi</br> 
+          Nils Eberhard,</br> 
+          Immanuel Geissler</br> 
+          Jannik Lang,</br> 
+          Janina Capelle,</br> 
+          Kamilla Murtzina</br> 
+          James Langdon,</br> 
+          Ivan Weiß,</br> 
+          Michael Kryhenbühl</br> 
+          HfG KA</div>
         </div>
         </div>
         <div class="about-block-columns">

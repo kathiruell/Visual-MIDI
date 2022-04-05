@@ -76,13 +76,13 @@ diese blenden nur ein wenn Cursor im Bereich ist (Ähnlich wie Apple-Dock)
 
 ## Setup
 
+- immernoch Problem mit Links?! Why?
 - Setup Popup soll nicht untereinander stehen, nebeneinander zentriert
   Popup soll sich visuell von Setup Categories unterscheiden // @kathiruell
 
-- Vignette-Setup einfügen
-- Auswahl: Square | Square with soft Edges | Circle
-  Setup: No Vignette | Vignette Blur Edges | Vignette Blur Edges Round
-  @linobino1 Hier benutz ich am Besten auch ein Bild, dass ich einfach darüber lege?
+- Vignette-Setup:
+  Ratio Buttons individuell stylen
+  - Vignette einfügen??
 
 ## About
 
@@ -90,42 +90,3 @@ diese blenden nur ein wenn Cursor im Bereich ist (Ähnlich wie Apple-Dock)
   Problem mit Hover
 
 #////////////////////////////////////////////////////////
-
-## Notes
-
-### movement:
-
-0 detailed
-1 brisk
-2 massive
-
-### shape:
-
-0 mellow
-1 clear
-2 embossed
-
-### color:
-
-0 intimate
-1 luminous
-2 gloom
-
----
-
-//OHNE TONART
-konsonant (Abstände 12,7,5)
-halbsonant (Abstände 9,4,3,8)
-oder dissonant (Abstände 10,2,11,1,6)
-
-//MAJOR
-konsonant (Abstände 12,7,5,4)
-halbsonant (Abstände 9,2,11)
-oder dissonant (Abstände 3,8,10,1,6)
-
-//minor
-konsonant (Abstände 12,7,5,3)
-halbsonant (Abstände 8,10,2)
-oder dissonant (Abstände 9,4,11,1,6)
-
----

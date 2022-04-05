@@ -8,10 +8,15 @@
   font-size: 2rem;
 }
 
+.setup-complete{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 12vw;
+}
+
 .setup-sentence {
-  /* margin-top: 5rem; */
-  padding-top: 8%;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
 }
 
 .setup-categories {
@@ -38,19 +43,15 @@
   color: blue;
 }
 
-/* .setup-category.fade-in {
-  opacity: 1;
-  transition: opacity 0.5s;
-} */
 
 .blur-visualiser {
-  padding-top: 0%;
+  padding-top: 0.8%;
   padding-right: 2%;
   float: right;
 }
 
 .blur-about {
-  padding-top: 0%;
+  padding-top: 0.8%;
   padding-left: 2%;
   float: left;
 }
@@ -62,10 +63,11 @@ a {
   text-decoration: none;
 }
 
+
 /* mouse over link */
 a:hover {
   filter: blur(0.1px);
-  color: #2600ff;
+  color: #000000;
 }
 
 .setup-popup {
@@ -76,4 +78,85 @@ a:hover {
   width: 100%;
   height: 100%;
   backdrop-filter: blur(20px);
+}
+
+.vignette-setup{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 0.8rem;
+  padding: 3vw;
+  height: fit-content;
+}
+
+.square{
+  background: black;
+  width: 60px;
+  height: 60px;
+}
+
+.round-edge{
+  background: black;
+  border-radius: 12px/12px;
+  width: 62px;
+  height: 62px;
+}
+
+.circle{
+  background: black;
+  border-radius: 65px/65px;
+  width: 65px;
+  height: 65px;
+}
+.vignette-setup button:hover {
+  background: blue;
+}
+
+button.circle.selected .vignette{
+  background-image: url("vignette2.png");
+}
+
+.vignette{
+  display: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.vignette-setup button.square.selected ~ .vignette {
+  background-image: url("vignette2.png");
+}
+
+.vignette-setup input[type="radio"] {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 50px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 50px;
+}
+
+.vignette-setup label {
+  background: black;
+  width: 60px;
+  height: 60px;
+}
+
+
+.vignette-setup input:checked + label {
+  background: #000dff;
+  box-shadow: none;
+}
+
+input:hover + label,
+input:focus + label {
+  background: #caccfe;
+}
+
+.vignette-setup input:checked ~ .vignette  {
+  background-image: url("vignette2.png");
 }

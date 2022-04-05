@@ -18,9 +18,10 @@
   font-size: 1.2em;
 }
 .blur-setup {
+  font-size: 2rem;
   width: fit-content;
   align-self: flex-end;
-  padding-top: 0%;
+  padding-top: 0.8%;
   padding-right: 2%;
   text-align: right;
   filter: blur(3px);
@@ -57,22 +58,28 @@
   padding-left: 1vw;
 }
 .about-block-info {
-  grid-column: 3;
+  position: relative;
   font-size: 1.5vw;
   line-height: 1.7vw;
   padding-right: 1vw;
   margin-top: 0%;
   font-weight: 200;
 }
+.description{
+  position: absolute;
+  width: 96%;
+}
 
-.tab {
-  display: inline-block;
-  margin-left: 150px;
+.names{
+  position: absolute;
+  padding-left: 15.5vw;
+  padding-top: 7.6vw;
 }
 
 hr {
-  border-top: 0.5px solid rgb(255, 255, 255);
-  margin: 0%;
+  border-top: 0vw solid rgb(255, 255, 255);
+  margin-top: 0.5%;
+  margin-bottom: 0.5%;
 }
 
 .about-block-columns {

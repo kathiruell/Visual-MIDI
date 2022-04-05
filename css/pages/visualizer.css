@@ -13,6 +13,7 @@
 }
 
 .outer-arrow {
+  height: 100%;
   position: absolute;
   padding-top: 50vh;
   transform: translateY(-50px);
@@ -40,6 +41,7 @@ a:hover{
   color: white;
   filter: blur(0px);
 }
+
 
 .outer-arrow:hover {
   left: 0;
