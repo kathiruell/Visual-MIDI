@@ -16,8 +16,8 @@ let shapes_array = {
         blend_mode: "normal",
         scale: () => new AdsrAnimation(
             [100, 200, 500, 1000],
-            [1, .8, .8, .5],
-            'linear'
+            [1, .8, .5, 0.1],
+            'exp'
         ),
         opacity: () => new AdsrAnimation(
             [100, 200, 5000, 2000],

@@ -70,7 +70,7 @@ class NoteShape extends Shape {
         super()
         this.note = note
         this.setParameter('opacity', this.conf.getOpacity())
-        this.setParameter('size', this.conf.getScale())
+        this.setParameter('scale', this.conf.getScale())
         this.setParameter('shape_type', this.conf.getShapeType())
     }
 
@@ -114,7 +114,7 @@ class NoteShape extends Shape {
         return this.position
     }
     getSize() {
-        return this.getParameter('size') * 100
+        return this.getParameter('scale') * 100
     }
 
     getNote() {
