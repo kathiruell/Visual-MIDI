@@ -75,7 +75,8 @@ class AdsrAnimation extends Animation {
             case 'linear':
                 return y0 + ( x - x0 ) * ( y1 - y0 ) / ( x1 - x0 )
             case 'exp':
-                throw "exponential interpolation not implemented"
+                return y0 * Math.pow( ( y1 / y0 ), ( ( x - x0 ) / ( x1 - x0 ) ) )
+                return x0 * Math.pow( ( x1 / x0 ), ( ( x - y0 ) / ( y1 - y0 ) ) )
         }
     }
 

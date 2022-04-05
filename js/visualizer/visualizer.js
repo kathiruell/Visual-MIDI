@@ -22,6 +22,17 @@ function setup() {
 	visualizer.renderer.start()
 
     setupMidi(handleNoteOn, handleNoteOff);
+
+    demo()
+}
+
+function demo() {
+    window.setInterval(function(){
+        handleNoteOn(0, 56, 100)
+        window.setTimeout(function() {
+            handleNoteOff(0, 56, 100)
+        }, 2500)
+    }, 5000);
 }
 
 function draw() {
