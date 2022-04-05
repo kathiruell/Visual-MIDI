@@ -30,6 +30,10 @@ class Conf {
         return this.getByPref("shape_type")
     }
 
+    getScale() {
+        return this.getByPref("scale")
+    }
+
     getByPref(key) {
         let raw = this.shapes[visualizer.preferences.getStyleId()][key]
         if (typeof raw === 'function') {

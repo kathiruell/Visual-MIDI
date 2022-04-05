@@ -14,7 +14,11 @@ let shapes_array = {
         texture: "none",
         inner_size: 1,
         blend_mode: "normal",
-        scale: 1.2,
+        scale: () => new AdsrAnimation(
+            [100, 200, 500, 1000],
+            [1, .8, .8, .5],
+            'linear'
+        ),
         opacity: () => new AdsrAnimation(
             [100, 200, 5000, 2000],
             [1, .8, .6, 0],
@@ -22,11 +26,3 @@ let shapes_array = {
         ),
     },
 };
-let fn = (() => console.log("function called"));
-
-let fn2 = function() {
-    console.log("test")
-}
-
-
-

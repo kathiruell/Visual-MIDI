@@ -38,6 +38,7 @@ class AdsrAnimation extends Animation {
         this.phase = this.PRE_RELEASE
         this.time_ms = 0        // counts ms after Attack / Release
         this.level_release = undefined
+        console.log(this)
     }
 
     getValue() {
@@ -47,13 +48,13 @@ class AdsrAnimation extends Animation {
         if (this.level_release === undefined) {
             if (x <= t[0]) {
                 // ATTACK
-                return this.interpolate(0, l[0], t[0], x)
+                return this.interpolate(0, 0, t[0], l[0], x)
             } else if (x <= t[0] + t[1]) {
                 // DECAY
-                return this.interpolate(l[0], l[1], t[1], x - t[0])
+                return this.interpolate(t[0], l[0], t[0] + t[1], l[1], x)
             } else if (x <= t[0] + t[1] + t[2]) {
                 // SUSTAIN
-                return this.interpolate(l[1], l[2], t[2], x - t[1] - t[0])
+                return this.interpolate(t[1] + t[0], l[1], t[0] + t[1] + t[2], l[2], x)
             } else {
                 // SUSTAIN LEVEL REACHED
                 return l[2]
@@ -61,7 +62,7 @@ class AdsrAnimation extends Animation {
         } else {
             if (x <= t[3]) {
                 // RELEASE
-                return this.interpolate(this.level_release, l[3], t[3], x)
+                return this.interpolate(0, this.level_release, t[3], l[3], x)
             } else {
                 // OVER
                 return l[3]
@@ -69,10 +70,10 @@ class AdsrAnimation extends Animation {
         }
     }
 
-    interpolate(from, to, time, x) {
+    interpolate(x0, y0, x1, y1, x) {
         switch (this.interpolation_type) {
             case 'linear':
-                return from + (to - from) * (x / time)
+                return y0 + ( x - x0 ) * ( y1 - y0 ) / ( x1 - x0 )
             case 'exp':
                 throw "exponential interpolation not implemented"
         }
