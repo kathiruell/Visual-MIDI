@@ -6,11 +6,6 @@ class Conf {
         this.harmony = harmony_array
     }
 
-    getPosition(note) {
-        if (visualizer.canvas === undefined) throw "canvas not initialized"
-        return {x: random(0, visualizer.canvas.width), y: random(0, visualizer.canvas.height)}
-    }
-
     /**
      * @returns array of colors
      */

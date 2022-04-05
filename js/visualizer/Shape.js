@@ -105,14 +105,9 @@ class NoteShape extends Shape {
     }
 
     getPosition() {
-        if (this.position === undefined) {
-            this.position = {
-                x: Math.random() * width,
-                y: Math.random() * height,
-            }
-        }
-        return this.position
+        return visualizer.note_positions.getPosition(this.note)
     }
+
     getSize() {
         return this.getParameter('scale') * 100
     }
