@@ -9,6 +9,7 @@ let visualizer = {
     renderer: undefined,
     canvas: undefined,
     music: new Music(),
+    note_positions: undefined,
 }
 
 function setup() {
@@ -23,6 +24,8 @@ function setup() {
         visualizer.preferences.getFramerate()
     )
 	visualizer.renderer.start()
+
+    visualizer.note_positions = new NotePositions()
 
     setupMidi(handleNoteOn, handleNoteOff);
 
