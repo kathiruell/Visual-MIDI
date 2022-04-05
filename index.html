@@ -21,6 +21,7 @@
     <script src="js/visualizer/Shape.js"></script>
     <script src="js/visualizer/BackgroundShape.js"></script>
     <script src="js/visualizer/BackgroundShapeBlackout.js"></script>
+    <script src="js/pages/vignette.js"></script>
     <script src="js/visualizer/Vignette.js"></script>
     <script src="js/visualizer/Music.js"></script>
     <script src="js/visualizer/Note.js"></script>
@@ -49,15 +50,18 @@
 
   </head>
   <body>
+    <div class="vignette-container">
+      <div class="vignette" data-vignette="v1"></div>
+      <div class="vignette" data-vignette="v2"></div>
+      <div class="vignette" data-vignette="v3"></div>
+    </div>
     <div class="page" id="first-page">
       <div class="page" id="intro-page">
         <div class="typewriter"></div>
       </div>
       <div class="page" id="setup-page">
         <a href="#about-page" class="blur-about">ABOUT</a>
-        <a href="#visualizer-page" class="blur-visualiser">VISUALISER</a>
-
-        <div class="vignette"></div>
+        <a href="visualizer.html" class="blur-visualiser">VISUALISER</a>
 
         <div class="setup-complete">
         <div class="setup-sentence">VISUALIZE YOUR MUSIC LIKE</div>
@@ -92,21 +96,9 @@
         </div>
 
         <div class="vignette-setup">
-
-          <!-- <input type="radio" data-vignette-select="square" class="square">
-          <label for="square"></label>  -->
-
-            <input type="radio" id="v1" name="vignette"/>
-            <label for="v1"></label>
-            <input type="radio" id="v2" name="vignette"/>
-            <label for="v2"></label>
-            <input type="radio" id="v3" name="vignette" />
-            <label for="v3"></label>
-
-          <!-- <button data-vignette-select="square" class="square selected"></button>
-          <button data-vignette-select="round-edge"class="round-edge"></button>
-          <button data-vignette-select="circle"class="circle selected"></button> -->
-       
+          <button data-vignette-selector="v1"></button>
+          <button data-vignette-selector="v2"></button>
+          <button data-vignette-selector="v3"></button>
         </div>
 
       </div>
@@ -114,29 +106,6 @@
       </div>
     </div>
 
-    <div class="page" id="visualizer-page">
-      <img class="vignette" src="./doc/vignette1.png">
-      <!-- <img class="vignette" src="./doc/vignette2.png">
-      <img class="vignette" src="./doc/vignette3.png"> -->
-
-        <div class="outer-arrow">
-        <a href="#setup-page" class="backarrow">
-          <img class="arrow-svg" src="./doc/arrow.svg">
-        </a>
-         </div>
-
-        <div class="outer-setup">
-       
-          <div class="visualizer-setup">
-
-            <button data-pref-preview-and-set class="setup-key" data-key="animation_style" data-format="key,"></button>
-            <button data-pref-preview-and-set class="setup-key" data-key="shape_style" data-format="key,"></button>
-            <button data-pref-preview-and-set class="setup-key" data-key="color_style" data-format="& key"></button>
-        
-        </div>
-
-
-    </div>
   </div>
 
     <div class="page" id="about-page">

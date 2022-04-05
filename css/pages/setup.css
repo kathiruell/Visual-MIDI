@@ -109,54 +109,47 @@ a:hover {
   width: 65px;
   height: 65px;
 }
-.vignette-setup button:hover {
-  background: blue;
-}
 
-button.circle.selected .vignette{
-  background-image: url("vignette2.png");
-}
-
-.vignette{
-  display: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  pointer-events: none;
-}
-
-.vignette-setup button.square.selected ~ .vignette {
-  background-image: url("vignette2.png");
-}
-
-.vignette-setup input[type="radio"] {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 50px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 50px;
-}
-
-.vignette-setup label {
+/* VIGNETTE SETUP  */
+.vignette-setup button {
   background: black;
   width: 60px;
   height: 60px;
 }
-
-
-.vignette-setup input:checked + label {
+.vignette-setup button:hover {
+  background: #caccfe;
+}
+.vignette-setup button.selected {
   background: #000dff;
   box-shadow: none;
 }
-
-input:hover + label,
-input:focus + label {
-  background: #caccfe;
+.vignette-setup input {
+  display: none;
 }
 
-.vignette-setup input:checked ~ .vignette  {
-  background-image: url("vignette2.png");
+/* VIGNETTE  */
+.vignette-container {
+  position: relative;
+  z-index: 100;
+}
+.vignette {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+.vignette.selected {
+  display: block;
+}
+.vignette[data-vignette="v1"] {
+  box-shadow: inset 0px 0px 143px 102px rgba(0,0,0);
+}
+.vignette[data-vignette="v2"]  {
+  background-image: url("/doc/vignette3.png");
 }
