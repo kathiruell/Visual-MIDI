@@ -2,20 +2,15 @@ TODO Update
 
 # ////////////////////// TOOL-LOGIK //////////////////////
 
+## ORDNUNG SCHAFFEN
+
 ## Visualizer ON/OFF
 
-- Visualizer soll erst funktionieren, wenn Visualizer geöffnet ist
-- Wenn man Visualizer verlässt, sollte p5 gestoppt werden.
-  @kathiruell -> Renderer.start() / Renderer.stop() sind schon implementiert, müssen nur noch vom UI getriggered werden
-
-## Vignette
-
-- Vignette verhindert Hard Edges bei Projektion
-- unterschiedlich große Vignetten
+- visualizer.html checken
+-
 
 ## Tone Positions
 
-- Random, aber feste Positionen für jeden Ton.
 - Positionen abhängig von Größe der Vignette
 
 ## First Tone
@@ -32,8 +27,13 @@ TODO Update
 ## Interval-Chord-to-Colors (After 1. Chord played)
 
 - haben wir schon bestimmt, wie Akkorde zueinander stehen? Ja, oder?
+- Chord Progression ???
 
 # ////////////////////// NAVIGATION //////////////////////
+
+## TASTATUR
+
+- No MIDI-Device? https://gist.github.com/nick-thompson/3995530
 
 ## No MIDI-Supported
 
@@ -51,15 +51,6 @@ navigator.requestMIDIAccess()
         alert("No midi device connected)
     })
 ```
-
-## Visualizer
-
-Visualizer braucht doch noch Esc & Setup-Infos;
-diese blenden nur ein wenn Cursor im Bereich ist (Ähnlich wie Apple-Dock)
-
-- Esc-Button & Setup-Infos eingefügt
-
-- Click von button soll hier anders funktionieren: Bei Click soll einfach zu nächstem pref-data-value gesprungen werden.
 
 # //////////////////// DESIGN-DETAILS ////////////////////
 
@@ -80,13 +71,14 @@ diese blenden nur ein wenn Cursor im Bereich ist (Ähnlich wie Apple-Dock)
 - Setup Popup soll nicht untereinander stehen, nebeneinander zentriert
   Popup soll sich visuell von Setup Categories unterscheiden // @kathiruell
 
-- Vignette-Setup:
-  Ratio Buttons individuell stylen
-  - Vignette einfügen??
-
 ## About
 
 - Aufbau der Text-Seite // @kathiruell
   Problem mit Hover
 
 #////////////////////////////////////////////////////////
+
+# Visualizer
+
+- Backgrounds
+- Animationen???

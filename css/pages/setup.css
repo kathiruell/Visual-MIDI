@@ -7,6 +7,9 @@
   text-align: center;
   font-size: 2rem;
 }
+body.vignette-active #setup-page {
+
+}
 
 .setup-complete{
   display: flex;
@@ -90,25 +93,6 @@ a:hover {
   height: fit-content;
 }
 
-.square{
-  background: black;
-  width: 60px;
-  height: 60px;
-}
-
-.round-edge{
-  background: black;
-  border-radius: 12px/12px;
-  width: 62px;
-  height: 62px;
-}
-
-.circle{
-  background: black;
-  border-radius: 65px/65px;
-  width: 65px;
-  height: 65px;
-}
 
 /* VIGNETTE SETUP  */
 .vignette-setup button {
@@ -116,6 +100,22 @@ a:hover {
   width: 60px;
   height: 60px;
 }
+.vignette-setup button.square {
+  width: 60px;
+  height: 60px;
+}
+
+.vignette-setup button.round-edge {
+  border-radius: 12px/12px;
+  width: 62px;
+  height: 62px;
+}
+.vignette-setup button.circle {
+  border-radius: 65px/65px;
+  width: 65px;
+  height: 65px;
+}
+
 .vignette-setup button:hover {
   background: #caccfe;
 }
@@ -147,9 +147,11 @@ a:hover {
 .vignette.selected {
   display: block;
 }
-.vignette[data-vignette="v1"] {
+.vignette[data-vignette="v2"] {
   box-shadow: inset 0px 0px 143px 102px rgba(0,0,0);
 }
-.vignette[data-vignette="v2"]  {
-  background-image: url("/doc/vignette3.png");
+.vignette[data-vignette="v3"]  {
+  background: rgb(255,255,255);
+background: radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(96,96,96,0) 30vmin, rgba(0,0,0,1) 50vmin);
+  /* background-image: url("/doc/vignette3.png"); */
 }
