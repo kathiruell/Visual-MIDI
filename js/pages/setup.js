@@ -1,8 +1,12 @@
+let setup = {
+    preferences: new Preferences()
+}
+
 $(function() {
     // init preview values
     $("[data-pref-preview]").each(function() {
         let key = $(this).attr('data-key')
-        let value = visualizer.preferences.get(key)
+        let value = setup.preferences.get(key)
         $(this).attr('data-value', value)
     });
     
@@ -19,7 +23,7 @@ $("[data-pref-preview]").click(function() {
 });
 $("[data-pref-set]").click(function() {
     // set user preference
-    visualizer.preferences.set($(this).attr("data-key"), $(this).attr("data-value"));
+    setup.preferences.set($(this).attr("data-key"), $(this).attr("data-value"));
 
     // hide popup, show preview, set new label for preview
     $(this).closest('.setup-popup').hide()
@@ -31,7 +35,7 @@ $("[data-pref-preview-and-set]").click(function() {
     let key = $(this).attr('data-key')
 
     // set next value
-    visualizer.preferences.set(key, (visualizer.preferences.get(key) + 1) % 3)
+    setup.preferences.set(key, (setup.preferences.get(key) + 1) % 3)
 
     // update label
     $(this).prefButtonLabel()
@@ -40,7 +44,7 @@ $("[data-pref-preview-and-set]").click(function() {
 $.fn.prefButtonLabel = function() {
     $(this).each(function() {
         let key = $(this).attr('data-key')
-        let value = visualizer.preferences.get(key)
+        let value = setup.preferences.get(key)
         if ($(this).is('[data-pref-set]')) {
             value = $(this).attr('data-value')
         }
