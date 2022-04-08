@@ -6,7 +6,7 @@ $(function() {
     // init preview values
     $("[data-pref-preview]").each(function() {
         let key = $(this).attr('data-key')
-        let value = setup.preferences.get(key)
+        let value = visualizer_setup.preferences.get(key)
         $(this).attr('data-value', value)
     });
     
