@@ -28,7 +28,7 @@ const CONSONANT = 0,
 
 class Music {
 
-    events = []
+    static LIFETIME_S = 2
     notes = [] 
     chords = []
 
@@ -52,7 +52,7 @@ class Music {
      */
     getMode() {
         if (this.chords.length) {
-            return this.chords[this.chords.length - 1].getMode()
+            return this.chords[this.chords.length - 1].getQuality()
         } else {
             return MODE_FREE
         }
@@ -70,17 +70,16 @@ class Music {
     }
 
     addNote(note) {
-        this.events.push(note)
+        this.cleanup()
         this.notes.push(note)
-        console.log("NOTE",note.pitch)
-        console.log("base:", MusicalEvent.noteName(this.getBaseNote()), "mode:", this.getMode())
+        // console.log("NOTE",note.pitch)
+        // console.log("base:", MusicalEvent.noteName(this.getBaseNote()), "mode:", this.getMode())
     }
 
     addChord(chord) {
-        this.events.push(chord)
         this.chords.push(chord)
-        console.log("CHORD", chord.getName(), chord.getMode())
-        console.log("base:", MusicalEvent.noteName(this.getBaseNote()), "mode:", this.getMode())
+        // console.log("CHORD", chord.getName(), chord.getQuality())
+        // console.log("base:", MusicalEvent.noteName(this.getBaseNote()), "mode:", this.getMode())
     }
 
     getHarmony(note) {
@@ -91,8 +90,15 @@ class Music {
     }
 
     noteOff(pitch) {
-        // remove all notes from this.notes with given pitch
-        // this.notes = this.notes.filter(note => note.pitch !== pitch)
         this.notes.filter(note => note.pitch === pitch).forEach(note => note.noteOff())
+    }
+
+    cleanup() {
+        function isAlive(item) {
+            let now = Date.now()
+            return now - (item.timestamp_note_off || item.timestamp) < Music.LIFETIME_S * 1000
+        }
+        this.notes = this.notes.filter(item => isAlive(item))
+        this.chords = this.chords.filter(item => isAlive(item))
     }
 }
