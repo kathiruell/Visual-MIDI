@@ -21,8 +21,7 @@ class Renderer {
         this.shapes = this.shapes.filter(shape => shape.isAlive())
 
         // background
-        background(0)
-        // this.background.draw()
+        this.background.draw()
 
         // chord shapes
         this.shapes.filter(shape => shape instanceof ChordShape).forEach(shape => shape.draw())
