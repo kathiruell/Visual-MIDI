@@ -13,10 +13,7 @@ let visualizer = {
 
 function setup() {
     visualizer.canvas = createCanvas(windowWidth, windowHeight);
-    visualizer.canvas.parent("visualizer-page");
-
-    visualizerPage.addEventListener("show", () => visualizer.renderer.start());
-    visualizerPage.addEventListener("hide", () => visualizer.renderer.stop());
+    visualizer.canvas.parent("canvas");
 
     visualizer.renderer = new Renderer(
         visualizer.canvas, 
