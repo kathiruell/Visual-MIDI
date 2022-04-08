@@ -8,7 +8,7 @@ function setupMidi(
 ) {
   // Check if available
   if (navigator.requestMIDIAccess) console.log("WebMIDI supported.");
-  else console.log("WebMIDI is not supported.");
+  else return console.log("WebMIDI is not supported.");
   navigator.requestMIDIAccess().then(
     (access) => {
       const midi = access;
