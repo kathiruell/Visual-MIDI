@@ -4,6 +4,7 @@ class Conf {
         this.shapes = shapes_array
         this.colors = colors_array
         this.harmony = harmony_array
+        this.bg_colors = bg_colors_array
     }
 
     /**

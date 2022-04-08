@@ -81,7 +81,7 @@ class NoteShape extends Shape {
     getColor() {
         if (this.color === undefined) {
             // default color
-            let color = UNDEFINED_COLOR
+            let color = visualizer.UNDEFINED_COLOR
             let harmony = visualizer.music.getHarmony(this.note)
             if (harmony !== undefined) {
 

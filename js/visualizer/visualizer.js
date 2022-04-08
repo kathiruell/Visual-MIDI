@@ -1,8 +1,5 @@
 /// <reference types="p5/global" />
 
-const visualizerPage = document.querySelector("#visualizer-page");
-const UNDEFINED_COLOR = [255,255,255]
-
 let visualizer = {
     conf: new Conf(),
     preferences: new Preferences(),
@@ -10,19 +7,19 @@ let visualizer = {
     canvas: undefined,
     music: new Music(),
     note_positions: undefined,
+    UNDEFINED_COLOR: [255,255,255],
 }
 
 function setup() {
     visualizer.canvas = createCanvas(windowWidth, windowHeight);
     visualizer.canvas.parent("canvas");
+    visualizer.note_positions = new NotePositions()
 
     visualizer.renderer = new Renderer(
         visualizer.canvas, 
         visualizer.preferences.getFramerate()
     )
 	visualizer.renderer.start()
-
-    visualizer.note_positions = new NotePositions()
 
     setupMidi(handleNoteOn, handleNoteOff);
 

@@ -1,4 +1,4 @@
-let backcolors_array = {
+let bg_colors_array = {
   // intimate
   0: {
     // MAJOR

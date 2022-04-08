@@ -2,9 +2,9 @@
  * manages the shapes
  */
 class Renderer {
-  static canvas = undefined;
-  shapes = [];
-  static background_shape = undefined;
+    static canvas = undefined;
+    shapes = [];
+    static background_shape = undefined;
 
     static canvas = undefined;
     static background = undefined;
@@ -17,7 +17,7 @@ class Renderer {
         this.setFramerate(frame_rate)
         this.background = new BackgroundShapeBlackout()
     }
-    
+
     renderShape(shape) {
         // if (shape instanceof BackgroundShape) throw "for background shapes call renderBackgrounShape()"
         this.shapes.push(shape);
@@ -28,11 +28,7 @@ class Renderer {
 
     }
 
-  draw() {
-    // clear dead shapes
-    if (!this.background_shape.isAlive())
-      this.background_shape = new BackgroundShapeBlackout();
-    this.shapes = this.shapes.filter((shape) => shape.isAlive());
+    draw() {
 
         // clear dead shapes
         this.shapes = this.shapes.filter(shape => shape.isAlive())
