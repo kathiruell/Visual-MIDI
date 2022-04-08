@@ -7,9 +7,8 @@ const sentences = [
   "SETUP YOUR PERFORMANCE AND CONNECT YOUR MIDI-DEVICE...",
 ];
 
-const introPage = document.querySelector("#intro-page");
-introPage.addEventListener("first-show", function () {
-  // Documentation for typewriter: https://github.com/tameemsafi/typewriterjs#examples
+// Documentation for typewriter: https://github.com/tameemsafi/typewriterjs#examples
+$(function() {
 
   let typewriter = new Typewriter(document.querySelector(".typewriter"), {
     delay: 75, // Speed of the typewriting (time between each character).
@@ -28,7 +27,7 @@ introPage.addEventListener("first-show", function () {
       "COLOR CHANGES WHAT WE FEEL.<br />SOUND <span class='other-font'>TRANSFORMS</span> WHAT WE SEE."
     )
     .callFunction(function () {
-      introPage.setAttribute("contenteditable", true);
+      document.querySelector(".typewriter").setAttribute("contenteditable", true);
     })
     .start();
 });

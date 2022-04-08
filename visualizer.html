@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Visual Midi</title>
 
     <!-- Libraries -->
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-      crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="js/lib/p5.js"></script>
     <script src="js/lib/midi.js"></script>
     <script src="js/lib/tonal.js"></script>
-    <script src="js/lib/typewriter.js"></script>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://use.typekit.net/ncw6oai.css" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/vignette.css" />
+
+    <!-- Page styles -->
+    <link rel="stylesheet" href="css/pages/intro.css" />
+    <link rel="stylesheet" href="css/pages/about.css" />
+    <link rel="stylesheet" href="css/pages/setup.css" />
 
     <!-- Visualizer -->
     <script src="js/visualizer/Renderer.js"></script>
     <script src="js/visualizer/Shape.js"></script>
     <script src="js/visualizer/BackgroundShape.js"></script>
     <script src="js/visualizer/BackgroundShapeBlackout.js"></script>
-    <script src="js/pages/vignette.js"></script>
-    <script src="js/visualizer/Vignette.js"></script>
     <script src="js/visualizer/Music.js"></script>
     <script src="js/visualizer/Note.js"></script>
     <script src="js/visualizer/Preferences.js"></script>
@@ -31,58 +39,49 @@
     <script src="js/visualizer/conf/shapes.js"></script>
     <script src="js/visualizer/conf/colors.js"></script>
     <script src="js/visualizer/conf/harmony.js"></script>
+	<script src="js/visualizer/visualizer.js"></script>
+
+	<!-- Pages code -->
+	<script src="js/pages/setup.js"></script>
 
     <!-- Lists -->
     <script src="js/arrays/colorscale2.js"></script>
     <script src="js/arrays/tonetable.js"></script>
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="main.css" />
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="https://use.typekit.net/ncw6oai.css" />
-
     <!-- Page styles -->
-    <link rel="stylesheet" href="css/pages/intro.css" />
     <link rel="stylesheet" href="css/pages/visualizer.css" />
-    <link rel="stylesheet" href="css/pages/about.css" />
     <link rel="stylesheet" href="css/pages/setup.css" />
+</head>
 
-
-  </head>
-  <body>
+<body>
     <div class="vignette-container">
-      <div class="vignette" data-vignette="v1"></div>
-      <div class="vignette" data-vignette="v2"></div>
-      <div class="vignette" data-vignette="v3"></div>
+        <div class="vignette" data-vignette="v1"></div>
+        <div class="vignette" data-vignette="v2"></div>
+        <div class="vignette" data-vignette="v3"></div>
     </div>
-    
-    <div class="page" id="visualizer-page">
+
+	<div id="canvas"></div>
+
+    <div class="visualizer">
 
         <div class="outer-arrow">
-        <a href="#setup-page" class="backarrow">
-          <img class="arrow-svg" src="./doc/arrow.svg">
-        </a>
-         </div>
-
-        <div class="outer-setup">
-       
-          <div class="visualizer-setup">
-
-            <button data-pref-preview-and-set class="setup-key" data-key="animation_style" data-format="key,"></button>
-            <button data-pref-preview-and-set class="setup-key" data-key="shape_style" data-format="key,"></button>
-            <button data-pref-preview-and-set class="setup-key" data-key="color_style" data-format="& key"></button>
-        
+            <a href="#setup-page" class="backarrow">
+                <img class="arrow-svg" src="./doc/arrow.svg">
+            </a>
         </div>
 
+        <div class="outer-setup">
 
-    </div>
-    
-    <!-- Code -->
-    <script src="main.js"></script>
+            <div class="visualizer-setup">
 
-    <!-- Pages code -->
-    <script src="js/pages/intro.js"></script>
-    <script src="js/pages/setup.js"></script>
-    <script src="js/visualizer/visualizer.js"></script>
-  </body>
+                <button data-pref-preview-and-set class="setup-key" data-key="animation_style" data-format="key,"></button>
+                <button data-pref-preview-and-set class="setup-key" data-key="shape_style" data-format="key,"></button>
+                <button data-pref-preview-and-set class="setup-key" data-key="color_style" data-format="& key"></button>
+
+            </div>
+
+        </div>
+
+</body>
+
 </html>

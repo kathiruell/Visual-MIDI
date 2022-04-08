@@ -1,86 +1,87 @@
 #visualizer-page {
-  font-family: "acumin-pro", sans-serif;
-  font-style: normal;
-  font-size: 2.5vw;
-  font-weight: 200;
-  z-index: -1;
+    font-family: "acumin-pro", sans-serif;
+    font-style: normal;
+    font-size: 2.5vw;
+    font-weight: 200;
+    z-index: -1;
 }
 
-.outer{
-  overflow: hidden;
-  position: absolute;
-  width: 100%;
-  height: 100%;
+.outer {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 .outer-arrow {
-  height: 100%;
-  position: absolute;
-  padding-top: 50vh;
-  transform: translateY(-50px);
-  width: 100px;
-  left: -50px;
-  opacity: 0%;
-  transition-duration: 300ms;
-  transition-property: all;
-  transition-timing-function: ease-in-out;
+    height: 100%;
+    position: absolute;
+    padding-top: 50vh;
+    transform: translateY(-50px);
+    width: 100px;
+    left: -50px;
+    opacity: 0%;
+    transition-duration: 300ms;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
 }
 
-.backarrow{
-  color: white;
-  filter: blur(2px);
-  text-align: center;
-  padding-left:2vw;
+.backarrow {
+    color: white;
+    filter: blur(2px);
+    text-align: center;
+    padding-left: 2vw;
 
 }
 
-.arrow-svg{
-  width: 2vw;
+.arrow-svg {
+    width: 2vw;
 }
 
-a:hover{
-  color: white;
-  filter: blur(0px);
+a:hover {
+    color: white;
+    filter: blur(0px);
 }
 
 
 .outer-arrow:hover {
-  left: 0;
-  opacity: 100%;
+    left: 0;
+    opacity: 100%;
 }
 
 .outer-setup {
-  position: absolute; 
-  bottom: 0;
-  width: 100%;
-  height: 50px;
-  padding-top: 2vw;
-  padding-bottom: 1vw;
-  
-  bottom: -50px;
-  opacity: 0%;
-  transition-duration: 300ms;
-  transition-property: all;
-  transition-timing-function: ease-in-out;
-}
-.outer-setup:hover {
-  bottom: 0;
-  opacity: 100%;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    padding-top: 2vw;
+    padding-bottom: 1vw;
+
+    bottom: -50px;
+    opacity: 0%;
+    transition-duration: 300ms;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
 }
 
-.visualizer-setup{
-  width: fit-content;
-  margin: auto;
+.outer-setup:hover {
+    bottom: 0;
+    opacity: 100%;
+}
+
+.visualizer-setup {
+    width: fit-content;
+    margin: auto;
 
 }
 
 .visualizer-setup .setup-key {
-  color: white;
-  filter: blur(2px);
-  text-align: center;
+    color: white;
+    filter: blur(2px);
+    text-align: center;
 }
 
 .visualizer-setup .setup-key:hover {
-  color: white;
-  filter: blur(0px);
+    color: white;
+    filter: blur(0px);
 }

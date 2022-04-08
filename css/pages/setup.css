@@ -1,157 +1,94 @@
-#setup-page {
-  margin-top: 5rem;
-  background: white;
-  color: rgb(0, 0, 0);
-  font-family: "acumin-pro", sans-serif;
-  font-style: normal;
-  text-align: center;
-  font-size: 2rem;
+.setup {
+    position: absolute;
+    left: 0;
+    margin-top: 100vh;
+    top: -2em;
+	font-size: 2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+    background-color: white;
+	box-shadow: 0px 0px 3em 4em white;
+	color: black;
 }
-body.vignette-active #setup-page {
-
+.setup-header {
+	position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+	height: 2em;
+	display: flex;
+	justify-content: space-between;
+	padding: .2em .5em;
 }
-
-.setup-complete{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 12vw;
-}
-
 .setup-sentence {
-  margin-bottom: 3rem;
+    margin-bottom: 3rem;
 }
-
-.setup-categories {
-  text-align: center;
+.setup button {
+    font-family: inherit;
+    font-style: inherit;
+    font-size: 14vw;
+    line-height: 14vw;
 }
-
-.setup-categories button,
-.setup-popup button {
-  /* opacity: 0; */
-  color: rgb(0, 0, 0);
-  font-family: "acumin-pro", sans-serif;
-  font-style: normal;
-  font-size: 9rem;
-  margin-top: -3.9rem;
-  /* line-height: 9.1rem; */
+.setup button:hover {
+    text-shadow: -2px -2px white, -2px 2px white, 2px -2px white, 2px 2px white;
+    box-shadow: 0 3px blue;
+    color: blue;
 }
-
-.setup-categories button:hover,
-.setup-popup button:hover {
-  background-size: 1px 1em;
-  text-shadow: -2px -2px white, -2px 2px white, 2px -2px white, 2px 2px white;
-  /* padding: 4px; */
-  box-shadow: 0 3px blue;
-  color: blue;
-}
-
-
-.blur-visualiser {
-  padding-top: 0.8%;
-  padding-right: 2%;
-  float: right;
-}
-
-.blur-about {
-  padding-top: 0.8%;
-  padding-left: 2%;
-  float: left;
-}
-
-/* unvisited link */
-a {
-  filter: blur(3px);
-  color: rgb(0, 0, 0);
-  text-decoration: none;
-}
-
-
-/* mouse over link */
-a:hover {
-  filter: blur(0.1px);
-  color: #000000;
+.vignette-setup {
+    display: flex;
+    align-items: center;
+    column-gap: 0.8rem;
+    height: fit-content;
+	margin-top: 1.9em;
 }
 
 .setup-popup {
-  /* display: none; */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(20px);
+	display: none;
+	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-
-.vignette-setup{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  column-gap: 0.8rem;
-  padding: 3vw;
-  height: fit-content;
+.setup-popup.show {
+	display: flex;
 }
-
 
 /* VIGNETTE SETUP  */
 .vignette-setup button {
-  background: black;
-  width: 60px;
-  height: 60px;
+    background: black;
+    width: 60px;
+    height: 60px;
 }
+
 .vignette-setup button.square {
-  width: 60px;
-  height: 60px;
+    width: 60px;
+    height: 60px;
 }
 
 .vignette-setup button.round-edge {
-  border-radius: 12px/12px;
-  width: 62px;
-  height: 62px;
+    border-radius: 12px/12px;
+    width: 62px;
+    height: 62px;
 }
+
 .vignette-setup button.circle {
-  border-radius: 65px/65px;
-  width: 65px;
-  height: 65px;
+    border-radius: 65px/65px;
+    width: 65px;
+    height: 65px;
 }
 
 .vignette-setup button:hover {
-  background: #caccfe;
-}
-.vignette-setup button.selected {
-  background: #000dff;
-  box-shadow: none;
-}
-.vignette-setup input {
-  display: none;
+	box-shadow: none;
+    background: #caccfe;
 }
 
-/* VIGNETTE  */
-.vignette-container {
-  position: relative;
-  z-index: 100;
-}
-.vignette {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  pointer-events: none;
-}
-.vignette.selected {
-  display: block;
-}
-.vignette[data-vignette="v2"] {
-  box-shadow: inset 0px 0px 143px 102px rgba(0,0,0);
-}
-.vignette[data-vignette="v3"]  {
-  background: rgb(255,255,255);
-background: radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(96,96,96,0) 30vmin, rgba(0,0,0,1) 50vmin);
-  /* background-image: url("/doc/vignette3.png"); */
+.vignette-setup button.selected {
+    background: #000dff;
 }

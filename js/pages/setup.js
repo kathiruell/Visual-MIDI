@@ -1,4 +1,4 @@
-let setup = {
+let visualizer_setup = {
     preferences: new Preferences()
 }
 
@@ -18,15 +18,14 @@ $(function() {
 $("[data-pref-preview]").click(function() {
     // hide preview, show popup
     let key = $(this).attr('data-key')
-    $('.setup-popup[data-key="' + key + '"]').show()
-    $(this).hide()
+    $('.setup-popup[data-key="' + key + '"]').addClass('show')
 });
 $("[data-pref-set]").click(function() {
     // set user preference
-    setup.preferences.set($(this).attr("data-key"), $(this).attr("data-value"));
+    visualizer_setup.preferences.set($(this).attr("data-key"), $(this).attr("data-value"));
 
     // hide popup, show preview, set new label for preview
-    $(this).closest('.setup-popup').hide()
+    $(this).closest('.setup-popup').removeClass('show')
     $('[data-pref-preview]').prefButtonLabel()
     $('[data-pref-preview]').show()
 });
@@ -35,7 +34,7 @@ $("[data-pref-preview-and-set]").click(function() {
     let key = $(this).attr('data-key')
 
     // set next value
-    setup.preferences.set(key, (setup.preferences.get(key) + 1) % 3)
+    visualizer_setup.preferences.set(key, (visualizer_setup.preferences.get(key) + 1) % 3)
 
     // update label
     $(this).prefButtonLabel()
@@ -44,7 +43,7 @@ $("[data-pref-preview-and-set]").click(function() {
 $.fn.prefButtonLabel = function() {
     $(this).each(function() {
         let key = $(this).attr('data-key')
-        let value = setup.preferences.get(key)
+        let value = visualizer_setup.preferences.get(key)
         if ($(this).is('[data-pref-set]')) {
             value = $(this).attr('data-value')
         }
@@ -73,3 +72,20 @@ const labels = {
         2: 'gloom',
     }
 };
+
+// VIGNETTE //////////////////////////////////////////////////////////////////////////////////////
+
+$(function () {
+  $("[data-vignette-selector]").click(function () {
+    let val = $(this).attr("data-vignette-selector");
+
+    $("[data-vignette-selector]").removeClass("selected");
+    $(this).addClass("selected");
+
+    $("[data-vignette]").removeClass("selected");
+    $('[data-vignette="' + val + '"]').addClass("selected");
+  });
+
+  // preselect vignette I
+  $("[data-vignette-selector]").first().click();
+});
