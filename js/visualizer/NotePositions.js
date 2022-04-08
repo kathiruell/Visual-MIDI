@@ -1,7 +1,10 @@
 class NotePositions {
 
+    static DISTRIBUTION_NORMAL = 1
+    static DISTRIBUTION_CENTER = 4
+
     pos = {}
-    distribution = 4
+    distribution = NotePositions.DISTRIBUTION_NORMAL
 
     constructor() {
         this.init()

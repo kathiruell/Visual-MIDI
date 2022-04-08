@@ -30,6 +30,7 @@ class Chord extends MusicalEvent {
     constructor(alternatives) {
         super()
         this.alternatives = alternatives    // array of chord names
+        this.noteOff()
     }
 
     getTonalObject() {
@@ -47,7 +48,7 @@ class Chord extends MusicalEvent {
         return this.alternatives[0]
     }
 
-    getMode() {
+    getQuality() {
         let quality = this.getTonalObject().quality
         return quality === 'Major' ? MODE_MAJOR : MODE_MINOR;
     }

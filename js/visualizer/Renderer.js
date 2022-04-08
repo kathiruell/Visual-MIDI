@@ -2,15 +2,8 @@
  * manages the shapes
  */
 class Renderer {
-    static canvas = undefined;
+    canvas = undefined;
     shapes = [];
-    static background_shape = undefined;
-
-    static canvas = undefined;
-    static background = undefined;
-    shapes = []
-    chord_shapes = []
-
 
     constructor(canvas, frame_rate) {
         this.canvas = canvas
@@ -19,13 +12,7 @@ class Renderer {
     }
 
     renderShape(shape) {
-        // if (shape instanceof BackgroundShape) throw "for background shapes call renderBackgrounShape()"
         this.shapes.push(shape);
-    }
-
-    // chord shapes are being rendered first (background)
-    renderChordShape(shape) {
-
     }
 
     draw() {
@@ -34,7 +21,8 @@ class Renderer {
         this.shapes = this.shapes.filter(shape => shape.isAlive())
 
         // background
-        this.background.draw()
+        background(0)
+        // this.background.draw()
 
         // chord shapes
         this.shapes.filter(shape => shape instanceof ChordShape).forEach(shape => shape.draw())

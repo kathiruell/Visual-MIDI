@@ -6,18 +6,22 @@ let shapes_array = {
         inner_size: 1,
         blend_mode: "normal",
         scale: 1.2,
-        opacity: 1,
+        opacity: () => new AdsrAnimation(
+            [100, 200, 5000, 2000],
+            [1, .8, .6, 0],
+            'linear'
+        ),
     },
     "010": {
         color_style: 2,
-        shape_type: SHAPE_TYPE_PLAIN,
+        shape_type: SHAPE_TYPE_BLURRY,
         texture: "none",
         inner_size: 1,
         blend_mode: "normal",
         scale: () => new AdsrAnimation(
             [100, 200, 500, 1000],
             [1, .8, .5, 0.1],
-            'exp'
+            'linear'
         ),
         opacity: () => new AdsrAnimation(
             [100, 200, 5000, 2000],

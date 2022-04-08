@@ -23,7 +23,7 @@ function setup() {
 
     setupMidi(handleNoteOn, handleNoteOff);
 
-    demo()
+    // demo()
 }
 
 function demo() {
@@ -49,11 +49,8 @@ function handleNoteOn(ch, pitch, vel) {
     // chord?
     if (isChord()) {
         let chord_alternatives = getChord()
-        console.log("getChord", chord_alternatives)
 
         let chord = new Chord(chord_alternatives)
-        console.log(chord, chord.getBaseNote(),chord.getMode())
-
         visualizer.music.addChord(chord);
 
         let chord_shape = new ChordShape(chord)

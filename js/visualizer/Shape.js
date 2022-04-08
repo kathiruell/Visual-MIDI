@@ -3,9 +3,10 @@ const SHAPE_TYPE_PLAIN = 'plain',
     SHAPE_TYPE_3D = '3d';
 
 let shapes_id=0
-let debug_anim = undefined
 
 class Shape {
+
+    static DEFAULT_LIFETIME = 5000
 
     constructor() {
         this.conf = visualizer.conf
@@ -18,11 +19,8 @@ class Shape {
 
     setParameter(key, parameter) {
         if (!(parameter instanceof Parameter)) throw "only pass Parameter objects to Shape.setParameter()"
-        console.log("Shape ",this.id, " setParameter", key, parameter)
+        // console.log("Shape ",this.id, " setParameter", key, parameter)
         this.parameters[key] = parameter
-
-        // DEBUG
-        if (parameter instanceof AnimatedParameter && debug_anim === undefined) debug_anim = parameter
     }
 
     getParameter(key) {
@@ -33,7 +31,7 @@ class Shape {
     }
 
     draw() {
-        // console.log(this.constructor.name, this.id, "drawing frame", this.lifetime_frames, this.lifetime_ms, "ms")
+        console.log(this.constructor.name, this.id, "drawing frame", this.lifetime_frames, this.lifetime_ms, "ms")
         // console.log("opacity", this.getOpacity(), "shape type", this.conf.getShapeType(), "color", this.getColor().join(','), "pos", this.getPosition(), "size", this.getSize())
 
         this.animate()
@@ -58,7 +56,11 @@ class Shape {
 
     isAlive() {
         // active animation ? 
-        return Object.values(this.parameters).some(param => param instanceof AnimatedParameter && param.isActive())
+        if (Object.values(this.parameters).some(param => param instanceof AnimatedParameter)) {
+            return Object.values(this.parameters).some(param => param instanceof AnimatedParameter && param.isActive())
+        } else {
+            return this.lifetime_ms < Shape.DEFAULT_LIFETIME
+        }
     }
 }
 
@@ -101,7 +103,11 @@ class NoteShape extends Shape {
     }
 
     getColorSecondary() {
-        return [0,255,255];
+        return [240,255,255];
+    }
+
+    getOpacity() {
+        return Math.floor(this.getParameter('opacity') * 255)
     }
 
     getPosition() {
@@ -109,7 +115,7 @@ class NoteShape extends Shape {
     }
 
     getSize() {
-        return this.getParameter('scale') * 100
+        return 100 * this.getParameter('scale')
     }
 
     getNote() {
@@ -117,10 +123,11 @@ class NoteShape extends Shape {
     }
 
     drawShape() {
+        console.log("NoteShape.draw()", this.getPosition(), this.getSize(), this.getColor(), this.getOpacity())
         noStroke()
         switch (this.getParameter('shape_type')) {
             case SHAPE_TYPE_PLAIN:
-                fill(...this.getColor(), Math.round(255 * this.getParameter('opacity')))
+                fill(...this.getColor(), this.getOpacity())
                 ellipse(this.getPosition().x, this.getPosition().y, this.getSize(), this.getSize())
                 break;
 
@@ -130,7 +137,7 @@ class NoteShape extends Shape {
                     this.getPosition().y,
                     this.getSize() / 6,
                     this.getColor(),
-                    Math.round(255 *  this.getParameter('opacity')),
+                    this.getOpacity(),
                     this.getPosition().x,
                     this.getPosition().y,
                     this.getSize() / 2,
@@ -157,9 +164,14 @@ class NoteShape extends Shape {
 class BackgroundShapeBlackout extends BackgroundShape {
 
     drawShape() {
+        // console.log("KLJLKADJSLKJs")
         noStroke()
-        fill(0,0,0,255)
+        fill(255,0,0,255)
+        // linearGradient(0, 0, [0,0,0], 1, 0, height, [255,255,255], 1)
+        // fill(255,255,255,255)
         rect(0, 0, width, height)
+        // ellipse(100,100,100,100)
+        // background(color(255,255,255))
     }
 
     isAlive() {
@@ -171,7 +183,7 @@ class ChordShape extends BackgroundShape {
     constructor(chord) {
         super(new Note(chord.getBaseNote(), 0))
         this.chord = chord
-        this.color = this.getColor()
+        this.colors = this.conf.getChordColors(this.chord).getValue()
         this.setParameter('opacity', new AnimatedParameter(
             new InOutAnimation(
                 [200, 2000],
@@ -181,19 +193,18 @@ class ChordShape extends BackgroundShape {
         ))
 	}
 
+    getOpacity() {
+        return Math.floor(255 * this.getParameter('opacity'))
+    }
+
     drawShape() {
         noStroke()
-        fill(...this.color, Math.round(255 * this.getParameter('opacity')))
+        linearGradient(0, 0, this.colors[0], this.getOpacity(), 0, height, this.colors[1], this.getOpacity())
         rect(0, 0, width, height)
     }
 
-    getColor() {
-        // pick colorscheme for base note of this.chord
-        let harmony = visualizer.music.getHarmony(this.getNote())
-        let colors = this.conf.getColorScheme(harmony)
-        
-        // pick random color from colorscheme
-        return colors[Math.ceil(Math.random() * colors.length) - 1]
+    getColors() {
+        this.conf.getChordColors(this.chord)
     }
 
     getNote() {
