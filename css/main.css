@@ -4,6 +4,11 @@
   src: url("/fonts/ARK-ES-DenseRegular.otf") format("opentype");
 }
 
+:root {
+    --font-size-normal: 1rem;
+    --font-size-big: 2rem;
+}
+
 html,
 body {
     margin: 0;
@@ -15,6 +20,7 @@ body {
     position: relative;
     font-family: "acumin-pro", sans-serif;
     font-style: normal;
+    font-size: 1rem;
 }
 .page {
     position: relative;
