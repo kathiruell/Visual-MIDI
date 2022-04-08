@@ -31,7 +31,7 @@ class Shape {
     }
 
     draw() {
-        console.log(this.constructor.name, this.id, "drawing frame", this.lifetime_frames, this.lifetime_ms, "ms")
+        // console.log(this.constructor.name, this.id, "drawing frame", this.lifetime_frames, this.lifetime_ms, "ms")
         // console.log("opacity", this.getOpacity(), "shape type", this.conf.getShapeType(), "color", this.getColor().join(','), "pos", this.getPosition(), "size", this.getSize())
 
         this.animate()
@@ -123,7 +123,7 @@ class NoteShape extends Shape {
     }
 
     drawShape() {
-        console.log("NoteShape.draw()", this.getPosition(), this.getSize(), this.getColor(), this.getOpacity())
+        // console.log("NoteShape.draw()", this.getPosition(), this.getSize(), this.getColor(), this.getOpacity())
         noStroke()
         switch (this.getParameter('shape_type')) {
             case SHAPE_TYPE_PLAIN:
@@ -164,14 +164,10 @@ class NoteShape extends Shape {
 class BackgroundShapeBlackout extends BackgroundShape {
 
     drawShape() {
-        // console.log("KLJLKADJSLKJs")
-        noStroke()
-        fill(255,0,0,255)
-        // linearGradient(0, 0, [0,0,0], 1, 0, height, [255,255,255], 1)
-        // fill(255,255,255,255)
-        rect(0, 0, width, height)
-        // ellipse(100,100,100,100)
-        // background(color(255,255,255))
+        // noStroke()
+        // fill(0,0,0)
+        // rect(0, 0, width, height)
+        background(0)
     }
 
     isAlive() {

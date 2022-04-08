@@ -60,7 +60,7 @@ class Conf {
         } 
 
         let raw = this.arrays[conf_id][style_id][key]
-        console.log("Conf.get()", conf_id, style_id, key, raw, modulator)
+        // console.log("Conf.get()", conf_id, style_id, key, raw, modulator)
         if (typeof raw === 'function') {
             return new AnimatedParameter(raw(), modulator)
         } else {

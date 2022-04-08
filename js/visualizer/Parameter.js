@@ -19,7 +19,7 @@ class Parameter {
         for (let modulator of this.modulators) {
             v = modulator.modulate(v)
         }
-        console.log("Parameter.modulate()", value, "=>", v)
+        // console.log("Parameter.modulate()", value, "=>", v)
         return v
     }
 }
