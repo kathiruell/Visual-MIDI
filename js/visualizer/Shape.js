@@ -71,9 +71,9 @@ class NoteShape extends Shape {
     constructor(note) {
         super()
         this.note = note
-        this.setParameter('opacity', this.conf.getOpacity())
-        this.setParameter('scale', this.conf.getScale())
-        this.setParameter('shape_type', this.conf.getShapeType())
+        this.setParameter('opacity', this.conf.getOpacity(this.note))
+        this.setParameter('scale', this.conf.getScale(this.note))
+        this.setParameter('shape_type', this.conf.getShapeType(this.note))
     }
 
     /**
@@ -115,7 +115,7 @@ class NoteShape extends Shape {
     }
 
     getSize() {
-        return 100 * this.getParameter('scale')
+        return 200 * this.getParameter('scale')
     }
 
     getNote() {

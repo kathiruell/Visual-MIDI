@@ -23,23 +23,23 @@ class Conf {
         return this.harmony[mode][interval]
     }
 
-    getOpacity() {
-        return this.get('shapes', visualizer.preferences.getStyleId(), 'opacity')
+    getOpacity(note) {
+        return this.get('shapes', visualizer.preferences.getStyleId(), 'opacity', note)
     }
 
-    getShapeType() {
-        return this.get('shapes', visualizer.preferences.getStyleId(), 'shape_type')
+    getShapeType(note) {
+        return this.get('shapes', visualizer.preferences.getStyleId(), 'shape_type', note)
     }
 
-    getScale() {
-        return this.get('shapes', visualizer.preferences.getStyleId(), 'scale')
+    getScale(note) {
+        return this.get('shapes', visualizer.preferences.getStyleId(), 'scale', note)
     }
 
     getChordColors(chord) {
         return this.get('chord_colors', visualizer.preferences.getColorStyle(), chord.getQuality())
     }
 
-    get(conf_id, style_id, key) {
+    get(conf_id, style_id, key, args) {
         if (!(conf_id in this.arrays)) {
             throw "Conf "+conf_id+" not defined"
         }
@@ -50,11 +50,21 @@ class Conf {
             throw "Key " + key + " not defined in " + conf_id + "[" + style_id + "]"
         }
 
+        // modulators
+        let modulator = undefined
+        if (
+            'modulators' in this.arrays[conf_id][style_id]
+            && key in this.arrays[conf_id][style_id]['modulators']
+        ) {
+            modulator = this.arrays[conf_id][style_id]['modulators'][key](args)
+        } 
+
         let raw = this.arrays[conf_id][style_id][key]
+        console.log("Conf.get()", conf_id, style_id, key, raw, modulator)
         if (typeof raw === 'function') {
-            return new AnimatedParameter(raw())
+            return new AnimatedParameter(raw(), modulator)
         } else {
-            return new Parameter(raw)
+            return new Parameter(raw, modulator)
         }
     }
 }
