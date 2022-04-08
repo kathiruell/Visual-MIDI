@@ -43,6 +43,7 @@
     <script src="js/visualizer/conf/backcolors.js"></script>
     <script src="js/visualizer/conf/harmony.js"></script>
 	<script src="js/visualizer/visualizer.js"></script>
+	<script src="js/visualizer/browsercheck.js"></script>
 
 	<!-- Pages code -->
 	<script src="js/pages/setup.js"></script>
@@ -63,12 +64,19 @@
         <div class="vignette" data-vignette="v3"></div>
     </div>
 
+    <div class="browser-error page screensized fixed" data-browser-error="no_midi_browser">
+        <p>Your browser does not support MIDI.</p>
+    </div>
+    <div class="browser-error page screensized fixed" data-browser-error="no_midi_device">
+        <p>No MIDI device connected.</p>
+    </div>
+
 	<div id="canvas" class="screensized fixed"></div>
 
     <div class="visualizer">
 
         <div class="outer-arrow">
-            <a href="#setup-page" class="backarrow">
+            <a href="/#setup-page" class="backarrow">
                 <img class="arrow-svg" src="./doc/arrow.svg">
             </a>
         </div>
@@ -84,6 +92,7 @@
             </div>
 
         </div>
+    </div>
 
 </body>
 

@@ -85,3 +85,15 @@ a:hover {
     color: white;
     filter: blur(0px);
 }
+/** browser-error ***********************************************************/ 
+.page.browser-error {
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.page.browser-error.show {
+    display: flex;
+}
+body.browser-error #canvas {
+    display: none;
+}
