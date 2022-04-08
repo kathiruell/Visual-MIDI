@@ -38,7 +38,6 @@ class AdsrAnimation extends Animation {
         this.phase = this.PRE_RELEASE
         this.time_ms = 0        // counts ms after Attack / Release
         this.level_release = undefined
-        console.log(this)
     }
 
     getValue() {
@@ -116,10 +115,10 @@ class InOutAnimation extends AdsrAnimation {
 
         if (this.time_ms <= t[0]) {
             // FADE IN
-            return this.interpolate(0, l[0], t[0], x)
+            return this.interpolate(0, 0, t[0], l[0], x)
         } else if (this.time_ms <= t[1]) {
             // FADE OUT
-            return this.interpolate(l[0], l[1], t[1], x)
+            return this.interpolate(t[0], l[0], t[1], l[1], x)
         } else {
             return l[1]
         }
