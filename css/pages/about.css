@@ -17,11 +17,12 @@
   color: white;
 }
 .page.about .header {
-
 }
 .page.about h1 {
   text-align: center;
-  font-size: 5rem;
+  font-family: "ARK-ES";
+  font-size: 8.3vw;
+  font-size: var(--font-size-normal);
   margin: 3vh 0;
 }
 .manifest {

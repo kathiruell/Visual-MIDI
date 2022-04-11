@@ -57,22 +57,14 @@
     height: 100%;
     backdrop-filter: blur(20px);
     flex-direction: row;
+    gap: 0.3em;
     justify-content: center;
     align-items: center;
     font-size: 6vw;
+    z-index: 100;
 }
 .setup-popup.show {
 	display: flex;
-}
-
-@media(max-width:700px){
-    .setup-popup.show {
-        display: flex;
-        flex-direction: column;
-        column-gap: 10vh;
-        justify-content: center;
-        align-items: center;
-    }
 }
 
 .setup-popup button {
@@ -84,6 +76,19 @@
     border-radius: 100px;
     padding: 0.3em;
     padding-bottom: 0.4em;
+}
+
+@media(max-width:700px){
+    .setup-popup.show {
+        display: flex;
+        flex-direction: column;
+        column-gap: 10vh;
+        justify-content: center;
+        align-items: center;
+    }
+    .setup-popup button{
+        font-size: 9.5vw;
+    }
 }
 
 .setup-popup button:hover {
