@@ -148,6 +148,9 @@ class NoteShape extends Shape {
                 break;
 
             case SHAPE_TYPE_3D:
+                blendMode(DIFFERENCE);
+                fill(...this.getColor(), this.getOpacity())
+                ellipse(this.getPosition().x, this.getPosition().y, this.getSize(), this.getSize())
                 break;
 
             default:
@@ -182,7 +185,7 @@ class ChordShape extends BackgroundShape {
         this.colors = this.conf.getChordColors(this.chord).getValue()
         this.setParameter('opacity', new AnimatedParameter(
             new InOutAnimation(
-                [200, 2000],
+                [200, 4000],
                 [1, 0],
                 'linear'
             )

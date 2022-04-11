@@ -1,15 +1,16 @@
 .page.intro {
-  font-size: 9.5vw;
+  font-size: 8.3vw;
   font-style: normal;
 }
 
 .typewriter {
   padding: 1%;
-  line-height: 8.2vw;
+  line-height: 7.6vw;
 }
 
 .other-font {
   font-family: "ARK-ES";
   font-style: normal;
   font-weight: normal;
+  line-height: 5.5vw;
 }
