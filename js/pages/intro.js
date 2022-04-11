@@ -20,11 +20,17 @@ $(function() {
 
   typewriter
     .typeString(
-      "THIS IS A <span class='other-font'>POETIC</span> LIVE VISUALISER, BASED ON SOUND AND COLOR PERCEPTION."
+      "THIS IS A <span class='other-font'>POETIC</span> LIVE VISUALIZER, BASED ON SOUND AND COLOR PERCEPTION."
     )
+    .pauseFor(3000)
     .deleteAll(deleteSpeed)
     .typeString(
-      "COLOR CHANGES WHAT WE FEEL.<br />SOUND <span class='other-font'>TRANSFORMS</span> WHAT WE SEE."
+      "WHILE <span class='other-font'>PERFORMING</span> MUSIC AND <span class='other-font'>DESIGNING</span> VISUALLY WE NEED TO <span class='other-font'>CREATE</span> THE OVERLAPS AND INTERSECTION OF THE SENSES.",
+      )
+    .pauseFor(3000)
+    .deleteAll(deleteSpeed)
+    .typeString(
+      "COLOR <span class='other-font'>CHANGES</span> WHAT WE FEEL.<br />SOUND <span class='other-font'>TRANSFORMS</span> WHAT WE SEE."
     )
     .callFunction(function () {
       document.querySelector(".typewriter").setAttribute("contenteditable", true);

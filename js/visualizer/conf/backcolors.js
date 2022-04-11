@@ -64,8 +64,8 @@ let bg_colors_array = {
     ],
     // Diminished
     2: [
-      [195, 155, 167], //unten
-      [237, 193, 198], //oben
+      [0, 98, 116], //unten
+      [167, 0, 99], //oben
     ],
   },
 };

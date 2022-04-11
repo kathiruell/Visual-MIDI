@@ -11,7 +11,7 @@ const   ANIMATION_STYLE_DETAILED = 0,
 class Preferences {
 
     static DEFAULTS = {
-        'shape_style': SHAPE_STYLE_CLEAR,
+        'shape_style': SHAPE_STYLE_MELLOW,
         'animation_style': ANIMATION_STYLE_DETAILED,
         'color_style': COLOR_STYLE_INTIMATE,
         'frame_rate': 60,
