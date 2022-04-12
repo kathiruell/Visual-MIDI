@@ -1,3 +1,4 @@
+// prettier-ignore
 let bg_colors_array = {
   // intimate
   0: {

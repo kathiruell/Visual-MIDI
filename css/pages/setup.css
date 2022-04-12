@@ -1,132 +1,134 @@
 .setup {
-    position: absolute;
-    left: 0;
-    margin-top: 100vh;
-    top: -2em;
-	font-size: 2rem;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-    background-color: white;
-	box-shadow: 0px 0px 3em 4em white;
-	color: black;
+  position: absolute;
+  left: 0;
+  margin-top: 100vh;
+  top: -2em;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0px 0px 3em 4em white;
+  color: black;
 }
 .setup-header {
-	position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-	height: 2em;
-	display: flex;
-	justify-content: space-between;
-	padding: .2em .5em;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 2em;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.2em 0.5em;
+  z-index: 99;
 }
 .setup-sentence {
-    margin-bottom: 1.5rem;
-    margin-top: 0.8rem;
+  margin-bottom: 1.5rem;
+  margin-top: 0.8rem;
 }
 .setup button {
-    font-family: inherit;
-    font-style: inherit;
-    font-size: 10vw;
-    line-height: 9.2vw;
-    cursor: pointer;
-    height: 1.1em;
-    margin-top: -0.1em;
+  font-family: inherit;
+  font-style: inherit;
+  font-size: clamp(1rem, 10vw, 8.6rem);
+  line-height: 9.2vw;
+  cursor: pointer;
+  height: 1.1em;
+  margin-top: -0.1em;
 }
+
 .setup button:hover {
-    text-shadow: -2px -2px white, -2px 2px white, 2px -2px white, 2px 2px white;
-    box-shadow: 0 2.5px blue;
-    color: blue;
+  text-shadow: -2px -2px white, -2px 2px white, 2px -2px white, 2px 2px white;
+  box-shadow: 0 2.5px blue;
+  color: blue;
 }
 .vignette-setup {
-    display: flex;
-    align-items: center;
-    column-gap: 0.8rem;
-    height: fit-content;
-	margin-top: 1.9em;
+  display: flex;
+  align-items: center;
+  column-gap: 0.8rem;
+  height: fit-content;
+  margin-top: 2.1em;
 }
 
 .setup-popup {
-	display: none;
-	position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(20px);
-    flex-direction: row;
-    gap: 0.3em;
-    justify-content: center;
-    align-items: center;
-    font-size: 6vw;
-    z-index: 100;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(20px);
+  flex-direction: row;
+  gap: 0.3em;
+  justify-content: center;
+  align-items: center;
+  font-size: 6vw;
+  z-index: 100;
 }
 .setup-popup.show {
-	display: flex;
+  display: flex;
 }
 
 .setup-popup button {
-    font-size: 6vw;
-    height: 1em;
-    line-height: 0.5em;
-    background-color: black;
-    color: white;
-    border-radius: 100px;
-    padding: 0.3em;
-    padding-bottom: 0.4em;
+  font-size: clamp(1rem, 5vw, 8.6rem);
+  height: 1em;
+  line-height: 0.5em;
+  background-color: black;
+  color: white;
+  border-radius: 100px;
+  padding: 0.3em;
+  padding-bottom: 0.4em;
 }
 
-@media(max-width:700px){
-    .setup-popup.show {
-        display: flex;
-        flex-direction: column;
-        column-gap: 10vh;
-        justify-content: center;
-        align-items: center;
-    }
-    .setup-popup button{
-        font-size: 9.5vw;
-    }
+@media (max-width: 700px) {
+  .setup-popup.show {
+    display: flex;
+    flex-direction: column;
+    column-gap: 10vh;
+    justify-content: center;
+    align-items: center;
+  }
+  .setup-popup button {
+    font-size: 9.5vw;
+  }
 }
 
 .setup-popup button:hover {
-    text-shadow: none;
-    box-shadow: none;
-    background-color: blue;
-    color: white;
+  text-shadow: none;
+  box-shadow: none;
+  background-color: blue;
+  color: white;
 }
 
 /* VIGNETTE SETUP  */
 .vignette-setup button {
-    background: black;
-    width: 60px;
-    height: 60px;
+  background: black;
+  width: 60px;
+  height: 60px;
 }
 
 .vignette-setup button.square {
-    width: 60px;
-    height: 60px;
+  width: 60px;
+  height: 60px;
 }
 
 .vignette-setup button.round-edge {
-    border-radius: 12px/12px;
-    width: 62px;
-    height: 62px;
+  border-radius: 12px/12px;
+  width: 62px;
+  height: 62px;
 }
 
 .vignette-setup button.circle {
-    border-radius: 65px/65px;
-    width: 65px;
-    height: 65px;
+  border-radius: 65px/65px;
+  width: 65px;
+  height: 65px;
 }
 
 .vignette-setup button:hover {
-	box-shadow: none;
-    background: #caccfe;
+  box-shadow: none;
+  background: #caccfe;
 }
 
 .vignette-setup button.selected {
-    background: #000dff;
+  background: #000dff;
 }

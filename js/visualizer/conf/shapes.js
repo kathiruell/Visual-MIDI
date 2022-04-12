@@ -1,3 +1,4 @@
+// prettier-ignore
 let shapes_array = {
     "000": {
         color_style: 0,

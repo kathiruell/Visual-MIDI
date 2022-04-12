@@ -1,49 +1,54 @@
 @font-face {
-  font-family: ARK-ES;
+  font-family: VIDIARK;
   font-weight: normal;
   src: url("/fonts/VIDIARK-DenseLight.otf") format("opentype");
 }
 
 :root {
-    --font-size-normal: 1rem;
-    --font-size-big: 2rem;
+  --font-size-small: 1.2rem;
+  --line-height-small: 1.6rem;
+  --line-height-normal: 1.8rem;
+  --font-size-normal: 1.5rem;
+  --font-weight-normal: 200;
+  --font-size-big: 3rem;
+  --line-height-big: 3.1rem;
 }
 
 html,
 body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    color: white;
-    position: relative;
-    font-family: "acumin-pro", sans-serif;
-    font-style: normal;
-    font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  color: white;
+  position: relative;
+  font-family: "acumin-pro", sans-serif;
+  font-style: normal;
+  font-size: 1rem;
 }
 .page {
-    position: relative;
+  position: relative;
 }
-/** blurry links ***********************************************************/ 
+/** blurry links ***********************************************************/
 a.blur {
-    filter: blur(3px);
-    color: rgb(0, 0, 0);
-    text-decoration: none;
+  filter: blur(3px);
+  color: rgb(0, 0, 0);
+  text-decoration: none;
 }
 a.blur:hover {
-    filter: blur(0px);
-    color: #000000;
+  filter: blur(0px);
+  color: #000000;
 }
-/** fullscreen layout ***********************************************************/ 
+/** fullscreen layout ***********************************************************/
 .screensized {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
 .screensized.fixed {
-    position: fixed;
-    top: 0;
-    left: 0;
-    overflow: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: auto;
 }
