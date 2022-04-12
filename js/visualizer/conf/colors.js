@@ -1,3 +1,4 @@
+// prettier-ignore
 let colors_array = {
     // intimate
     0: {

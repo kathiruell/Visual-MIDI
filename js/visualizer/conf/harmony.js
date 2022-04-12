@@ -1,3 +1,4 @@
+// prettier-ignore
 let harmony_array = {
     // MODE_FREE
     0: {
