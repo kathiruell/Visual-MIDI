@@ -63,6 +63,9 @@ function setupMidi(
         break;
     }
   }
+
+  // MIDIKeys listener =============
+  if ('MIDIKeys' in window) window.MIDIKeys.onmessage = onMIDIMessage
 }
 
 function isChord() {
