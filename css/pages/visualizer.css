@@ -1,89 +1,51 @@
-#visualizer-page {
-  overflow: hidden;
-  font-family: "acumin-pro", sans-serif;
-  font-style: normal;
-  font-size: 2.5vw;
-  font-weight: 200;
-  z-index: -1;
+/* NAVIGATION ********************************************************* */
+.visualizer-navigation {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    color: white;
+    font-size: 2rem;
+    font-weight: 200;
 }
-
-.outer {
-  overflow: hidden;
-  position: absolute;
-  width: 100%;
-  height: 100%;
+.visualizer-navigation .slide-in {
+    transition-duration: 300ms;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
 }
-
-.outer-arrow {
-  height: 100%;
-  position: absolute;
-  padding-top: 50vh;
-  transform: translateY(-50px);
-  width: 100px;
-  left: -50px;
-  opacity: 0%;
-  transition-duration: 300ms;
-  transition-property: all;
-  transition-timing-function: ease-in-out;
+.visualizer-navigation .slide-in.left {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100px;
+    height: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    transform: translateY(-50px);
+    left: -50px;
+    padding-left: 2vw;
+    opacity: 0%;
 }
-
-.backarrow {
-  color: white;
-  filter: blur(2px);
-  text-align: center;
-  padding-left: 2vw;
+.visualizer-navigation .slide-in.left:hover {
+    left: 0;
+    opacity: 100%;
 }
-
+.visualizer-navigation .slide-in.bottom {
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 100%;
+    height: 50px;
+    padding-top: 2vw;
+    padding-bottom: 3vw;
+    bottom: -50px;
+    display: flex;
+    justify-content: center;
+    opacity: 0%;
+}
+.visualizer-navigation .slide-in.bottom:hover {
+    bottom: 0;
+    opacity: 100%;
+}
 .arrow-svg {
-  width: 2vw;
-}
-
-a:hover {
-  color: white;
-  filter: blur(0px);
-}
-
-.outer-arrow:hover {
-  left: 0;
-  opacity: 100%;
-}
-
-.outer-setup {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 50px;
-  padding-top: 2vw;
-  padding-bottom: 3vw;
-
-  bottom: -50px;
-  opacity: 0%;
-  transition-duration: 300ms;
-  transition-property: all;
-  transition-timing-function: ease-in-out;
-}
-
-.outer-setup:hover {
-  bottom: 0;
-  opacity: 100%;
-}
-
-.visualizer-setup {
-  width: fit-content;
-  margin: auto;
-  font-size: 2rem;
-  font-weight: 200;
-}
-
-.visualizer-setup .setup-key {
-  color: white;
-  filter: blur(2px);
-  text-align: center;
-}
-
-.visualizer-setup .setup-key:hover {
-  color: white;
-  filter: blur(0px);
+    width: 2vw;
 }
 /** browser-error ***********************************************************/
 .page.browser-error {
