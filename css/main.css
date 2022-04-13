@@ -36,6 +36,12 @@ a:hover {
 button {
     cursor: pointer;
 }
+a,
+a:visited,
+a:hover {
+    color: inherit;
+    text-decoration: inherit;
+}
 button {
     cursor: pointer;
 }
