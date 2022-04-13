@@ -27,21 +27,26 @@ body {
   font-style: normal;
   font-size: 1rem;
 }
+a,
+a:visited,
+a:hover {
+    color: inherit;
+    text-decoration: inherit;
+}
 button {
     cursor: pointer;
 }
 .page {
   position: relative;
 }
-/** blurry links ***********************************************************/
-a.blur {
-  filter: blur(3px);
-  color: rgb(0, 0, 0);
-  text-decoration: none;
+/** blurry links ***********************************************************/ 
+a.blur,
+button.blur {
+    filter: blur(3px);
 }
-a.blur:hover {
-  filter: blur(0px);
-  color: #000000;
+a.blur:hover,
+button.blur:hover {
+    filter: blur(0px);
 }
 /** fullscreen layout ***********************************************************/
 .screensized {
