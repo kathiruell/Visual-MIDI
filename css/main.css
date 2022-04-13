@@ -27,6 +27,9 @@ body {
   font-style: normal;
   font-size: 1rem;
 }
+button {
+    cursor: pointer;
+}
 .page {
   position: relative;
 }
