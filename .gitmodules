@@ -1,0 +1,3 @@
+[submodule "js/lib/MIDIKeys"]
+	path = js/lib/MIDIKeys
+	url = https://github.com/linobino1/MIDIKeys.git
