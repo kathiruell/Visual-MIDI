@@ -14,30 +14,32 @@ $(function() {
     $("[data-pref-preview]").prefButtonLabel()
     $("[data-pref-preview-and-set]").prefButtonLabel()
     $("button[data-pref-set]").prefButtonLabel()
-});
-$("[data-pref-preview]").click(function() {
-    // hide preview, show popup
-    let key = $(this).attr('data-key')
-    $('.setup-popup[data-key="' + key + '"]').addClass('show')
-});
-$("[data-pref-set]").click(function() {
-    // set user preference
-    visualizer_setup.preferences.set($(this).attr("data-key"), $(this).attr("data-value"));
 
-    // hide popup, show preview, set new label for preview
-    $(this).closest('.setup-popup').removeClass('show')
-    $('[data-pref-preview]').prefButtonLabel()
-    $('[data-pref-preview]').show()
-});
-$("[data-pref-preview-and-set]").click(function() {
-    // hide preview, show popup
-    let key = $(this).attr('data-key')
+    // event handlers
+    $("[data-pref-preview]").click(function() {
+        // hide preview, show popup
+        let key = $(this).attr('data-key')
+        $('.setup-popup[data-key="' + key + '"]').addClass('show')
+    });
+    $("[data-pref-set]").click(function() {
+        // set user preference
+        visualizer_setup.preferences.set($(this).attr("data-key"), $(this).attr("data-value"));
 
-    // set next value
-    visualizer_setup.preferences.set(key, (visualizer_setup.preferences.get(key) + 1) % 3)
+        // hide popup, show preview, set new label for preview
+        $(this).closest('.setup-popup').removeClass('show')
+        $('[data-pref-preview]').prefButtonLabel()
+        $('[data-pref-preview]').show()
+    });
+    $("[data-pref-preview-and-set]").click(function() {
+        // hide preview, show popup
+        let key = $(this).attr('data-key')
 
-    // update label
-    $(this).prefButtonLabel()
+        // set next value
+        visualizer_setup.preferences.set(key, (visualizer_setup.preferences.get(key) + 1) % 3)
+
+        // update label
+        $(this).prefButtonLabel()
+    });
 });
 
 $.fn.prefButtonLabel = function() {
