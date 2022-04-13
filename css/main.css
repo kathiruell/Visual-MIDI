@@ -36,6 +36,9 @@ a:hover {
 button {
     cursor: pointer;
 }
+button {
+    cursor: pointer;
+}
 .page {
   position: relative;
 }
