@@ -6,6 +6,8 @@
 .typewriter {
   padding: 1%;
   line-height: 7.6vw;
+  outline: none !important;
+  text-transform: uppercase;
 }
 
 .other-font {
