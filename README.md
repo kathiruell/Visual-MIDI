@@ -13,8 +13,9 @@ TODO Update
 ## Intro Typewriter
 
 - Kann ich den Cursor stylen? Wenn man schreibt, werden 2 cursor angezeigt
-- Kann man das "Textfeld" (blaue Kontur) ausblenden?
-- Können wir nur CAPS einstellen?
+*@leo: Wir könnten das machen wenn wir auf Mauseingabe verzichten. https://stackoverflow.com/questions/38095446/how-to-make-custom-caret *
+- Kann man das "Textfeld" (blaue Kontur) ausblenden? &check;
+- Können wir nur CAPS einstellen? &check;
 
 ## About
 
