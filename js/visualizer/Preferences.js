@@ -15,6 +15,7 @@ class Preferences {
         'animation_style': ANIMATION_STYLE_DETAILED,
         'color_style': COLOR_STYLE_INTIMATE,
         'frame_rate': 60,
+        'vignette': "v1",
     }
 
     constructor() {
@@ -42,8 +43,11 @@ class Preferences {
     getStyleId() {
         return "" + this.getAnimationStyle() + this.getShapeStyle() + this.getColorStyle();
     }
-    getVignetteOn() {
-        return true;
+    setVignetteId(id) {
+        this.set('vignette', id)
+    }
+    getVignetteId() {
+        return this.get('vignette')
     } 
 
     /**
