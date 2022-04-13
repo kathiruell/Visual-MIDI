@@ -9,7 +9,7 @@ $(function() {
         let value = visualizer_setup.preferences.get(key)
         $(this).attr('data-value', value)
     });
-    
+
     // init all labels
     $("[data-pref-preview]").prefButtonLabel()
     $("[data-pref-preview-and-set]").prefButtonLabel()
@@ -77,17 +77,24 @@ const labels = {
 
 // VIGNETTE //////////////////////////////////////////////////////////////////////////////////////
 
-$(function () {
-  $("[data-vignette-selector]").click(function () {
-    let val = $(this).attr("data-vignette-selector");
+$(function() {
+    // initial
+    vignetteActivate(visualizer_setup.preferences.getVignetteId())
 
+    // event handler
+    $("[data-vignette-selector]").click(function() {
+        let id = $(this).attr("data-vignette-selector");
+        visualizer_setup.preferences.setVignetteId(id)
+        vignetteActivate(id)
+    });
+
+});
+
+function vignetteActivate(id) {
     $("[data-vignette-selector]").removeClass("selected");
-    $(this).addClass("selected");
+    $('[data-vignette-selector="id"]').addClass("selected");
 
     $("[data-vignette]").removeClass("selected");
-    $('[data-vignette="' + val + '"]').addClass("selected");
-  });
+    $('[data-vignette="' + id + '"]').addClass("selected");
 
-  // preselect vignette I
-  $("[data-vignette-selector]").first().click();
-});
+}
