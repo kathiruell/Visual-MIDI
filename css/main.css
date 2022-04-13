@@ -22,6 +22,12 @@ body {
     font-style: normal;
     font-size: 1rem;
 }
+a,
+a:visited,
+a:hover {
+    color: inherit;
+    text-decoration: inherit;
+}
 button {
     cursor: pointer;
 }
@@ -29,14 +35,13 @@ button {
     position: relative;
 }
 /** blurry links ***********************************************************/ 
-a.blur {
+a.blur,
+button.blur {
     filter: blur(3px);
-    color: rgb(0, 0, 0);
-    text-decoration: none;
 }
-a.blur:hover {
+a.blur:hover,
+button.blur:hover {
     filter: blur(0px);
-    color: #000000;
 }
 /** fullscreen layout ***********************************************************/ 
 .screensized {
