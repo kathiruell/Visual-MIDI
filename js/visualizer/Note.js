@@ -30,7 +30,9 @@ class Chord extends MusicalEvent {
     constructor(alternatives) {
         super()
         this.alternatives = alternatives    // array of chord names
+        this.name = this.getName()
         this.noteOff()
+        // console.log("CHORD", this.name)
     }
 
     getTonalObject() {
@@ -45,7 +47,20 @@ class Chord extends MusicalEvent {
     }
 
     getName() {
-        return this.alternatives[0]
+        // only compute once
+        if (this.name) return this.name
+
+        let i = 0
+
+        // avoid minor #5 and major b5 chords if there are other alternatives
+        for (i; i < this.alternatives.length - 1; i++) {
+            if (['m#5', 'Mb5'].some(x => this.alternatives[i].includes(x))) {
+                continue
+            } else {
+                break
+            }
+        }
+        return this.alternatives[i]
     }
 
     getQuality() {
