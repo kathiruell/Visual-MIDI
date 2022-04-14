@@ -97,4 +97,6 @@ function vignetteActivate(id) {
     $("[data-vignette]").removeClass("selected");
     $('[data-vignette="' + id + '"]').addClass("selected");
 
+    $('body').attr('data-vignette', id)
+
 }
