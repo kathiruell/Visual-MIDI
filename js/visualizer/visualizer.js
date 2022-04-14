@@ -24,6 +24,7 @@ function setup() {
     setupMidi(handleNoteOn, handleNoteOff);
 
     // demo()
+    // debugNotePositions()
 }
 
 function demo() {
@@ -33,6 +34,12 @@ function demo() {
             handleNoteOff(0, 56, 100)
         }, 2500)
     }, 5000);
+}
+
+function debugNotePositions() {
+    for (let i = 0; i < 127; i++) {
+        handleNoteOn(0, i, 100)
+    }
 }
 
 function draw() {

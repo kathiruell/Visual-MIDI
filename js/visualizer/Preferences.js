@@ -45,6 +45,7 @@ class Preferences {
     }
     setVignetteId(id) {
         this.set('vignette', id)
+        if (typeof visualizer !== 'undefined' && 'note_positions' in visualizer) visualizer.note_positions.init()
     }
     getVignetteId() {
         return this.get('vignette')

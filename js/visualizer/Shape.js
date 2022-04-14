@@ -14,7 +14,7 @@ class Shape {
         this.lifetime_ms = 0
         this.id = ++shapes_id
         this.parameters = {}
-        console.log(typeof this, this)
+        // console.log(typeof this, this)
     }
 
     setParameter(key, parameter) {
