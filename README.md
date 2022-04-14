@@ -6,6 +6,7 @@ TODO Update
 ## TASTATUR
 
 - No MIDI-Device? https://gist.github.com/nick-thompson/3995530
+    *-> &check; ausfeilen*
 
 
 # //////////////////// DESIGN-DETAILS ////////////////////
@@ -13,30 +14,18 @@ TODO Update
 ## Intro Typewriter
 
 - Kann ich den Cursor stylen? Wenn man schreibt, werden 2 cursor angezeigt
-- Kann man das "Textfeld" (blaue Kontur) ausblenden?
-- Können wir nur CAPS einstellen?
+    *https://stackoverflow.com/questions/38095446/how-to-make-custom-caret*
 
-## About
-
-- Aufbau der Text-Seite, Font Größen anpassen// @kathiruell
-
-#////////////////////////////////////////////////////////
+# ////////////////////////////////////////////////////////
 
 # Visualizer
 
-- setup auf visualizer funktioniert nicht
-- vignette auf visualizer wird nicht angezeigt
-
-
-
-
 Session I Visualizer Test
-- Grundton wird immer zu "Rot"="Consonant"; Grundton soll bei der eigenen Farbe bleiben
-- Chord-Backgrounds bleiben manchmal stehen...Bug?
 - Akkorde werden schon ab 2 Tönen erkannt? (Bsp. Quarte & Quinte)
+- Quinten (X5 & X5/Y) nicht als Akkord erkennen, sondern eigene Farbe? EINFARBIG?
 - Aug & Dim. Akkorde
 - Em#5 als Dur erkennen lassen (2. Umkehrung Dur wird als Em#5 erkannt, was richtig ist, aber nicht sinnvoll fûr die Visualisierung) 
-- Quinten (X5 & X5/Y) nicht als Akkord erkennen, sondern eigene Farbe? EINFARBIG?
+    *-> &check; m#5 und Mb5 werden vermieden*
 - Relations between Chord:
   Grundton detect-->Interval zum Grundton des 2. Chords (4 neue "harmony"-arrays:
   Dur––Dur, Dur––Moll, Moll--Dur, Moll--Moll
