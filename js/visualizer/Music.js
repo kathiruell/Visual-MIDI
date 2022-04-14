@@ -23,8 +23,8 @@ const MODE_FREE = 0,
     MODE_MINOR = 2;
 
 const CONSONANT = 0,
-    DISSONANT = 1,
-    SEMISONANT = 2;
+    SEMISONANT = 1,
+    DISSONANT = 2;
 
 class Music {
 
