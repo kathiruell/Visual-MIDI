@@ -77,3 +77,6 @@
 body.browser-error #canvas {
   display: none;
 }
+body.browser-error .visualizer-setup {
+  display: none !important;
+}
