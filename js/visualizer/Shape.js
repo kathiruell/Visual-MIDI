@@ -173,9 +173,7 @@ class NoteShape extends Shape {
 class BackgroundShapeBlackout extends BackgroundShape {
 
     drawShape() {
-        // noStroke()
-        // fill(0,0,0)
-        // rect(0, 0, width, height)
+        blendMode(BLEND)
         background(0)
     }
 
