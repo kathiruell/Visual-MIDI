@@ -8,6 +8,7 @@ let visualizer = {
     music: new Music(),
     note_positions: undefined,
     UNDEFINED_COLOR: [255,255,255],
+    COLOR_SCHEME_INDEX: 0
 }
 
 function setup() {

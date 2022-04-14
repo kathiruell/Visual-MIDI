@@ -66,6 +66,7 @@ class Shape {
 
 class BackgroundShape extends Shape {}
 
+
 class NoteShape extends Shape {
 
     constructor(note) {
@@ -87,11 +88,16 @@ class NoteShape extends Shape {
             let harmony = visualizer.music.getHarmony(this.note)
             if (harmony !== undefined) {
 
-                // get colorscheme from conf
-                let colors = this.conf.getColorScheme(visualizer.music.getHarmony(this.note))
+                // get colorschemes from conf
+                let color_schemes = this.conf.getColorSchemes()
+
+                // apply harmony
+                let harmony = visualizer.music.getHarmony(this.note)
+                visualizer.COLOR_SCHEME_INDEX = (visualizer.COLOR_SCHEME_INDEX + harmony) % color_schemes.length
+                let color_scheme = color_schemes[visualizer.COLOR_SCHEME_INDEX]
 
                 // pick random color from colorscheme
-                color = colors[Math.ceil(Math.random() * colors.length) - 1]
+                color = color_scheme[Math.ceil(Math.random() * color_scheme.length) - 1]
 
                 // pitch -> parametric
                 color = rgbModBrightness(color, this.note.getOctave() / 7)

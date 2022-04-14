@@ -15,8 +15,8 @@ class Conf {
     /**
      * @returns array of colors
      */
-    getColorScheme(harmony) {
-        return this.colors[visualizer.preferences.getColorStyle()][harmony]
+    getColorSchemes() {
+        return this.colors[visualizer.preferences.getColorStyle()]
     }
 
     getHarmony(mode, interval) {
