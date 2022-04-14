@@ -38,6 +38,7 @@
     bottom: -50px;
     display: flex;
     justify-content: center;
+    column-gap: .5rem;
     opacity: 0%;
 }
 .visualizer-navigation .slide-in.bottom:hover {
