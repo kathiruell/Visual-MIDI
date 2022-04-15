@@ -8,8 +8,7 @@ const sentences = [
 ];
 
 // Documentation for typewriter: https://github.com/tameemsafi/typewriterjs#examples
-$(function() {
-
+$(function () {
   let typewriter = new Typewriter(document.querySelector(".typewriter"), {
     delay: 75, // Speed of the typewriting (time between each character).
     autoStart: true,
@@ -25,15 +24,17 @@ $(function() {
     .pauseFor(3000)
     .deleteAll(deleteSpeed)
     .typeString(
-      "WHILE <span class='other-font'>PERFORMING</span> MUSIC AND <span class='other-font'>DESIGNING</span> VISUALLY WE NEED TO <span class='other-font'>CREATE</span> THE OVERLAPS AND INTERSECTION OF THE SENSES.",
-      )
+      "WHILE <span class='other-font'>PERFORMING</span> MUSIC AND <span class='other-font'>DESIGNING</span> VISUALLY WE NEED TO <span class='other-font'>CREATE</span> THE OVERLAPS AND INTERSECTION OF THE SENSES."
+    )
     .pauseFor(3000)
     .deleteAll(deleteSpeed)
     .typeString(
-      "COLOR <span class='other-font'>CHANGES</span> WHAT WE FEEL.<br />SOUND <span class='other-font'>TRANSFORMS</span> WHAT WE SEE."
+      "COLOR <span class='other-font'>CHANGES</span> <br /> HOW WE FEEL.<br />SOUND <span class='other-font'>TRANSFORMS</span> WHAT WE SEE."
     )
     .callFunction(function () {
-      document.querySelector(".typewriter").setAttribute("contenteditable", true);
+      document
+        .querySelector(".typewriter")
+        .setAttribute("contenteditable", true);
     })
     .start();
 });
