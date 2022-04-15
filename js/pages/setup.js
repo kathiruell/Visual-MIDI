@@ -1,3 +1,5 @@
+import { Preferences } from './../visualizer/Preferences.js'
+
 let visualizer_setup = {
     preferences: new Preferences()
 }
