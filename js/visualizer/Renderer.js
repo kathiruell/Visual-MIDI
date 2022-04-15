@@ -1,21 +1,22 @@
+import { NoteShape, ChordShape, BlackoutShape } from "./Shape.js";
 /**
  * manages the shapes
  */
-class Renderer {
-    canvas = undefined;
-    shapes = [];
+export class Renderer {
+    static canvas = undefined;
+    static shapes = [];
 
-    constructor(canvas, frame_rate) {
+    static init(canvas, frame_rate) {
         this.canvas = canvas
         this.setFramerate(frame_rate)
-        this.background = new BackgroundShapeBlackout()
+        this.background = new BlackoutShape()
     }
 
-    renderShape(shape) {
+    static renderShape(shape) {
         this.shapes.push(shape);
     }
 
-    draw() {
+    static draw() {
 
         // clear dead shapes
         this.shapes = this.shapes.filter(shape => shape.isAlive())
@@ -31,33 +32,33 @@ class Renderer {
 
     }
 
-    noteOff(pitch) {
+    static noteOff(pitch) {
         this.shapes.filter(shape => shape.getNote().getPitch() === pitch).forEach(shape => shape.triggerRelease())
     }
 
-    start() {
+    static start() {
         this.shapes = []
         loop()
         console.log("Renderer start", this.getFramerateTarget(), "fps target")
     }
-    stop() {
+    static stop() {
         noLoop()
     }
 
-    getFramerateTarget() {
+    static getFramerateTarget() {
         return this.framerate_target
     }
-    getFramerateActual() {
+    static getFramerateActual() {
         return frameRate()
     }
-    setFramerate(frame_rate) {
+    static setFramerate(frame_rate) {
         this.framerate_target = frame_rate
         frameRate(parseFloat(this.framerate_target))
     }
-    getFrameDurationTarget() {
+    static getFrameDurationTarget() {
         return 1000 / this.framerate_target
     }
-    getFrameDurationActual() {
+    static getFrameDurationActual() {
         return frameRate()
     }
 

@@ -1,4 +1,4 @@
-class Parameter {
+export class Parameter {
 
     constructor(value, ...modulators) {
         this.value = value
@@ -24,7 +24,7 @@ class Parameter {
     }
 }
 
-class AnimatedParameter extends Parameter {
+export class AnimatedParameter extends Parameter {
 
     constructor(animation, ...modulators) {
         super(undefined, ...modulators)

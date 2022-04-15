@@ -1,4 +1,6 @@
-class MusicalEvent {
+import { qualities, note_names } from "./constants.js";
+
+export class MusicalEvent {
 
     constructor() {
         this.timestamp = Date.now()
@@ -21,11 +23,11 @@ class MusicalEvent {
         return Object.keys(NOTE_NAMES).find(p => NOTE_NAMES[p] === pitch)
     }
     static pitch(note_name) {
-        return NOTE_NAMES[note_name]
+        return note_names[note_name]
     }
 }
 
-class Chord extends MusicalEvent {
+export class Chord extends MusicalEvent {
 
     constructor(alternatives) {
         super()
@@ -65,11 +67,11 @@ class Chord extends MusicalEvent {
 
     getQuality() {
         let quality = this.getTonalObject().quality
-        return quality === 'Major' ? MODE_MAJOR : MODE_MINOR;
+        return quality === 'Major' ? qualities.major : qualities.minor;
     }
 }
 
-class Note extends MusicalEvent {
+export class Note extends MusicalEvent {
 
     constructor(pitch, vel) {
         super()

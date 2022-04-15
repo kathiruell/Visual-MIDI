@@ -1,8 +1,12 @@
 // prettier-ignore
-let shapes_array = {
+import * as CONST from './../constants.js';
+import { AdsrAnimation, InOutAnimation, SimpleAnimation } from './../Animation.js';
+import { VelocityModulator } from './../Modulator.js';
+
+export default {
     "000": {
         color_style: 0,
-        shape_type: SHAPE_TYPE_BLURRY,
+        shape_type: CONST.shape_types.blurry,
         texture: "none",
         inner_size: 1,
         blend_mode: "normal",
@@ -19,7 +23,7 @@ let shapes_array = {
     },
     "111": {
         color_style: 1,
-        shape_type: SHAPE_TYPE_PLAIN,
+        shape_type: CONST.shape_types.plain,
         texture: "none",
         inner_size: 1,
         blend_mode: "normal",
@@ -39,7 +43,7 @@ let shapes_array = {
     },
     "222": {
         color_style: 2,
-        shape_type: SHAPE_TYPE_3D,
+        shape_type: CONST.shape_types.texturized,
         texture: "none",
         inner_size: 1,
         blend_mode: "normal",

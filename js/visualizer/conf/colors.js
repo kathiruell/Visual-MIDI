@@ -1,5 +1,5 @@
 // prettier-ignore
-let colors_array = {
+export default {
     // intimate
     0: {
         0: [

@@ -1,68 +1,64 @@
-import { styles } from "./visualizer.js"
+import * as CONST from './constants.js';
 
 export class Preferences {
 
     static DEFAULTS = {
-        'shape_style': styles.shapes.MELLOW,
-        'animation_style': styles.animation.DETAILED,
-        'color_style': styles.color.INTIMATE,
+        'shape_style': CONST.styles.shapes.MELLOW,
+        'animation_style': CONST.styles.animation.DETAILED,
+        'color_style': CONST.styles.color.INTIMATE,
         'frame_rate': 60,
         'vignette': "v1",
     }
 
-    constructor() {
-        console.log("Preferences:", "Style", this.getStyleId(), "Framerate", this.getFramerate())
-    }
-
-    setShapeStyle(value) {
+    static setShapeStyle(value) {
         this.set('shape_style', value)
     }
-    getShapeStyle() {
+    static getShapeStyle() {
         return this.get('shape_style')
     }
-    setColorStyle(value) {
+    static setColorStyle(value) {
         this.set('color_style', value)
     }
-    getColorStyle() {
+    static getColorStyle() {
         return this.get('color_style')
     }
-    setAnimationStyle(value) {
+    static setAnimationStyle(value) {
         this.set('animation_style', value)
     }
-    getAnimationStyle() {
+    static getAnimationStyle() {
         return this.get('animation_style')
     }
-    getStyleId() {
+    static getStyleId() {
         return "" + this.getAnimationStyle() + this.getShapeStyle() + this.getColorStyle();
     }
-    setVignetteId(id) {
+    static setVignetteId(id) {
         this.set('vignette', id)
-        if (typeof visualizer !== 'undefined' && 'note_positions' in visualizer) visualizer.note_positions.init()
+        // if (typeof visualizer !== 'undefined' && 'note_positions' in visualizer) visualizer.note_positions.init()
     }
-    getVignetteId() {
+    static getVignetteId() {
         return this.get('vignette')
     } 
 
     /**
      * unit fps
      */
-    getFramerate() {
+    static getFramerate() {
         return this.get('frame_rate')
     }
-    setFrameRate(value) {
+    static setFrameRate(value) {
         value = parseFloat(value)
-        try {
-            visualizer.renderer.setFramerate(value)
-        } catch {
-            console.log("could not change framerate")
-        }
+        // try {
+        //     visualizer.renderer.setFramerate(value)
+        // } catch {
+        //     console.log("could not change framerate")
+        // }
         this.set('frame_rate', value)
     }
     
-    set(key, value) {
+    static set(key, value) {
         window.sessionStorage.setItem(key, value);
     }
-    get(key) {
+    static get(key) {
         return window.sessionStorage.getItem(key) || Preferences.DEFAULTS[key]
     }
 }
