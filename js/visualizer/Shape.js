@@ -1,7 +1,7 @@
 import { shape_types } from './constants.js';
 import { Conf } from './Conf.js'
 import { Renderer } from './Renderer.js'
-import { getFrameDuration, rgbModBrightness, linearGradient } from './util.js'
+import { getFrameDuration, rgbModBrightness, linearGradient, radialGradient } from './util.js'
 import { Parameter, AnimatedParameter } from './Parameter.js';
 import { Music } from './Music.js';
 import { NotePositions } from './NotePositions.js';
