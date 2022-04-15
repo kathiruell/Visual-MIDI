@@ -1,19 +1,11 @@
-const   ANIMATION_STYLE_DETAILED = 0,
-        ANIMATION_STYLE_BRISK = 1,
-        ANIMATION_STYLE_MASSIVE = 2,
-        SHAPE_STYLE_MELLOW = 0,
-        SHAPE_STYLE_CLEAR = 1,
-        SHAPE_STYLE_EMBOSSED = 2,
-        COLOR_STYLE_INTIMATE = 0,
-        COLOR_STYLE_LUMINOUS = 1,
-        COLOR_STYLE_GLOOM = 2;
+import { styles } from "./visualizer.js"
 
-class Preferences {
+export class Preferences {
 
     static DEFAULTS = {
-        'shape_style': SHAPE_STYLE_MELLOW,
-        'animation_style': ANIMATION_STYLE_DETAILED,
-        'color_style': COLOR_STYLE_INTIMATE,
+        'shape_style': styles.shapes.MELLOW,
+        'animation_style': styles.animation.DETAILED,
+        'color_style': styles.color.INTIMATE,
         'frame_rate': 60,
         'vignette': "v1",
     }

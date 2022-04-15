@@ -1,6 +1,26 @@
 /// <reference types="p5/global" />
+import { Preferences } from "./Preferences.js";
 
-let visualizer = {
+export let styles = {
+    color: {
+        INTIMATE: 0,
+        LUMINOUS: 1,
+        GLOOM: 2,
+    },
+    animation: {
+        DETAILED: 0,
+        BRISK: 1,
+        MASSIVE: 2,
+    },
+    shapes: {
+        MELLOW: 0,
+        CLEAR: 1,
+        EMBOSSED: 2,
+
+    }
+}
+
+export let visualizer = {
     conf: new Conf(),
     preferences: new Preferences(),
     renderer: undefined,
@@ -8,9 +28,19 @@ let visualizer = {
     music: new Music(),
     note_positions: undefined,
     UNDEFINED_COLOR: [255,255,255],
+
+    ANIMATION_STYLE_DETAILED: 0,
+    ANIMATION_STYLE_BRISK: 1,
+    ANIMATION_STYLE_MASSIVE: 2,
+    SHAPE_STYLE_MELLOW: 0,
+    SHAPE_STYLE_CLEAR: 1,
+    SHAPE_STYLE_EMBOSSED: 2,
+    COLOR_STYLE_INTIMATE: 0,
+    COLOR_STYLE_LUMINOUS: 1,
+    COLOR_STYLE_GLOOM: 2,
 }
 
-function setup() {
+export function setup() {
     visualizer.canvas = createCanvas(windowWidth, windowHeight);
     visualizer.canvas.parent("canvas");
     visualizer.note_positions = new NotePositions()
@@ -42,11 +72,11 @@ function debugNotePositions() {
     }
 }
 
-function draw() {
+export function draw() {
     visualizer.renderer.draw()
 }
 
-function handleNoteOn(ch, pitch, vel) {
+export function handleNoteOn(ch, pitch, vel) {
     let note = new Note(pitch, vel)
     visualizer.music.addNote(note);
 
@@ -56,7 +86,6 @@ function handleNoteOn(ch, pitch, vel) {
     // chord?
     if (isChord()) {
         let chord_alternatives = getChord()
-
         let chord = new Chord(chord_alternatives)
         visualizer.music.addChord(chord);
 
@@ -65,11 +94,11 @@ function handleNoteOn(ch, pitch, vel) {
     }
 }
 
-function handleNoteOff(ch, pitch, vel) {
+export function handleNoteOff(ch, pitch, vel) {
     visualizer.music.noteOff(pitch)
     visualizer.renderer.noteOff(pitch)
 }
 
-function windowResized() {
+export function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 }

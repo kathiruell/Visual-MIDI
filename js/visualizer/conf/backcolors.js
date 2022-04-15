@@ -1,7 +1,7 @@
 // prettier-ignore
 let bg_colors_array = {
   // intimate
-  0: {
+  COLOR_STYLE_INTIMATE: {
     // MAJOR
     0: [
       [237, 193, 198], //unten
@@ -24,7 +24,7 @@ let bg_colors_array = {
     ],
   },
   // luminous
-  1: {
+  COLOR_STYLE_LUMINOUS: {
     // MAJOR
     0: [
       [101, 255, 25], //unten
@@ -47,7 +47,7 @@ let bg_colors_array = {
     ],
   },
   // gloom
-  2: {
+  COLOR_STYLE_GLOOM: {
     // MAJOR
     0: [
       [59, 216, 169], //unten
