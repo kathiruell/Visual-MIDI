@@ -1,53 +1,58 @@
 /* NAVIGATION ********************************************************* */
 .visualizer-navigation {
-    position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
-    z-index: 1000;
-    color: white;
-    font-size: 2rem;
-    font-weight: 200;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  color: white;
+  font-size: 2rem;
+  font-weight: 200;
 }
 .visualizer-navigation .slide-in {
-    transition-duration: 300ms;
-    transition-property: all;
-    transition-timing-function: ease-in-out;
+  transition-duration: 300ms;
+  transition-property: all;
+  transition-timing-function: ease-in-out;
 }
 .visualizer-navigation .slide-in.left {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100px;
-    height: 100%;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    transform: translateY(-50px);
-    left: -50px;
-    padding-left: 2vw;
-    opacity: 0%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  transform: translateY(-50px);
+  left: -50px;
+  padding-left: 2vw;
+  opacity: 0%;
 }
 .visualizer-navigation .slide-in.left:hover {
-    left: 0;
-    opacity: 100%;
+  left: 0;
+  opacity: 100%;
 }
 .visualizer-navigation .slide-in.bottom {
-    position: absolute;
-    left: 0; bottom: 0;
-    width: 100%;
-    height: 50px;
-    padding-top: 2vw;
-    padding-bottom: 3vw;
-    bottom: -50px;
-    display: flex;
-    justify-content: center;
-    column-gap: .5rem;
-    opacity: 0%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  padding-top: 2vw;
+  padding-bottom: 3vw;
+  bottom: -50px;
+  display: flex;
+  justify-content: center;
+  column-gap: 0.5rem;
+  opacity: 0%;
 }
 .visualizer-navigation .slide-in.bottom:hover {
-    bottom: 0;
-    opacity: 100%;
+  bottom: 0;
+  opacity: 100%;
 }
 .arrow-svg {
-    width: 2vw;
+  width: 2vw;
 }
 /** browser-error ***********************************************************/
 .page.browser-error {
@@ -80,4 +85,10 @@ body.browser-error #canvas {
 }
 body.browser-error .visualizer-setup {
   display: none !important;
+}
+
+body[data-vignette="v2"] .visualizer-navigation,
+body[data-vignette="v3"] .visualizer-navigation {
+  color: rgb(0, 0, 0);
+  z-index: 104;
 }
