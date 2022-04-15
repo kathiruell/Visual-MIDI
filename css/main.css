@@ -30,32 +30,32 @@ body {
 a,
 a:visited,
 a:hover {
-    color: inherit;
-    text-decoration: inherit;
+  color: inherit;
+  text-decoration: inherit;
 }
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 a,
 a:visited,
 a:hover {
-    color: inherit;
-    text-decoration: inherit;
+  color: inherit;
+  text-decoration: inherit;
 }
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 .page {
   position: relative;
 }
-/** blurry links ***********************************************************/ 
+/** blurry links ***********************************************************/
 a.blur,
 button.blur {
-    filter: blur(3px);
+  filter: blur(3px);
 }
 a.blur:hover,
 button.blur:hover {
-    filter: blur(0px);
+  filter: blur(0px);
 }
 /** fullscreen layout ***********************************************************/
 .screensized {
