@@ -1,3 +1,5 @@
+import { Renderer } from "./Renderer.js"
+
 /**
  * abstract class
  */
@@ -12,7 +14,7 @@ class Animation {
     isActive() {}
 }
 
-class SimpleAnimation extends Animation {
+export class SimpleAnimation extends Animation {
 
     constructor(time, goal) {
         super()
@@ -20,7 +22,7 @@ class SimpleAnimation extends Animation {
     }
 }
 
-class AdsrAnimation extends Animation {
+export class AdsrAnimation extends Animation {
 
     PRE_RELEASE = 0
     POST_RELEASE = 1
@@ -83,7 +85,7 @@ class AdsrAnimation extends Animation {
      * per frame computation of this.value
      */
     trigger() {
-        this.time_ms += visualizer.renderer.getFrameDurationTarget()
+        this.time_ms += Renderer.getFrameDurationTarget()
     }
 
     triggerRelease() {
@@ -106,7 +108,7 @@ class AdsrAnimation extends Animation {
  *      0:  attack level
  *      1:  release/floor level
  */
-class InOutAnimation extends AdsrAnimation {
+export class InOutAnimation extends AdsrAnimation {
 
     getValue() {
         let x = this.time_ms

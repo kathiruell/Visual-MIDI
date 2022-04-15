@@ -1,15 +1,20 @@
-const SHAPE_TYPE_PLAIN = 'plain',
-    SHAPE_TYPE_BLURRY = 'blurry',
-    SHAPE_TYPE_3D = '3d';
+import { shape_types } from './constants.js';
+import { Conf } from './Conf.js'
+import { Renderer } from './Renderer.js'
+import { getFrameDuration, rgbModBrightness, linearGradient } from './util.js'
+import { Parameter, AnimatedParameter } from './Parameter.js';
+import { Music } from './Music.js';
+import { NotePositions } from './NotePositions.js';
+import { Note } from './MusicalEvent.js';
+import { InOutAnimation } from './Animation.js';
 
 let shapes_id=0
 
-class Shape {
+export class Shape {
 
     static DEFAULT_LIFETIME = 5000
 
     constructor() {
-        this.conf = visualizer.conf
         this.lifetime_frames = 0
         this.lifetime_ms = 0
         this.id = ++shapes_id
@@ -32,7 +37,7 @@ class Shape {
 
     draw() {
         // console.log(this.constructor.name, this.id, "drawing frame", this.lifetime_frames, this.lifetime_ms, "ms")
-        // console.log("opacity", this.getOpacity(), "shape type", this.conf.getShapeType(), "color", this.getColor().join(','), "pos", this.getPosition(), "size", this.getSize())
+        // console.log("opacity", this.getOpacity(), "shape type", Conf.getShapeType(), "color", this.getColor().join(','), "pos", this.getPosition(), "size", this.getSize())
 
         this.animate()
 
@@ -41,7 +46,7 @@ class Shape {
         // go to next frame
         this.lifetime_frames++
         // could use renderer.getFramerateActual() here for actual processed framerate
-        this.lifetime_ms += getFrameDuration(visualizer.renderer.getFramerateTarget())
+        this.lifetime_ms += getFrameDuration(Renderer.getFramerateTarget())
     }
 
     animate() {
@@ -64,17 +69,16 @@ class Shape {
     }
 }
 
-class BackgroundShape extends Shape {}
+export class BackgroundShape extends Shape {}
 
-
-class NoteShape extends Shape {
+export class NoteShape extends Shape {
 
     constructor(note) {
         super()
         this.note = note
-        this.setParameter('opacity', this.conf.getOpacity(this.note))
-        this.setParameter('scale', this.conf.getScale(this.note))
-        this.setParameter('shape_type', this.conf.getShapeType(this.note))
+        this.setParameter('opacity', Conf.getOpacity(this.note))
+        this.setParameter('scale', Conf.getScale(this.note))
+        this.setParameter('shape_type', Conf.getShapeType(this.note))
     }
 
     /**
@@ -84,17 +88,12 @@ class NoteShape extends Shape {
     getColor() {
         if (this.color === undefined) {
             // default color
-            let color = visualizer.UNDEFINED_COLOR
-            let harmony = visualizer.music.getHarmony(this.note)
+            let color = Conf.UNDEFINED_COLOR
+            let harmony = Music.getHarmony(this.note)
             if (harmony !== undefined) {
 
-                // get colorschemes from conf
-                let color_schemes = this.conf.getColorSchemes()
-
-                // apply harmony
-                let harmony = visualizer.music.getHarmony(this.note)
-                visualizer.COLOR_SCHEME_INDEX = (visualizer.COLOR_SCHEME_INDEX + harmony) % color_schemes.length
-                let color_scheme = color_schemes[visualizer.COLOR_SCHEME_INDEX]
+                // get colorscheme from conf
+                let colors = Conf.getColorScheme(Music.getHarmony(this.note))
 
                 // pick random color from colorscheme
                 color = color_scheme[Math.ceil(Math.random() * color_scheme.length) - 1]
@@ -117,7 +116,7 @@ class NoteShape extends Shape {
     }
 
     getPosition() {
-        return visualizer.note_positions.getPosition(this.note)
+        return NotePositions.getPosition(this.note)
     }
 
     getSize() {
@@ -132,12 +131,12 @@ class NoteShape extends Shape {
         // console.log("NoteShape.draw()", this.getPosition(), this.getSize(), this.getColor(), this.getOpacity())
         noStroke()
         switch (this.getParameter('shape_type')) {
-            case SHAPE_TYPE_PLAIN:
+            case shape_types.plain:
                 fill(...this.getColor(), this.getOpacity())
                 ellipse(this.getPosition().x, this.getPosition().y, this.getSize(), this.getSize())
                 break;
 
-            case SHAPE_TYPE_BLURRY:
+            case shape_types.blurry:
                 radialGradient(
                     this.getPosition().x,
                     this.getPosition().y,
@@ -153,14 +152,14 @@ class NoteShape extends Shape {
                 ellipse(this.getPosition().x, this.getPosition().y, this.getSize(), this.getSize())
                 break;
 
-            case SHAPE_TYPE_3D:
+            case shape_types.texturized:
                 blendMode(DIFFERENCE);
                 fill(...this.getColor(), this.getOpacity())
                 ellipse(this.getPosition().x, this.getPosition().y, this.getSize(), this.getSize())
                 break;
 
             default:
-                console.log("ERROR shape type not defined", this.conf.getShapeType())
+                console.log("ERROR shape type not defined", Conf.getShapeType())
         }
     }
 
@@ -170,7 +169,7 @@ class NoteShape extends Shape {
     }
 }
 
-class BackgroundShapeBlackout extends BackgroundShape {
+export class BlackoutShape extends BackgroundShape {
 
     drawShape() {
         blendMode(BLEND)
@@ -182,11 +181,11 @@ class BackgroundShapeBlackout extends BackgroundShape {
     }
 }
 
-class ChordShape extends BackgroundShape {
+export class ChordShape extends BackgroundShape {
     constructor(chord) {
         super(new Note(chord.getBaseNote(), 0))
         this.chord = chord
-        this.colors = this.conf.getChordColors(this.chord).getValue()
+        this.colors = Conf.getChordColors(this.chord).getValue()
         this.setParameter('opacity', new AnimatedParameter(
             new InOutAnimation(
                 [200, 4000],
@@ -207,7 +206,7 @@ class ChordShape extends BackgroundShape {
     }
 
     getColors() {
-        this.conf.getChordColors(this.chord)
+        Conf.getChordColors(this.chord)
     }
 
     getNote() {

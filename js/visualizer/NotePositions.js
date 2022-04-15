@@ -1,4 +1,6 @@
-class NotePositions {
+import { Preferences } from "./Preferences.js"
+
+export class NotePositions {
 
     static DISTRIBUTION_NORMAL = 1
     static DISTRIBUTION_CENTER = 4
@@ -18,44 +20,41 @@ class NotePositions {
         v3: this.MARGIN_NORMAL,
     }
 
-    pos = {}
-    distribution = NotePositions.DISTRIBUTION_NORMAL
+    static pos = {}
+    static distribution = NotePositions.DISTRIBUTION_NORMAL
 
-    constructor() {
-        this.init()
-    }
-
-    init() {
-        this.setVignetteId(visualizer.preferences.getVignetteId())
+    /**
+     * computes random positions for all pitches
+     */
+    static init() {
+        this.setVignetteId(Preferences.getVignetteId())
         for (let i = 0; i < 128; i++) {
             this.pos[i] = this.getRandomPosition()
         }
-        console.log("NotePositions RECOMPUTE")
     }
 
-    getRandomPosition() {
+    static getRandomPosition() {
         let max_x = width * .5 - this.margin
         let max_y = height * .5 - this.margin
-        console.log("NotePositions", this.margin, this.distribution, max_x, max_y)
         return {
             x: (1 - 2 * this.randomG(this.distribution)) * max_x + .5 * width,
             y: (1 - 2 * this.randomG(this.distribution)) * max_y + .5 * height,
         }
     }
 
-    getPosition(note) {
+    static getPosition(note) {
         return this.pos[note.getPitch()]
     }
 
-    setDistribution(distribution_id) {
+    static setDistribution(distribution_id) {
         this.distribution = distribution_id
     }
 
-    setMargin(margin) {
+    static setMargin(margin) {
         this.margin = margin
     }
 
-    randomG(v){ 
+    static randomG(v){ 
         var r = 0;
         for(var i = v; i > 0; i --){
             r += Math.random();
@@ -63,7 +62,7 @@ class NotePositions {
         return r / v;
     }
 
-    setVignetteId(id) {
+    static setVignetteId(id) {
         this.setDistribution(NotePositions.MAP_VIGNETTE_DISTRIBUTION[id])
         this.setMargin(NotePositions.MAP_VIGNETTE_MARGIN[id])
     }

@@ -1,14 +1,10 @@
-import { Preferences } from './../visualizer/Preferences.js'
-
-let visualizer_setup = {
-    preferences: new Preferences()
-}
+import { Preferences } from './Preferences.js'
 
 $(function() {
     // init preview values
     $("[data-pref-preview]").each(function() {
         let key = $(this).attr('data-key')
-        let value = visualizer_setup.preferences.get(key)
+        let value = Preferences.get(key)
         $(this).attr('data-value', value)
     });
 
@@ -25,7 +21,7 @@ $(function() {
     });
     $("[data-pref-set]").click(function() {
         // set user preference
-        visualizer_setup.preferences.set($(this).attr("data-key"), $(this).attr("data-value"));
+        Preferences.set($(this).attr("data-key"), $(this).attr("data-value"));
 
         // hide popup, show preview, set new label for preview
         $(this).closest('.setup-popup').removeClass('show')
@@ -37,7 +33,7 @@ $(function() {
         let key = $(this).attr('data-key')
 
         // set next value
-        visualizer_setup.preferences.set(key, (visualizer_setup.preferences.get(key) + 1) % 3)
+        Preferences.set(key, (Preferences.get(key) + 1) % 3)
 
         // update label
         $(this).prefButtonLabel()
@@ -47,7 +43,7 @@ $(function() {
 $.fn.prefButtonLabel = function() {
     $(this).each(function() {
         let key = $(this).attr('data-key')
-        let value = visualizer_setup.preferences.get(key)
+        let value = Preferences.get(key)
         if ($(this).is('[data-pref-set]')) {
             value = $(this).attr('data-value')
         }
@@ -81,12 +77,12 @@ const labels = {
 
 $(function() {
     // initial
-    vignetteActivate(visualizer_setup.preferences.getVignetteId())
+    vignetteActivate(Preferences.getVignetteId())
 
     // event handler
     $("[data-vignette-selector]").click(function() {
         let id = $(this).attr("data-vignette-selector");
-        visualizer_setup.preferences.setVignetteId(id)
+        Preferences.setVignetteId(id)
         vignetteActivate(id)
     });
 
@@ -101,4 +97,25 @@ function vignetteActivate(id) {
 
     $('body').attr('data-vignette', id)
 
+}
+
+// BROWSER CHECK //////////////////////////////////////////////////////////////////////////////////////
+
+$(function() {
+
+    if (!navigator.requestMIDIAccess) {
+        rendererWarning('no_midi_browser')
+    } else {
+        navigator.requestMIDIAccess()
+            .then(
+                (access) => {
+                    if (access.inputs.size == 0) rendererWarning('no_midi_device')
+                },
+                () => rendererWarning('no_midi_device'))
+    }
+});
+
+function rendererWarning(type) {
+    $('body').addClass('browser-error')
+    $('[data-browser-error="'+type+'"]').addClass('show')
 }

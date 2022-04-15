@@ -1,53 +1,72 @@
 /// <reference types="p5/global" />
 import { Preferences } from "./Preferences.js";
-
-export let styles = {
-    color: {
-        INTIMATE: 0,
-        LUMINOUS: 1,
-        GLOOM: 2,
-    },
-    animation: {
-        DETAILED: 0,
-        BRISK: 1,
-        MASSIVE: 2,
-    },
-    shapes: {
-        MELLOW: 0,
-        CLEAR: 1,
-        EMBOSSED: 2,
-
-    }
-}
+import { Music } from "./Music.js";
+import { NotePositions } from "./NotePositions.js";
+import { Renderer } from "./Renderer.js";
+import { Note, Chord } from "./MusicalEvent.js";
+import { NoteShape, ChordShape } from "./Shape.js";
+import * as p5 from "./../lib/p5.js";
+// import * as tonal from "./../lib/tonal.js";
+import * as midi from "./../lib/midi.js";
 
 export let visualizer = {
-    conf: new Conf(),
-    preferences: new Preferences(),
-    renderer: undefined,
     canvas: undefined,
-    music: new Music(),
     note_positions: undefined,
-    UNDEFINED_COLOR: [255,255,255],
-    COLOR_SCHEME_INDEX: 0
 }
 
-export function setup() {
+// interface to p5
+window.setup = function() {
     visualizer.canvas = createCanvas(windowWidth, windowHeight);
     visualizer.canvas.parent("canvas");
     visualizer.note_positions = new NotePositions()
 
-    visualizer.renderer = new Renderer(
+    NotePositions.init()
+    Renderer.init(
         visualizer.canvas, 
-        visualizer.preferences.getFramerate()
+        Preferences.getFramerate()
     )
-	visualizer.renderer.start()
+	Renderer.start()
 
-    setupMidi(handleNoteOn, handleNoteOff);
+    midi.setupMidi(window.handleNoteOn, window.handleNoteOff);
 
     // demo()
     // debugNotePositions()
 }
 
+window.draw = function() {
+    Renderer.draw()
+}
+
+window.windowResized = function() {
+    resizeCanvas(windowWidth, windowHeight);
+    NotePositions.init()
+}
+
+// interface to midi.js
+window.handleNoteOn = function(ch, pitch, vel) {
+    let note = new Note(pitch, vel)
+    Music.addNote(note);
+
+    let shape = new NoteShape(note);
+    Renderer.renderShape(shape)
+
+    // chord?
+    if (midi.isChord()) {
+        let chord_alternatives = midi.getChord()
+        let chord = new Chord(chord_alternatives)
+        Music.addChord(chord);
+
+        let chord_shape = new ChordShape(chord)
+        Renderer.renderShape(chord_shape)
+    }
+}
+
+window.handleNoteOff = function(ch, pitch, vel) {
+    Music.noteOff(pitch)
+    Renderer.noteOff(pitch)
+}
+
+// DEBUGGING
 function demo() {
     window.setInterval(function(){
         handleNoteOn(0, 56, 100)
@@ -61,35 +80,4 @@ function debugNotePositions() {
     for (let i = 0; i < 127; i++) {
         handleNoteOn(0, i, 100)
     }
-}
-
-export function draw() {
-    visualizer.renderer.draw()
-}
-
-export function handleNoteOn(ch, pitch, vel) {
-    let note = new Note(pitch, vel)
-    visualizer.music.addNote(note);
-
-    let shape = new NoteShape(note);
-    visualizer.renderer.renderShape(shape)
-
-    // chord?
-    if (isChord()) {
-        let chord_alternatives = getChord()
-        let chord = new Chord(chord_alternatives)
-        visualizer.music.addChord(chord);
-
-        let chord_shape = new ChordShape(chord)
-        visualizer.renderer.renderShape(chord_shape)
-    }
-}
-
-export function handleNoteOff(ch, pitch, vel) {
-    visualizer.music.noteOff(pitch)
-    visualizer.renderer.noteOff(pitch)
-}
-
-export function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
 }

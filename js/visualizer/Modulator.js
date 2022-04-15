@@ -5,7 +5,7 @@ class Modulator {
     }
 }
 
-class VelocityModulator extends Modulator {
+export class VelocityModulator extends Modulator {
     
     constructor(vel) {
         super()

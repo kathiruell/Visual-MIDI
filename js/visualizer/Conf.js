@@ -1,15 +1,27 @@
-class Conf {
+import shapes from './conf/shapes.js';
+import colors from './conf/colors.js';
+import harmonies from './conf/harmony.js';
+import bg_colors from './conf/backcolors.js';
+import { Preferences } from './Preferences.js';
+import { Parameter, AnimatedParameter } from './Parameter.js';
 
-    arrays = {}
+export class Conf {
 
-    constructor() {
-        this.shapes = shapes_array
-        this.colors = colors_array
-        this.harmony = harmony_array
-        this.bg_colors = bg_colors_array
+    static arrays = {}
+    static is_init = false
 
-        this.arrays['shapes'] = shapes_array
-        this.arrays['chord_colors'] = bg_colors_array
+    static UNDEFINED_COLOR = [255, 255, 255]
+
+    static init() {
+        if (this.is_init) return
+
+        this.colors = colors
+        this.harmony = harmonies
+
+        this.arrays['shapes'] = shapes
+        this.arrays['chord_colors'] = bg_colors
+
+        this.is_init = true
     }
 
     /**
@@ -19,27 +31,28 @@ class Conf {
         return this.colors[visualizer.preferences.getColorStyle()]
     }
 
-    getHarmony(mode, interval) {
+    static getHarmony(mode, interval) {
         return this.harmony[mode][interval]
     }
 
-    getOpacity(note) {
-        return this.get('shapes', visualizer.preferences.getStyleId(), 'opacity', note)
+    static getOpacity(note) {
+        return this.get('shapes', Preferences.getStyleId(), 'opacity', note)
     }
 
-    getShapeType(note) {
-        return this.get('shapes', visualizer.preferences.getStyleId(), 'shape_type', note)
+    static getShapeType(note) {
+        return this.get('shapes', Preferences.getStyleId(), 'shape_type', note)
     }
 
-    getScale(note) {
-        return this.get('shapes', visualizer.preferences.getStyleId(), 'scale', note)
+    static getScale(note) {
+        return this.get('shapes', Preferences.getStyleId(), 'scale', note)
     }
 
-    getChordColors(chord) {
-        return this.get('chord_colors', visualizer.preferences.getColorStyle(), chord.getQuality())
+    static getChordColors(chord) {
+        return this.get('chord_colors', Preferences.getColorStyle(), chord.getQuality())
     }
 
-    get(conf_id, style_id, key, args) {
+    static get(conf_id, style_id, key, args) {
+        this.init()
         if (!(conf_id in this.arrays)) {
             throw "Conf "+conf_id+" not defined"
         }

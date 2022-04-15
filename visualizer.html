@@ -8,12 +8,9 @@
     <title>Visual Midi</title>
 
     <!-- Libraries -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="js/lib/p5.js"></script>
-    <script src="js/lib/midi.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="js/lib/tonal.js"></script>
-    <script src="js/lib/MIDIKeys/midikeys.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tonaljs/tonal/browser/tonal.min.js"></script> -->
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://use.typekit.net/ncw6oai.css" />
@@ -22,43 +19,12 @@
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/vignette.css" />
-
-    <!-- Page styles -->
-    <link rel="stylesheet" href="css/pages/intro.css" />
-    <link rel="stylesheet" href="css/pages/about.css" />
+    <link rel="stylesheet" href="css/pages/visualizer.css" />
     <link rel="stylesheet" href="css/pages/setup.css" />
 
     <!-- Visualizer -->
     <script type="module" src="js/visualizer/visualizer.js"></script>
-    <script type="module" src="js/pages/setup.js"></script>
-    <script src="js/visualizer/Renderer.js"></script>
-    <script src="js/visualizer/Shape.js"></script>
-    <script src="js/visualizer/Music.js"></script>
-    <script src="js/visualizer/Note.js"></script>
-    <!-- <script src="js/visualizer/Preferences.js"></script> -->
-    <script src="js/visualizer/NotePositions.js"></script>
-    <script src="js/visualizer/Parameter.js"></script>
-    <script src="js/visualizer/Animation.js"></script>
-    <script src="js/visualizer/Modulator.js"></script>
-    <script src="js/visualizer/Conf.js"></script>
-    <script src="js/visualizer/util.js"></script>
-    <script src="js/visualizer/conf/shapes.js"></script>
-    <script src="js/visualizer/conf/colors.js"></script>
-    <script src="js/visualizer/conf/backcolors.js"></script>
-    <script src="js/visualizer/conf/harmony.js"></script>
-	<!-- <script src="js/visualizer/visualizer.js"></script> -->
-	<script src="js/visualizer/browsercheck.js"></script>
-
-	<!-- Pages code -->
-	<!-- <script src="js/pages/setup.js"></script> -->
-
-    <!-- Lists -->
-    <script src="js/arrays/colorscale2.js"></script>
-    <script src="js/arrays/tonetable.js"></script>
-
-    <!-- Page styles -->
-    <link rel="stylesheet" href="css/pages/visualizer.css" />
-    <link rel="stylesheet" href="css/pages/setup.css" />
+    <script type="module" src="js/visualizer/setup.js"></script>
 </head>
 
 <body>
@@ -87,8 +53,6 @@
             </p>
         </div>
     </div>
-
-    <div id="canvas" class="screensized fixed"></div>
 
     <div class="visualizer">
 
