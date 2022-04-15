@@ -5,9 +5,7 @@ TODO Update
 
 ## TASTATUR
 
-- No MIDI-Device? https://gist.github.com/nick-thompson/3995530
-    *-> &check; ausfeilen*
-
+- Keyboard Layout erklären?
 
 # //////////////////// DESIGN-DETAILS ////////////////////
 
