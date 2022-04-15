@@ -27,8 +27,8 @@ export class Conf {
     /**
      * @returns array of colors
      */
-    getColorSchemes() {
-        return this.colors[visualizer.preferences.getColorStyle()]
+    static getColorSchemes() {
+        return this.colors[Preferences.getColorStyle()]
     }
 
     static getHarmony(mode, interval) {

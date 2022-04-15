@@ -9,20 +9,14 @@ import * as p5 from "./../lib/p5.js";
 // import * as tonal from "./../lib/tonal.js";
 import * as midi from "./../lib/midi.js";
 
-export let visualizer = {
-    canvas: undefined,
-    note_positions: undefined,
-}
-
 // interface to p5
 window.setup = function() {
-    visualizer.canvas = createCanvas(windowWidth, windowHeight);
-    visualizer.canvas.parent("canvas");
-    visualizer.note_positions = new NotePositions()
+    let canvas = createCanvas(windowWidth, windowHeight);
+    canvas.parent("canvas");
 
     NotePositions.init()
     Renderer.init(
-        visualizer.canvas, 
+        canvas, 
         Preferences.getFramerate()
     )
 	Renderer.start()

@@ -8,7 +8,8 @@ import { NotePositions } from './NotePositions.js';
 import { Note } from './MusicalEvent.js';
 import { InOutAnimation } from './Animation.js';
 
-let shapes_id=0
+let shapes_id = 0
+let color_scheme_index = 0
 
 export class Shape {
 
@@ -92,8 +93,13 @@ export class NoteShape extends Shape {
             let harmony = Music.getHarmony(this.note)
             if (harmony !== undefined) {
 
-                // get colorscheme from conf
-                let colors = Conf.getColorScheme(Music.getHarmony(this.note))
+                // get colorschemes from conf
+                let color_schemes = Conf.getColorSchemes()
+
+                // apply harmony
+                let harmony = Music.getHarmony(this.note)
+                color_scheme_index = (color_scheme_index + harmony) % color_schemes.length
+                let color_scheme = color_schemes[color_scheme_index]
 
                 // pick random color from colorscheme
                 color = color_scheme[Math.ceil(Math.random() * color_scheme.length) - 1]
