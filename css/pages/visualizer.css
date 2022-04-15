@@ -52,6 +52,7 @@
   opacity: 100%;
 }
 .arrow-svg {
+  background-image: src("./doc/arrow.svg");
   width: 2vw;
 }
 /** browser-error ***********************************************************/
@@ -87,8 +88,8 @@ body.browser-error .visualizer-setup {
   display: none !important;
 }
 
-body[data-vignette="v2"] .visualizer-navigation,
-body[data-vignette="v3"] .visualizer-navigation {
-  color: rgb(0, 0, 0);
-  z-index: 104;
+body[data-vignette="v2"] .visualizer-navigation .arrow-svg,
+body[data-vignette="v3"] .visualizer-navigation .arrow-svg {
+  background-image: src("./doc/arrow_black.svg");
+  z-index: 103;
 }
