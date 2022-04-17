@@ -4,6 +4,7 @@ import harmonies from './conf/harmony.js';
 import bg_colors from './conf/backcolors.js';
 import { Preferences } from './Preferences.js';
 import { Parameter, AnimatedParameter } from './Parameter.js';
+import backcolors from './conf/backcolors.js';
 
 export class Conf {
 
@@ -28,11 +29,11 @@ export class Conf {
      * @returns array of colors
      */
     static getColorSchemes() {
-        return this.colors[Preferences.getColorStyle()]
+        return colors[Preferences.getColorStyle()]
     }
 
     static getHarmony(mode, interval) {
-        return this.harmony[mode][interval]
+        return harmonies[mode][interval]
     }
 
     static getOpacity(note) {
@@ -48,31 +49,32 @@ export class Conf {
     }
 
     static getChordColors(chord) {
-        return this.get('chord_colors', Preferences.getColorStyle(), chord.getQuality())
+        return this.get(bg_colors, Preferences.getColorStyle(), chord.getQuality())
     }
 
-    static get(conf_id, style_id, key, args) {
+    static getShapeParameter(key, note) {
+        return this.get(shapes, Preferences.getStyleId(), key, note)
+    }
+
+    static get(array, style_id, key, args) {
         this.init()
-        if (!(conf_id in this.arrays)) {
-            throw "Conf "+conf_id+" not defined"
-        }
-        if (!(style_id in this.arrays[conf_id])) {
+        if (!(style_id in array)) {
             throw "Style " + style_id + " not defined in conf " + conf_id
         }
-        if (!(key in this.arrays[conf_id][style_id])) {
+        if (!(key in array[style_id])) {
             throw "Key " + key + " not defined in " + conf_id + "[" + style_id + "]"
         }
 
         // modulators
         let modulator = undefined
         if (
-            'modulators' in this.arrays[conf_id][style_id]
-            && key in this.arrays[conf_id][style_id]['modulators']
+            'modulators' in array[style_id]
+            && key in array[style_id]['modulators']
         ) {
-            modulator = this.arrays[conf_id][style_id]['modulators'][key](args)
+            modulator = array[style_id]['modulators'][key](args)
         } 
 
-        let raw = this.arrays[conf_id][style_id][key]
+        let raw = array[style_id][key]
         // console.log("Conf.get()", conf_id, style_id, key, raw, modulator)
         if (typeof raw === 'function') {
             return new AnimatedParameter(raw(), modulator)

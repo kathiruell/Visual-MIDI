@@ -38,7 +38,7 @@ export class Shape {
 
     draw() {
         // console.log(this.constructor.name, this.id, "drawing frame", this.lifetime_frames, this.lifetime_ms, "ms")
-        // console.log("opacity", this.getOpacity(), "shape type", Conf.getShapeType(), "color", this.getColor().join(','), "pos", this.getPosition(), "size", this.getSize())
+        // console.log("opacity", this.getShapeParameter('opacity', ), "shape type", Conf.getShapeType(), "color", this.getColor().join(','), "pos", this.getPosition(), "size", this.getSize())
 
         this.animate()
 
@@ -77,9 +77,10 @@ export class NoteShape extends Shape {
     constructor(note) {
         super()
         this.note = note
-        this.setParameter('opacity', Conf.getOpacity(this.note))
+        this.setParameter('opacity', Conf.getShapeParameter('opacity', this.note))
         this.setParameter('scale', Conf.getScale(this.note))
         this.setParameter('shape_type', Conf.getShapeType(this.note))
+        this.setParameter('blend_mode', Conf.getShapeType(this.note))
     }
 
     /**
@@ -117,7 +118,7 @@ export class NoteShape extends Shape {
         return [240,255,255];
     }
 
-    getOpacity() {
+    getShapeParameter('opacity', ) {
         return Math.floor(this.getParameter('opacity') * 255)
     }
 
@@ -134,11 +135,12 @@ export class NoteShape extends Shape {
     }
 
     drawShape() {
-        // console.log("NoteShape.draw()", this.getPosition(), this.getSize(), this.getColor(), this.getOpacity())
+        // console.log("NoteShape.draw()", this.getPosition(), this.getSize(), this.getColor(), this.getShapeParameter('opacity', ))
         noStroke()
         switch (this.getParameter('shape_type')) {
             case shape_types.plain:
-                fill(...this.getColor(), this.getOpacity())
+                // blendMode(MULTIPLY);
+                fill(...this.getColor(), this.getShapeParameter('opacity', ))
                 ellipse(this.getPosition().x, this.getPosition().y, this.getSize(), this.getSize())
                 break;
 
@@ -148,7 +150,7 @@ export class NoteShape extends Shape {
                     this.getPosition().y,
                     this.getSize() / 6,
                     this.getColor(),
-                    this.getOpacity(),
+                    this.getShapeParameter('opacity', ),
                     this.getPosition().x,
                     this.getPosition().y,
                     this.getSize() / 2,
@@ -159,8 +161,12 @@ export class NoteShape extends Shape {
                 break;
 
             case shape_types.texturized:
+                drawingContext.shadowOffsetX = 15;
+                drawingContext.shadowOffsetY = -15;
+                drawingContext.shadowBlur = 10;
+                drawingContext.shadowColor = 'white';
                 blendMode(DIFFERENCE);
-                fill(...this.getColor(), this.getOpacity())
+                fill(...this.getColor(), this.getShapeParameter('opacity', ))
                 ellipse(this.getPosition().x, this.getPosition().y, this.getSize(), this.getSize())
                 break;
 
@@ -201,13 +207,13 @@ export class ChordShape extends BackgroundShape {
         ))
 	}
 
-    getOpacity() {
+    getShapeParameter('opacity', ) {
         return Math.floor(255 * this.getParameter('opacity'))
     }
 
     drawShape() {
         noStroke()
-        linearGradient(0, 0, this.colors[0], this.getOpacity(), 0, height, this.colors[1], this.getOpacity())
+        linearGradient(0, 0, this.colors[0], this.getShapeParameter('opacity', ), 0, height, this.colors[1], this.getShapeParameter('opacity', ))
         rect(0, 0, width, height)
     }
 
