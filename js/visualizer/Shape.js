@@ -1,4 +1,4 @@
-import { shape_types } from './constants.js';
+import { blend_modes, shape_types } from './constants.js';
 import { Conf } from './Conf.js'
 import { Renderer } from './Renderer.js'
 import { getFrameDuration, rgbModBrightness, linearGradient, radialGradient } from './util.js'
@@ -38,7 +38,7 @@ export class Shape {
 
     draw() {
         // console.log(this.constructor.name, this.id, "drawing frame", this.lifetime_frames, this.lifetime_ms, "ms")
-        // console.log("opacity", this.getShapeParameter('opacity', ), "shape type", Conf.getShapeType(), "color", this.getColor().join(','), "pos", this.getPosition(), "size", this.getSize())
+        // console.log("opacity", this.getShapeParameter('opacity', ), "shape type", Conf.getShapeParameter('shape_type', ), "color", this.getColor().join(','), "pos", this.getPosition(), "size", this.getSize())
 
         this.animate()
 
@@ -78,9 +78,10 @@ export class NoteShape extends Shape {
         super()
         this.note = note
         this.setParameter('opacity', Conf.getShapeParameter('opacity', this.note))
-        this.setParameter('scale', Conf.getScale(this.note))
-        this.setParameter('shape_type', Conf.getShapeType(this.note))
-        this.setParameter('blend_mode', Conf.getShapeType(this.note))
+        this.setParameter('scale', Conf.getShapeParameter('scale', this.note))
+        this.setParameter('inner_size', Conf.getShapeParameter('inner_size', this.note))
+        this.setParameter('shape_type', Conf.getShapeParameter('shape_type', this.note))
+        this.setParameter('blend_mode', Conf.getShapeParameter('shape_type', this.note))
     }
 
     /**
@@ -118,7 +119,7 @@ export class NoteShape extends Shape {
         return [240,255,255];
     }
 
-    getShapeParameter('opacity', ) {
+    getOpacity() {
         return Math.floor(this.getParameter('opacity') * 255)
     }
 
@@ -130,6 +131,10 @@ export class NoteShape extends Shape {
         return 200 * this.getParameter('scale')
     }
 
+    getInnerSize() {
+        return 200 * this.getParameter('inner_size')
+    }
+
     getNote() {
         return this.note
     }
@@ -137,10 +142,15 @@ export class NoteShape extends Shape {
     drawShape() {
         // console.log("NoteShape.draw()", this.getPosition(), this.getSize(), this.getColor(), this.getShapeParameter('opacity', ))
         noStroke()
+        switch (this.getParameter('blend_mode')) {
+            case blend_modes.difference: 
+                blendMode(DIFFERENCE)
+                break
+        }
         switch (this.getParameter('shape_type')) {
             case shape_types.plain:
                 // blendMode(MULTIPLY);
-                fill(...this.getColor(), this.getShapeParameter('opacity', ))
+                fill(...this.getColor(), this.getOpacity())
                 ellipse(this.getPosition().x, this.getPosition().y, this.getSize(), this.getSize())
                 break;
 
@@ -150,10 +160,10 @@ export class NoteShape extends Shape {
                     this.getPosition().y,
                     this.getSize() / 6,
                     this.getColor(),
-                    this.getShapeParameter('opacity', ),
+                    this.getOpacity(),
                     this.getPosition().x,
                     this.getPosition().y,
-                    this.getSize() / 2,
+                    this.getInnerSize(),
                     this.getColorSecondary(),
                     0
                 );
@@ -171,7 +181,7 @@ export class NoteShape extends Shape {
                 break;
 
             default:
-                console.log("ERROR shape type not defined", Conf.getShapeType())
+                console.log("ERROR shape type not defined", Conf.getShapeParameter('shape_type', ))
         }
     }
 
@@ -207,13 +217,13 @@ export class ChordShape extends BackgroundShape {
         ))
 	}
 
-    getShapeParameter('opacity', ) {
+    getOpacity() {
         return Math.floor(255 * this.getParameter('opacity'))
     }
 
     drawShape() {
         noStroke()
-        linearGradient(0, 0, this.colors[0], this.getShapeParameter('opacity', ), 0, height, this.colors[1], this.getShapeParameter('opacity', ))
+        linearGradient(0, 0, this.colors[0], this.getOpacity(), 0, height, this.colors[1], this.getOpacity())
         rect(0, 0, width, height)
     }
 

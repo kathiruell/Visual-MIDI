@@ -25,6 +25,10 @@ export class Conf {
         this.is_init = true
     }
 
+    static getShapeParameter(key, note) {
+        return this.get(shapes, Preferences.getStyleId(), key, note)
+    }
+
     /**
      * @returns array of colors
      */
@@ -36,24 +40,8 @@ export class Conf {
         return harmonies[mode][interval]
     }
 
-    static getOpacity(note) {
-        return this.get('shapes', Preferences.getStyleId(), 'opacity', note)
-    }
-
-    static getShapeType(note) {
-        return this.get('shapes', Preferences.getStyleId(), 'shape_type', note)
-    }
-
-    static getScale(note) {
-        return this.get('shapes', Preferences.getStyleId(), 'scale', note)
-    }
-
     static getChordColors(chord) {
         return this.get(bg_colors, Preferences.getColorStyle(), chord.getQuality())
-    }
-
-    static getShapeParameter(key, note) {
-        return this.get(shapes, Preferences.getStyleId(), key, note)
     }
 
     static get(array, style_id, key, args) {
