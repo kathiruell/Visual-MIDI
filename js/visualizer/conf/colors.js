@@ -1,7 +1,8 @@
+import { styles } from "../constants.js"
+
 // prettier-ignore
 export default {
-    // intimate
-    0: [
+    [styles.color.INTIMATE]: [
         [
             [195,155,167],
             [237,193,198],
@@ -24,8 +25,7 @@ export default {
             [186,230,172]
         ]
     ],    
-    // luminous
-    1: [
+    [styles.color.LUMINOUS]: [
         [
             [237,111,36],
             [255,76,84],
@@ -48,8 +48,7 @@ export default {
             [0,60,255]
         ]
     ],
-    // gloom
-    2: [
+    [styles.color.GLOOM]: [
         [
             [59,24,63],
             [123,0,151],

@@ -1,3 +1,5 @@
+import { styles } from "./constants.js";
+import { Preferences } from "./Preferences.js";
 import { NoteShape, ChordShape, BlackoutShape } from "./Shape.js";
 /**
  * manages the shapes
@@ -10,6 +12,9 @@ export class Renderer {
         this.canvas = canvas
         this.setFramerate(frame_rate)
         this.background = new BlackoutShape()
+
+        // load textures
+        this.loadTextures()
     }
 
     static renderShape(shape) {
@@ -30,6 +35,10 @@ export class Renderer {
         // note shapes
         this.shapes.filter(shape => shape instanceof NoteShape).forEach(shape => shape.draw())
 
+        // texture
+        if (Preferences.getShapeStyle() === styles.shapes.EMBOSSED) {
+            this.drawTexture()
+        }
     }
 
     static noteOff(pitch) {
@@ -62,4 +71,10 @@ export class Renderer {
         return frameRate()
     }
 
+    static loadTextures() {
+        // TODO
+    }
+    static drawTexture() {
+        // TODO
+    }
 }
