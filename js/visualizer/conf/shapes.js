@@ -8,8 +8,7 @@ let scaleVelocityModulator = (note) => new VelocityModulator(3*note.vel)
 export default {
     "000": {
         shape_type: shape_types.blurry,
-        inner_size: .1,
-        blend_mode: blend_modes.difference,
+        inner_size: 1,
         scale: () => new AdsrAnimation(
             [200, 400, 800, 1400],
             [1, .5, .3, 0],

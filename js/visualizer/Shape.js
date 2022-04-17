@@ -145,8 +145,17 @@ export class NoteShape extends Shape {
         switch (this.getParameter('blend_mode')) {
             case blend_modes.difference: 
                 blendMode(DIFFERENCE)
-                break
+                break;
+            
+            case blend_modes.lightest:
+                blendMode(LIGHTEST)
+                break;
+                            
+            case blend_modes.multiply:
+                blendMode(MULTIPLY)
+                break;
         }
+        
         switch (this.getParameter('shape_type')) {
             case shape_types.plain:
                 // blendMode(MULTIPLY);
