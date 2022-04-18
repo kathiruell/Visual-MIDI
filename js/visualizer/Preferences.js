@@ -14,19 +14,19 @@ export class Preferences {
         this.set('shape_style', value)
     }
     static getShapeStyle() {
-        return this.get('shape_style')
+        return parseInt(this.get('shape_style'))
     }
     static setColorStyle(value) {
         this.set('color_style', value)
     }
     static getColorStyle() {
-        return this.get('color_style')
+        return parseInt(this.get('color_style'))
     }
     static setAnimationStyle(value) {
         this.set('animation_style', value)
     }
     static getAnimationStyle() {
-        return this.get('animation_style')
+        return parseInt(this.get('animation_style'))
     }
     static getStyleId() {
         return "" + this.getAnimationStyle() + this.getShapeStyle() + this.getColorStyle();

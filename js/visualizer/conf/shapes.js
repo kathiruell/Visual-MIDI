@@ -1,14 +1,21 @@
 // prettier-ignore
-import { styles, shape_types, blend_modes } from '../constants.js';
+import { blend_modes, shape_types } from '../constants.js';
 import { AdsrAnimation, InOutAnimation, SimpleAnimation } from './../Animation.js';
 import { VelocityModulator } from './../Modulator.js';
 
-let scaleVelocityModulator = (note) => new VelocityModulator(3*note.vel)
-
 export default {
+    default: {
+        shape_type: shape_types.plain,
+        inner_size: .1,
+        blend_mode: blend_modes.normal,
+        scale: 1,
+        opacity: 1,
+        modulators: {
+            opacity: note => new VelocityModulator(note.vel)
+        }
+    },
     "000": {
         shape_type: shape_types.blurry,
-        inner_size: 1,
         scale: () => new AdsrAnimation(
             [200, 400, 800, 1400],
             [1, .5, .3, 0],
@@ -21,27 +28,22 @@ export default {
                 'linear'
             ),
         modulators: {
-            opacity: note => new VelocityModulator(note.vel),
+            opacity: note => new VelocityModulator(note.vel)
         }
     },
     "111": {
-        shape_type: shape_types.plain,
-        inner_size: 1,
-        blend_mode: "normal",
-        scale: 1,
         opacity: () => new AdsrAnimation(
             [100, 200, 5000, 2000],
             [1, .8, .6, 0],
             'linear'
         ),
         modulators: {
-            scale: scaleVelocityModulator
+            scale: (note) => new VelocityModulator(3*note.vel)
         }
     },
     "222": {
-        shape_type: shape_types.plain,
-        inner_size: 1,
-        blend_mode: "normal",
+        shape_type: shape_types.texturized,
+        blend_mode: blend_modes.difference,
         scale: () => new AdsrAnimation(
             [100, 400, 600, 5000],
             [0, 0.4, .8, 1],

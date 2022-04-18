@@ -1,7 +1,7 @@
 import { blend_modes, shape_types } from './constants.js';
 import { Conf } from './Conf.js'
 import { Renderer } from './Renderer.js'
-import { getFrameDuration, rgbModBrightness, linearGradient, radialGradient } from './util.js'
+import { getFrameDuration, rgbModBrightness, linearGradient, radialGradientBlurry } from './util.js'
 import { Parameter, AnimatedParameter } from './Parameter.js';
 import { Music } from './Music.js';
 import { NotePositions } from './NotePositions.js';
@@ -81,7 +81,7 @@ export class NoteShape extends Shape {
         this.setParameter('scale', Conf.getShapeParameter('scale', this.note))
         this.setParameter('inner_size', Conf.getShapeParameter('inner_size', this.note))
         this.setParameter('shape_type', Conf.getShapeParameter('shape_type', this.note))
-        this.setParameter('blend_mode', Conf.getShapeParameter('shape_type', this.note))
+        this.setParameter('blend_mode', Conf.getShapeParameter('blend_mode', this.note))
     }
 
     /**
@@ -128,7 +128,7 @@ export class NoteShape extends Shape {
     }
 
     getSize() {
-        return 200 * this.getParameter('scale')
+        return 250 * this.getParameter('scale')
     }
 
     getInnerSize() {
@@ -154,38 +154,42 @@ export class NoteShape extends Shape {
             case blend_modes.multiply:
                 blendMode(MULTIPLY)
                 break;
+
+            case blend_modes.normal:
+                blendMode(BLEND)
+                break;    
         }
         
         switch (this.getParameter('shape_type')) {
             case shape_types.plain:
-                // blendMode(MULTIPLY);
                 fill(...this.getColor(), this.getOpacity())
                 ellipse(this.getPosition().x, this.getPosition().y, this.getSize(), this.getSize())
                 break;
 
             case shape_types.blurry:
-                radialGradient(
+                radialGradientBlurry(
                     this.getPosition().x,
                     this.getPosition().y,
-                    this.getSize() / 6,
+                    this.getSize() / 2, // radius
+                    // INNER & OUTER
+                    this.getColor(),
+                    0,
+                    // MIDDLE
                     this.getColor(),
                     this.getOpacity(),
-                    this.getPosition().x,
-                    this.getPosition().y,
-                    this.getInnerSize(),
-                    this.getColorSecondary(),
-                    0
+                    .7,
+                    this.getParameter('inner_size'),
                 );
                 ellipse(this.getPosition().x, this.getPosition().y, this.getSize(), this.getSize())
+                // rect(0,0,width, height)
                 break;
 
             case shape_types.texturized:
-                drawingContext.shadowOffsetX = 15;
-                drawingContext.shadowOffsetY = -15;
-                drawingContext.shadowBlur = 10;
+                // drawingContext.shadowOffsetX = 10;
+                // drawingContext.shadowOffsetY = -10;
+                // drawingContext.shadowBlur = 5;
                 drawingContext.shadowColor = 'white';
-                blendMode(DIFFERENCE);
-                fill(...this.getColor(), this.getShapeParameter('opacity', ))
+                fill(...this.getColor(), this.getOpacity())
                 ellipse(this.getPosition().x, this.getPosition().y, this.getSize(), this.getSize())
                 break;
 

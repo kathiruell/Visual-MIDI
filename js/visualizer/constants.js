@@ -19,6 +19,7 @@ export const styles = {
 export const shape_types = {
     plain: 0,
     blurry: 1,
+    texturized: 2,
 }
 
 export const harmonies = {
@@ -58,4 +59,6 @@ export const note_names = {
 export const blend_modes = {
     difference: 0,
     lightest: 1,
+    multiply: 2,
+    normal: 3,
 }

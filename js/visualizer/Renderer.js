@@ -1,4 +1,4 @@
-import { styles } from "./constants.js";
+import { blend_modes, styles } from "./constants.js";
 import { Preferences } from "./Preferences.js";
 import { NoteShape, ChordShape, BlackoutShape } from "./Shape.js";
 /**
@@ -7,6 +7,7 @@ import { NoteShape, ChordShape, BlackoutShape } from "./Shape.js";
 export class Renderer {
     static canvas = undefined;
     static shapes = [];
+    // static texture = undefined;
 
     static init(canvas, frame_rate) {
         this.canvas = canvas
@@ -14,7 +15,8 @@ export class Renderer {
         this.background = new BlackoutShape()
 
         // load textures
-        this.loadTextures()
+        // TODO syntax check
+        this.loadTexture()
     }
 
     static renderShape(shape) {
@@ -71,10 +73,15 @@ export class Renderer {
         return frameRate()
     }
 
-    static loadTextures() {
-        // TODO
+    // TOCHECK
+    static loadTexture() {
+        this.texture = loadImage("/doc/texture_grain_small.png", (img) => console.log("img loaded", img));
     }
+
+    // TOCHECK
     static drawTexture() {
-        // TODO
+        image(this.texture, 0, 0, width, height)
+        // tint(255, 100);
+        blendMode(DODGE)
     }
 }

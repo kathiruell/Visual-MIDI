@@ -26,7 +26,16 @@ export class Conf {
     }
 
     static getShapeParameter(key, note) {
-        return this.get(shapes, Preferences.getStyleId(), key, note)
+        try {
+            return this.get(shapes, Preferences.getStyleId(), key, note)
+        } catch (e) {
+            // return default value
+            if (e instanceof KeyNotDefinedException) {
+                return this.get(shapes, 'default', key, note)
+            } else {
+                throw e
+            }
+        }
     }
 
     /**
@@ -50,7 +59,7 @@ export class Conf {
             throw "Style " + style_id + " not defined in conf " + conf_id
         }
         if (!(key in array[style_id])) {
-            throw "Key " + key + " not defined in " + conf_id + "[" + style_id + "]"
+            throw new KeyNotDefinedException("Key " + key + " not defined in [" + style_id + "] of", array)
         }
 
         // modulators
@@ -70,4 +79,8 @@ export class Conf {
             return new Parameter(raw, modulator)
         }
     }
+}
+
+class KeyNotDefinedException extends Error {
+
 }
