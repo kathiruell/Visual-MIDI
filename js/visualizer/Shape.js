@@ -185,10 +185,13 @@ export class NoteShape extends Shape {
                 break;
 
             case shape_types.texturized:
-                // drawingContext.shadowOffsetX = 10;
-                // drawingContext.shadowOffsetY = -10;
-                // drawingContext.shadowBlur = 5;
+
+            // decision: blur oder 3d
+                drawingContext.shadowOffsetX = 10;
+                drawingContext.shadowOffsetY = -10;
+                drawingContext.shadowBlur = 5;
                 drawingContext.shadowColor = 'white';
+                // drawingContext.filter = 'blur(150px)';
                 fill(...this.getColor(), this.getOpacity())
                 ellipse(this.getPosition().x, this.getPosition().y, this.getSize(), this.getSize())
                 break;

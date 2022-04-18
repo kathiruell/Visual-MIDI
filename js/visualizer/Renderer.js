@@ -75,13 +75,13 @@ export class Renderer {
 
     // TOCHECK
     static loadTexture() {
-        this.texture = loadImage("/doc/texture_grain_small.png", (img) => console.log("img loaded", img));
+        this.texture = loadImage("/doc/texture_grain_black.png", (img) => console.log("img loaded", img));
     }
 
     // TOCHECK
     static drawTexture() {
         image(this.texture, 0, 0, width, height)
-        // tint(255, 100);
+        tint(255, 100);
         blendMode(DODGE)
     }
 }
