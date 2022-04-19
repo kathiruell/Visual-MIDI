@@ -252,7 +252,7 @@ export default {
     // MASSIVE, MELLOW, LUMINOUS
     "201": {
         shape_type: shape_types.blurry,
-        inner_size: 0.7,
+        inner_size: 0.6,
         blend_mode: blend_modes.lightest,
         scale: () => new AdsrAnimation(
             [100, 400, 600, 800],
@@ -302,7 +302,7 @@ export default {
 
     // DETAILED, MELLOW, GLOOM
     "002": {
-        inner_size: 0.8,
+        inner_size: 0.6,
         shape_type: shape_types.blurry,
         blend_mode: blend_modes.difference,
         scale: () => new AdsrAnimation(
@@ -354,7 +354,7 @@ export default {
     // BRISK, MELLOW, GLOOM
     "102": {
         shape_type: shape_types.blurry,
-        inner_size: 0.9,
+        inner_size: 0.6,
         blend_mode: blend_modes.difference,
         opacity: () => new AdsrAnimation(
             [100, 200, 5000, 2000],
@@ -400,7 +400,7 @@ export default {
     "202": {
         shape_type: shape_types.blurry,
         blend_mode: blend_modes.difference,
-        inner_size: 1,
+        inner_size: 0.6,
         scale: () => new AdsrAnimation(
             [100, 400, 600, 800],
             [0, 0.8, 2.5, 3],
