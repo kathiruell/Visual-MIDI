@@ -52,8 +52,12 @@
   opacity: 100%;
 }
 .arrow-svg {
-  background-image: src("./doc/arrow.svg");
+  background-image: url("/doc/arrow.svg");
+  background-repeat: no-repeat;
+  background-position: center;
   width: 2vw;
+  height: 10vw;
+
 }
 /** browser-error ***********************************************************/
 .page.browser-error {
@@ -86,10 +90,4 @@ body.browser-error #canvas {
 }
 body.browser-error .visualizer-setup {
   display: none !important;
-}
-
-body[data-vignette="v2"] .visualizer-navigation .arrow-svg,
-body[data-vignette="v3"] .visualizer-navigation .arrow-svg {
-  background-image: src("./doc/arrow_black.svg");
-  z-index: 103;
 }
