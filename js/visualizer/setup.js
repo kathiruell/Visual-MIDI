@@ -101,21 +101,43 @@ function vignetteActivate(id) {
 
 // BROWSER CHECK //////////////////////////////////////////////////////////////////////////////////////
 
+let fake_midi_active = false
+
 $(function() {
 
     if (!navigator.requestMIDIAccess) {
         rendererWarning('no_midi_browser')
-    } else {
-        navigator.requestMIDIAccess()
-            .then(
-                (access) => {
-                    if (access.inputs.size == 0) rendererWarning('no_midi_device')
-                },
-                () => rendererWarning('no_midi_device'))
     }
+    window.setInterval(async function() {
+        if (!(await isMidiConnected())) {
+            rendererWarning('no_midi_device')
+        } else {
+            resetBrowserError()
+        }
+    }, 100);
+
+    $(document).keydown(function() {
+        fake_midi_active = true
+        resetBrowserError()
+    });
 });
 
+async function isMidiConnected() {
+    let res = false
+    if (!navigator.requestMIDIAccess) return false
+    await navigator.requestMIDIAccess()
+        .then((access) => res = access.inputs.size > 0)
+    return res
+}
+
 function rendererWarning(type) {
+    if (fake_midi_active) return
     $('body').addClass('browser-error')
     $('[data-browser-error="'+type+'"]').addClass('show')
 }
+function resetBrowserError() {
+    console.log("reset", )
+    $('body').removeClass('browser-error')
+    $('[data-browser-error]').removeClass('show')
+}
+
