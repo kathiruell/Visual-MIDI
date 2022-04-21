@@ -26,16 +26,7 @@ export class Conf {
     }
 
     static getShapeParameter(key, note) {
-        try {
-            return this.get(shapes, Preferences.getStyleId(), key, note)
-        } catch (e) {
-            // return default value
-            if (e instanceof KeyNotDefinedException) {
-                return this.get(shapes, 'default', key, note)
-            } else {
-                throw e
-            }
-        }
+        return this.get(shapes, Preferences.getStyleId(), key, note)
     }
 
     /**
@@ -55,14 +46,23 @@ export class Conf {
 
     static get(array, style_id, key, args) {
         this.init()
+
         if (!(style_id in array)) {
             throw "Style " + style_id + " not defined in conf " + conf_id
         }
-        if (!(key in array[style_id])) {
+
+        let raw = undefined
+        if (key in array[style_id]) {
+            // search key
+            raw = array[style_id][key]
+        } else if ('default' in array && key in array['default']) {
+            // look for a default value
+            raw = array['default'][key]
+        } else {
             throw new KeyNotDefinedException("Key " + key + " not defined in [" + style_id + "] of", array)
         }
 
-        // modulators
+        // key has modulators?
         let modulator = undefined
         if (
             'modulators' in array[style_id]
@@ -71,8 +71,9 @@ export class Conf {
             modulator = array[style_id]['modulators'][key](args)
         } 
 
-        let raw = array[style_id][key]
         // console.log("Conf.get()", conf_id, style_id, key, raw, modulator)
+
+        // value is animated ?
         if (typeof raw === 'function') {
             return new AnimatedParameter(raw(), modulator)
         } else {
