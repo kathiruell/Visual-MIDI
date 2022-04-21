@@ -13,6 +13,6 @@ export class VelocityModulator extends Modulator {
     }
 
     modulate(value) {
-        return (Math.min( value * ( this.vel / 128 ), 1))
+        return value * Math.min( ( this.vel / 128 ), 1)
     }
 }
