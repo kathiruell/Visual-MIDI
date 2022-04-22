@@ -18,6 +18,10 @@ export default {
       [235, 220, 161], //unten
       [186, 230, 172], //oben
     ],
+    [qualities.unknown]: [
+      [255, 255, 255], //unten
+      [255, 255, 255], //oben
+    ],
   },
   [styles.color.LUMINOUS]: {
     [qualities.major]: [
@@ -36,6 +40,10 @@ export default {
       [255, 72, 83], //unten
       [0, 60, 255], //oben
     ],
+    [qualities.unknown]: [
+      [255, 255, 255], //unten
+      [255, 255, 255], //oben
+    ],
   },
   [styles.color.GLOOM]: {
     [qualities.major]: [
@@ -53,6 +61,10 @@ export default {
     [qualities.diminished]: [
       [0, 98, 116], //unten
       [167, 0, 99], //oben
+    ],
+    [qualities.unknown]: [
+      [255, 255, 255], //unten
+      [255, 255, 255], //oben
     ],
   },
 };

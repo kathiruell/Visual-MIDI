@@ -29,7 +29,7 @@ export class Music {
         if (this.chords.length) {
             return this.chords[this.chords.length - 1].getQuality()
         } else {
-            return qualities.free
+            return qualities.unknown
         }
     }
 

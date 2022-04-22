@@ -66,8 +66,19 @@ export class Chord extends MusicalEvent {
     }
 
     getQuality() {
-        let quality = this.getTonalObject().quality
-        return quality === 'Major' ? qualities.major : qualities.minor;
+        let quality = this.getTonalObject().type
+        switch (quality) {
+            case 'minor':
+                return qualities.minor
+            case 'major':
+                return qualities.major
+            case 'diminished':
+                return qualities.diminished
+            case 'augmented':
+                return qualities.augmented
+            default:
+                return qualities.unknown
+        }
     }
 }
 

@@ -1,9 +1,8 @@
 // prettier-ignore
-import { harmonies } from "./../constants.js";
+import { harmonies, qualities } from "./../constants.js";
 
 export default {
-    // MODE_FREE
-    0: {
+    [qualities.unknown]: {
         0: harmonies.consonant,
         1: harmonies.dissonant,
         2: harmonies.dissonant,
@@ -17,8 +16,7 @@ export default {
         10: harmonies.dissonant,
         11: harmonies.dissonant,
     },
-    // MODE_MAJOR
-    1: {
+    [qualities.major]: {
         0: harmonies.consonant,
         1: harmonies.dissonant,
         2: harmonies.semisonant,
@@ -32,8 +30,7 @@ export default {
         10: harmonies.dissonant,
         11: harmonies.semisonant,
     },
-    // MODE_MINOR
-    2: {
+    [qualities.minor]: {
         0: harmonies.consonant,
         1: harmonies.dissonant,
         2: harmonies.semisonant,
@@ -46,5 +43,33 @@ export default {
         9: harmonies.dissonant,
         10: harmonies.semisonant,
         11: harmonies.dissonant,
-    }
+    },
+    [qualities.diminished]: {
+        0: harmonies.consonant,
+        1: harmonies.dissonant,
+        2: harmonies.semisonant,
+        3: harmonies.consonant,
+        4: harmonies.dissonant,
+        5: harmonies.consonant,
+        6: harmonies.dissonant,
+        7: harmonies.consonant,
+        8: harmonies.semisonant,
+        9: harmonies.dissonant,
+        10: harmonies.semisonant,
+        11: harmonies.dissonant,
+    },
+    [qualities.augmented]: {
+        0: harmonies.consonant,
+        1: harmonies.dissonant,
+        2: harmonies.semisonant,
+        3: harmonies.consonant,
+        4: harmonies.dissonant,
+        5: harmonies.consonant,
+        6: harmonies.dissonant,
+        7: harmonies.consonant,
+        8: harmonies.semisonant,
+        9: harmonies.dissonant,
+        10: harmonies.semisonant,
+        11: harmonies.dissonant,
+    },
 }
