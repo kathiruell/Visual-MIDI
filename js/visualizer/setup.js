@@ -136,7 +136,6 @@ function rendererWarning(type) {
     $('[data-browser-error="'+type+'"]').addClass('show')
 }
 function resetBrowserError() {
-    console.log("reset", )
     $('body').removeClass('browser-error')
     $('[data-browser-error]').removeClass('show')
 }
