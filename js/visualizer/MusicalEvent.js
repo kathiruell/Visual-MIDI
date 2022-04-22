@@ -20,7 +20,7 @@ export class MusicalEvent {
     }
 
     static noteName(pitch) {
-        return Object.keys(NOTE_NAMES).find(p => NOTE_NAMES[p] === pitch)
+        return Object.keys(note_names).find(p => note_names[p] === pitch)
     }
     static pitch(note_name) {
         return note_names[note_name]
@@ -35,12 +35,14 @@ export class Chord extends MusicalEvent {
         this.name = this.getName()
         this.noteOff()
         // console.log("CHORD", this.name)
+        // console.log(this.getTonalObject())
     }
 
     getTonalObject() {
         let name = this.getName()
         return Tonal.Chord.get(name.split('/')[0]) // we ignore chord root, since not implemented in tonal.js
     }
+
     /**
      * returns pitch
      */
@@ -63,6 +65,12 @@ export class Chord extends MusicalEvent {
             }
         }
         return this.alternatives[i]
+    }
+
+    getNotes() {
+        return this.getTonalObject().notes.map((item) => 
+            new Note(note_names[item])
+        )
     }
 
     getQuality() {
@@ -106,4 +114,7 @@ export class Note extends MusicalEvent {
         return this.pitch
     }
 
+    getName() {
+        return MusicalEvent.noteName(this.getPitch())
+    }
 }

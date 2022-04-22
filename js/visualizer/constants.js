@@ -61,4 +61,4 @@ export const blend_modes = {
     lightest: 1,
     multiply: 2,
     normal: 3,
-}
+};

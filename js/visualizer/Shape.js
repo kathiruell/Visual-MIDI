@@ -1,7 +1,7 @@
 import { blend_modes, shape_types } from './constants.js';
 import { Conf } from './Conf.js'
 import { Renderer } from './Renderer.js'
-import { getFrameDuration, rgbModBrightness, linearGradient, radialGradientBlurry } from './util.js'
+import { getFrameDuration, rgbModBrightness, linearGradient, radialGradientBlurry, simpleQuality } from './util.js'
 import { Parameter, AnimatedParameter } from './Parameter.js';
 import { Music } from './Music.js';
 import { NotePositions } from './NotePositions.js';
@@ -10,6 +10,7 @@ import { InOutAnimation } from './Animation.js';
 
 let shapes_id = 0
 let color_scheme_index = 0
+let chord_color_scheme_index = 0
 
 export class Shape {
 
@@ -223,7 +224,6 @@ export class ChordShape extends BackgroundShape {
     constructor(chord) {
         super(new Note(chord.getBaseNote(), 0))
         this.chord = chord
-        this.colors = Conf.getChordColors(this.chord).getValue()
         this.setParameter('opacity', new AnimatedParameter(
             new InOutAnimation(
                 [200, 4000],
@@ -239,12 +239,25 @@ export class ChordShape extends BackgroundShape {
 
     drawShape() {
         noStroke()
-        linearGradient(0, 0, this.colors[0], this.getOpacity(), 0, height, this.colors[1], this.getOpacity())
+        linearGradient(0, 0, this.getColors()[0], this.getOpacity(), 0, height, this.getColors()[1], this.getOpacity())
         rect(0, 0, width, height)
     }
 
     getColors() {
-        Conf.getChordColors(this.chord)
+        if (this.colors !== undefined) return this.colors
+
+        // get colorschemes from conf
+        let color_schemes = Conf.getChordColors()
+
+        // apply harmony
+        let harmony = Music.getChordHarmony(this.chord) || 0
+        chord_color_scheme_index = (chord_color_scheme_index + harmony) % color_schemes.length
+        console.log("GLOBAL INDEX", chord_color_scheme_index)
+
+        // apply quality
+        let quality = simpleQuality(this.chord.getQuality())
+        this.colors = color_schemes[chord_color_scheme_index][quality]
+        return this.colors
     }
 
     getNote() {
