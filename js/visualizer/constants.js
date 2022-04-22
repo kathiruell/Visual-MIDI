@@ -29,11 +29,11 @@ export const harmonies = {
 }
 
 export const qualities = {
-    free: 0,
     major: 1,
     minor: 2,
     augmented: 3,
     diminished: 4,
+    unknown: -1,
 }
 
 export const note_names = {
