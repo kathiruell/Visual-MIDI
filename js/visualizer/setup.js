@@ -108,11 +108,12 @@ $(function() {
     if (!navigator.requestMIDIAccess) {
         rendererWarning('no_midi_browser')
     }
-    window.setInterval(async function() {
+    let interval = window.setInterval(async function() {
         if (!(await isMidiConnected())) {
             rendererWarning('no_midi_device')
         } else {
             resetBrowserError()
+            window.clearInterval(interval)
         }
     }, 100);
 
