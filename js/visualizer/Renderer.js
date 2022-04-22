@@ -81,7 +81,7 @@ export class Renderer {
     // TOCHECK
     static drawTexture() {
         image(this.texture, 0, 0, width, height)
-        tint(255, 100);
-        blendMode(DODGE)
+        // tint(255, 100);
+        blendMode(MULTIPLY)
     }
 }

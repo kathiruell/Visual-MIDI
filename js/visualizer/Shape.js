@@ -191,7 +191,7 @@ export class NoteShape extends Shape {
                 drawingContext.shadowOffsetY = -10;
                 drawingContext.shadowBlur = 5;
                 drawingContext.shadowColor = 'white';
-                // drawingContext.filter = 'blur(150px)';
+                // drawingContext.filter = 'blur(100px)';
                 fill(...this.getColor(), this.getOpacity())
                 ellipse(this.getPosition().x, this.getPosition().y, this.getSize(), this.getSize())
                 break;
