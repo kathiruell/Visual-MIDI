@@ -74,19 +74,35 @@ export class Chord extends MusicalEvent {
     }
 
     getQuality() {
-        let quality = this.getTonalObject().type
-        switch (quality) {
-            case 'minor':
-                return qualities.minor
-            case 'major':
-                return qualities.major
-            case 'diminished':
-                return qualities.diminished
-            case 'augmented':
-                return qualities.augmented
-            default:
-                return qualities.unknown
+        let intervals = this.getTonalObject().intervals
+
+        let res = qualities.unknown
+        // major third and perfect fifth
+        if (intervals.includes('3M') && intervals.includes('5P')) {
+            res = qualities.major
         }
+        // minor third and perfect fifth
+        else if (intervals.includes('3m') && intervals.includes('5P')) {
+            res = qualities.minor
+        }
+        // major third and augmented fifth
+        else if (intervals.includes('3M') && intervals.includes('5A')) {
+            res = qualities.augmented
+        }
+        // minor third and diminished fifth
+        else if (intervals.includes('3m') && intervals.includes('5d')) {
+            res = qualities.diminished
+        }
+        // sus => major
+        else if (intervals.includes('5P') && ( intervals.includes('2M') || intervals.includes('4P') )) {
+            res = qualities.major
+        }
+        // console.log("INT", intervals, " => ", res)
+        return res
+    }
+
+    getNumNotes() {
+        return this.getTonalObject().intervals.length
     }
 }
 

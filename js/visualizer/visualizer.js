@@ -48,10 +48,12 @@ window.handleNoteOn = function(ch, pitch, vel) {
     if (midi.isChord()) {
         let chord_alternatives = midi.getChord()
         let chord = new Chord(chord_alternatives)
-        Music.addChord(chord);
+        if (chord.getNumNotes() > 2) {
+            Music.addChord(chord);
 
-        let chord_shape = new ChordShape(chord)
-        Renderer.renderShape(chord_shape)
+            let chord_shape = new ChordShape(chord)
+            Renderer.renderShape(chord_shape)
+        }
     }
 }
 
