@@ -6,7 +6,9 @@ let MIDI_PUSHED = [];
 
 export function setupMidi(
     listenOn = () => console.log("No listener specified on ON"),
-    listenOff
+    listenOff = () => console.log("No listener specified on OFF"),
+    listenPedalOn = () => console.log("No listener specified on PEDAL ON"),
+    listenPedalOff = () => console.log("No listener specified on PEDAL OFF"),
 ) {
     // Check if available
     if (navigator.requestMIDIAccess) console.log("WebMIDI supported.");
@@ -45,23 +47,34 @@ export function setupMidi(
         // 0: channel; 1: note; 2: velocity;
         const cmd = data[0] >> 4;
         const channel = data[0] & 0xf;
-        const type = data[0] & 0xf0;
         const note = data[1];
         const velocity = data[2];
 
         // console.log("MIDI data: ", data)
         // if (data[0] != 248) console.log("MIDI data: ", data); //clock
 
-        switch (type) {
-            case 144:
+        // console.log("CH", channel, "CMD", cmd, "TYPE", type, "note", note, "vel", velocity)
+        switch (cmd) {
+            // note off
+            case 0x8:
+                listenOff(channel, note, velocity);
+                MIDI_PUSHED = MIDI_PUSHED.filter((element) => element != note);
+                MIDI_PUSHED.sort();
+                break;
+            // note on
+            case 0x9:
                 MIDI_PUSHED.push(note);
                 MIDI_PUSHED.sort();
                 listenOn(channel, note, velocity);
                 break;
-            case 128:
-                listenOff(channel, note, velocity);
-                MIDI_PUSHED = MIDI_PUSHED.filter((element) => element != note);
-                MIDI_PUSHED.sort();
+            // control change
+            case 0xB:
+                switch (note) {
+                    // damper pedal
+                    case 0x40:
+                        if (velocity < 64) listenPedalOff(channel)
+                        else listenPedalOn(channel)
+                }
                 break;
         }
     }

@@ -21,8 +21,14 @@ window.setup = function() {
     )
 	Renderer.start()
 
-    midi.setupMidi(window.handleNoteOn, window.handleNoteOff);
+    midi.setupMidi(
+        window.handleNoteOn, 
+        window.handleNoteOff,
+        window.handlePedalOn,
+        window.handlePedalOff,
+    );
 
+    // Music.debug()
     // demo()
     // debugNotePositions()
 }
@@ -58,8 +64,14 @@ window.handleNoteOn = function(ch, pitch, vel) {
 }
 
 window.handleNoteOff = function(ch, pitch, vel) {
-    Music.noteOff(pitch)
-    Renderer.noteOff(pitch)
+    Music.keyRelease(pitch)
+}
+
+window.handlePedalOn = function(ch) {
+    Music.pedalOn()
+}
+window.handlePedalOff = function(ch) {
+    Music.pedalOff()
 }
 
 // DEBUGGING
