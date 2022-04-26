@@ -5,22 +5,32 @@ export class MusicalEvent {
     constructor() {
         this.timestamp = Date.now()
         this.timestamp_note_off = undefined
+        this.pedal = false
     }
 
-    noteOff() {
+    keyRelease() {
         this.timestamp_note_off = Date.now()
     }
 
     isOn() {
-        return this.timestamp_note_off === undefined
+        return this.timestamp_note_off === undefined || this.pedal
     }
 
     isOff() {
-        return !!this.timestamp_note_off
+        return !this.isOn()
+        return this.timestamp_note_off && !this.pedal
+    }
+
+    pedalOn() {
+        this.pedal = true
+    }
+
+    pedalOff() {
+        this.pedal = false
     }
 
     static noteName(pitch) {
-        return Object.keys(NOTE_NAMES).find(p => NOTE_NAMES[p] === pitch)
+        return Object.keys(note_names).find(p => note_names[p] === pitch)
     }
     static pitch(note_name) {
         return note_names[note_name]
@@ -33,7 +43,7 @@ export class Chord extends MusicalEvent {
         super()
         this.alternatives = alternatives    // array of chord names
         this.name = this.getName()
-        this.noteOff()
+        this.keyRelease()
         // console.log("CHORD", this.name)
     }
 
@@ -46,6 +56,10 @@ export class Chord extends MusicalEvent {
      */
     getBaseNote() {
         return MusicalEvent.pitch(this.getTonalObject().tonic)
+    }
+
+    getId() {
+        return this.getName()
     }
 
     getName() {
