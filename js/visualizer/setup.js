@@ -105,9 +105,13 @@ let fake_midi_active = false
 
 $(function() {
 
+    // check if browser has WebMidi API
     if (!navigator.requestMIDIAccess) {
         rendererWarning('no_midi_browser')
+        return      // don't show any other errors
     }
+
+    // check if midi device connected
     let interval = window.setInterval(async function() {
         if (!(await isMidiConnected())) {
             rendererWarning('no_midi_device')
@@ -117,6 +121,7 @@ $(function() {
         }
     }, 100);
 
+    // enter visualizer on keydown of fake midi keyboard
     $(document).keydown(function() {
         fake_midi_active = true
         resetBrowserError()
