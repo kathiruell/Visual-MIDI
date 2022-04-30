@@ -34,7 +34,7 @@
   opacity: 100%;
 }
 .visualizer-navigation .slide-in.bottom {
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
