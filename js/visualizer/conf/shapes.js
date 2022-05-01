@@ -361,9 +361,10 @@ export default {
             [1, .8, .6, 0],
             'linear'
         ),
+        scale:5,
         modulators: {
             //TODO SCALE VELOCITY
-            scale: (note) => new VelocityModulator(5*note.vel)
+            scale: (note) => new VelocityModulator(note.vel)
         }
     },
     // BRISK, CLEAR, GLOOM

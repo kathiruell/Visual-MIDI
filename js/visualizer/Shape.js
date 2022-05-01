@@ -129,7 +129,7 @@ export class NoteShape extends Shape {
     }
 
     getSize() {
-        return 250 * this.getParameter('scale')
+        return 150 * this.getParameter('scale')
     }
 
     getInnerSize() {
