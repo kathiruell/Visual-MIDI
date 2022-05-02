@@ -240,7 +240,7 @@ export default {
         ),
         modulators: {
             //TODO SCALE VELOCITY
-            scale: (note) => new VelocityModulator(5*note.vel),
+            scale: (note) => new VelocityModulator(note.vel),
         }
     },
     // BRISK, EMBOSSED, LUMINOUS
@@ -389,7 +389,7 @@ export default {
         ),
         modulators: {
             //TODO SCALE VELOCITY
-            scale: (note) => new VelocityModulator(5*note.vel)
+            scale: (note) => new VelocityModulator(note.vel)
         }
     },
     // BRISK, EMBOSSED, GLOOM
@@ -403,7 +403,7 @@ export default {
         ),
         modulators: {
             //TODO SCALE VELOCITY
-            scale: (note) => new VelocityModulator(5*note.vel)
+            scale: (note) => new VelocityModulator(note.vel)
         }
     },
 
