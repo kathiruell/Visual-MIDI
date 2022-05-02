@@ -91,23 +91,3 @@ Session I Visualizer Test
         11: DISSONANT,
     }
 }
-
-
-
-
-
-
-
-
-
-/////////
-FONT-FORMATS
-
-Intro Typewriter
-size: 8.3vw
-font-weight: normal
-line-height: 7.6vw
-
-Intro Typewriter other font
-size: 5.5vw
-line-height: 7.6vw

@@ -1,10 +1,10 @@
 import shapes from './conf/shapes.js';
 import colors from './conf/colors.js';
 import harmonies from './conf/harmony.js';
-import bg_colors from './conf/backcolors.js';
 import { Preferences } from './Preferences.js';
 import { Parameter, AnimatedParameter } from './Parameter.js';
 import { Animation } from './Animation.js';
+import colors_chords from './conf/colors_chords.js';
 
 export class Conf {
 
@@ -17,10 +17,9 @@ export class Conf {
         if (this.is_init) return
 
         this.colors = colors
+        this.colors_chords = colors_chords
         this.harmony = harmonies
-
-        this.arrays['shapes'] = shapes
-        this.arrays['chord_colors'] = bg_colors
+        this.shapes = shapes
 
         this.is_init = true
     }
@@ -40,8 +39,11 @@ export class Conf {
         return harmonies[mode][interval]
     }
 
-    static getChordColors(chord) {
-        return this.get(bg_colors, Preferences.getColorStyle(), chord.getQuality())
+    static getChordColors() {
+        if (!(Preferences.getColorStyle() in this.colors_chords)) {
+            throw new KeyNotDefinedException("Color style not defined")
+        }
+        return this.colors_chords[Preferences.getColorStyle()]
     }
 
     static get(array, style_id, key, args) {

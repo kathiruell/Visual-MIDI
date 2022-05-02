@@ -1,3 +1,5 @@
+import { qualities } from "./constants.js";
+
 export function linearGradient(x1, y1, color1, opacity1, x2, y2, color2, opacity2) {
     let gradient = drawingContext.createLinearGradient(x1, y1, x2, y2);
     gradient.addColorStop(0, color(...color1, opacity1));
@@ -29,4 +31,15 @@ export function getFrameDuration(frame_rate_hz) {
 export function rgbModBrightness(rgb,factor) {
     if (rgb === undefined) throw "color null"
     return [Math.round(rgb[0] * factor), Math.round(rgb[1] * factor), Math.round(rgb[2] * factor)];
+}
+
+export function simpleQuality(quality) {
+    switch (quality) {
+        case qualities.augmented:
+            return qualities.major
+        case qualities.diminished:
+            return qualities.minor
+        default:
+            return quality
+    }
 }

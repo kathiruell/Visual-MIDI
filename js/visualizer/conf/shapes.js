@@ -20,7 +20,7 @@ export default {
     "000": {
         shape_type: shape_types.blurry,
         inner_size: 0.005,
-        blend_mode: blend_modes.lightest,
+        blend_mode: blend_modes.exclusion,
         scale: () => new AdsrAnimation(
             [200, 400, 800, 1400],
             [.8, .5, .2, 0],
@@ -40,25 +40,26 @@ export default {
     // DETAILED, CLEAR, INTIMATE
     "010": {
         shape_type: shape_types.plain,
-        blend_mode: blend_modes.lightest,
+        blend_mode: blend_modes.normal,
         scale: () => new AdsrAnimation(
-            [200, 400, 800, 1400],
-            [.8, .5, .2, 0],
+            [200, 400, 700, 900],
+            [.6, .5, .2, 0],
             'linear'
         ),
         opacity: 
             () => new AdsrAnimation(
                 [100, 200, 5000, 2000],
-                [.8, .6, .4, 0],
+                [1, .8, .6, 0],
                 'linear'
             ),
     },
     // DETAILED, EMBOSSED, INTIMATE
     "020": {
         shape_type: shape_types.texturized,
+        blend_mode: blend_modes.exclusion,
         scale: () => new AdsrAnimation(
-            [200, 400, 800, 1400],
-            [.8, .5, .2, 0],
+            [400, 800, 850, 1600],
+            [2, 1, 0.9, 0],
             'linear'
         ),
         opacity: 
@@ -74,6 +75,8 @@ export default {
     "100": {
         shape_type: shape_types.blurry,
         inner_size: 0.01,
+        scale: 3,
+        blend_mode: blend_modes.normal,
         opacity: () => new AdsrAnimation(
             [100, 200, 5000, 2000],
             [1, .8, .6, 0],
@@ -81,13 +84,14 @@ export default {
         ),
         modulators: {
             //TODO SCALE VELOCITY
-            scale: (note) => new VelocityModulator(5*note.vel)
+            scale: (note) => new VelocityModulator(note.vel)
         }
     },
     // BRISK, CLEAR, INTIMATE
     "110": {
         shape_type: shape_types.plain,
-        blend_mode: blend_modes.lightest,
+        blend_mode: blend_modes.normal,
+        scale: 3,
         opacity: () => new AdsrAnimation(
             [100, 200, 5000, 2000],
             [1, .8, .6, 0],
@@ -95,13 +99,14 @@ export default {
         ),
         modulators: {
             //TODO SCALE VELOCITY
-            scale: (note) => new VelocityModulator(5*note.vel)
+            scale: (note) => new VelocityModulator(note.vel)
         }
     },
     // BRISK, EMBOSSED, INTIMATE
     "120": {
         shape_type: shape_types.texturized,
-        blend_mode: blend_modes.normal,
+        blend_mode: blend_modes.lightest,
+        scale: 2,
         opacity: () => new AdsrAnimation(
             [100, 200, 800, 1500],
             [0.8, 1, .5, 0],
@@ -109,7 +114,7 @@ export default {
         ),
         modulators: {
             //TODO SCALE VELOCITY
-            scale: (note) => new VelocityModulator(5*note.vel)
+            scale: (note) => new VelocityModulator(note.vel)
         }
     },
 
@@ -131,13 +136,14 @@ export default {
     },
     // MASSIVE, CLEAR, INTIMATE
     "210": {
+        shape_type: shape_types.plain,
         scale: () => new AdsrAnimation(
-            [100, 400, 600, 800],
+            [100, 400, 600, 1000],
             [0, 0.8, 1.5, 2],
             'linear'
         ),
         opacity: () => new AdsrAnimation(
-            [100, 200, 800, 1500],
+            [100, 200, 800, 900],
             [0.8, 1, .5, 0],
             'linear'
         ),
@@ -177,14 +183,15 @@ export default {
     },
     // DETAILED, CLEAR, LUMINOUS
     "011": {
+        blend_mode: blend_modes.screen,   
         scale: () => new AdsrAnimation(
-            [200, 400, 800, 1400],
+            [200, 400, 800, 1600],
             [.8, .5, .2, 0],
             'linear'
         ),
         opacity: 
             () => new AdsrAnimation(
-                [100, 200, 5000, 2000],
+                [100, 200, 5000, 1500],
                 [.8, .6, .4, 0],
                 'linear'
             ),
@@ -194,7 +201,7 @@ export default {
         shape_type: shape_types.texturized,
         scale: () => new AdsrAnimation(
             [200, 400, 800, 1400],
-            [.8, .5, .2, 0],
+            [1.5, .8, .4, 0],
             'linear'
         ),
         opacity: 
@@ -212,6 +219,7 @@ export default {
         inner_size: 0.2,
         shape_type:shape_types.blurry,
         blend_mode: blend_modes.lightest,
+        scale: 2,
         opacity: () => new AdsrAnimation(
             [100, 200, 5000, 2000],
             [1, .8, .6, 0],
@@ -219,7 +227,7 @@ export default {
         ),
         modulators: {
             //TODO SCALE VELOCITY
-            scale: (note) => new VelocityModulator(5*note.vel)
+            scale: (note) => new VelocityModulator(note.vel)
         }
     },
     // BRISK, CLEAR, LUMINOUS
@@ -239,6 +247,7 @@ export default {
     "121": {
         shape_type:shape_types.texturized,
         blend_mode: blend_modes.lightest,
+        scale: 2,
         opacity: () => new AdsrAnimation(
             [100, 200, 5000, 2000],
             [1, .8, .6, 0],
@@ -246,7 +255,7 @@ export default {
         ),
         modulators: {
             //TODO SCALE VELOCITY
-            scale: (note) => new VelocityModulator(5*note.vel)
+            scale: (note) => new VelocityModulator(note.vel)
         }
     },
 
@@ -258,12 +267,12 @@ export default {
         inner_size: 0.6,
         blend_mode: blend_modes.lightest,
         scale: () => new AdsrAnimation(
-            [100, 400, 600, 800],
+            [100, 400, 600, 1300],
             [0, 0.8, 2.5, 3],
             'linear'
         ),
         opacity: () => new AdsrAnimation(
-            [100, 200, 800, 1500],
+            [100, 200, 800, 1200],
             [0.8, 1, .5, 0],
             'linear'
         ),
@@ -272,12 +281,12 @@ export default {
     "211": {
         blend_mode: blend_modes.lightest,
         scale: () => new AdsrAnimation(
-            [100, 400, 600, 800],
+            [100, 400, 600, 1000],
             [0, 0.8, 2.5, 3],
             'linear'
         ),
         opacity: () => new AdsrAnimation(
-            [100, 200, 800, 1500],
+            [100, 200, 800, 900],
             [0.8, 1, .5, 0],
             'linear'
         ),
@@ -364,9 +373,10 @@ export default {
             [1, .8, .6, 0],
             'linear'
         ),
+        scale:5,
         modulators: {
             //TODO SCALE VELOCITY
-            scale: (note) => new VelocityModulator(5*note.vel)
+            scale: (note) => new VelocityModulator(note.vel)
         }
     },
     // BRISK, CLEAR, GLOOM

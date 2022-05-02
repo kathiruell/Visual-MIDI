@@ -35,9 +35,9 @@ export class Renderer {
         this.shapes.filter(shape => shape instanceof NoteShape).forEach(shape => shape.draw())
 
         // texture
-        if (Preferences.getShapeStyle() === styles.shapes.EMBOSSED) {
-            this.drawTexture()
-        }
+        // if (Preferences.getShapeStyle() === styles.shapes.EMBOSSED) {
+        //     this.drawTexture()
+        // }
     }
 
     static noteOff(pitch) {

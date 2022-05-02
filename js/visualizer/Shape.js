@@ -1,7 +1,7 @@
 import { blend_modes, shape_types } from './constants.js';
 import { Conf } from './Conf.js'
 import { Renderer } from './Renderer.js'
-import { getFrameDuration, rgbModBrightness, linearGradient, radialGradientBlurry } from './util.js'
+import { getFrameDuration, rgbModBrightness, linearGradient, radialGradient, radialGradientBlurry, simpleQuality } from './util.js'
 import { Parameter, AnimatedParameter } from './Parameter.js';
 import { Music } from './Music.js';
 import { Note } from './MusicalEvent.js';
@@ -9,6 +9,7 @@ import { InOutAnimation } from './Animation.js';
 
 let shapes_id = 0
 let color_scheme_index = 0
+let chord_color_scheme_index = 0
 
 export class Shape {
 
@@ -118,7 +119,7 @@ export class NoteShape extends Shape {
     }
 
     getColorSecondary() {
-        return [240,255,255];
+        return [0,0,255];
     }
 
     getOpacity() {
@@ -126,7 +127,7 @@ export class NoteShape extends Shape {
     }
 
     getSize() {
-        return 250 * this.getParameter('scale')
+        return 350 * this.getParameter('scale')
     }
 
     getInnerSize() {
@@ -151,6 +152,14 @@ export class NoteShape extends Shape {
                             
             case blend_modes.multiply:
                 blendMode(MULTIPLY)
+                break;
+
+            case blend_modes.exclusion:
+                blendMode(EXCLUSION)
+                break;
+
+            case blend_modes.screen:
+                blendMode(SCREEN)
                 break;
 
             case blend_modes.normal:
@@ -184,13 +193,22 @@ export class NoteShape extends Shape {
 
             case shape_types.texturized:
 
-            // decision: blur oder 3d
-                drawingContext.shadowOffsetX = 10;
-                drawingContext.shadowOffsetY = -10;
-                drawingContext.shadowBlur = 5;
-                drawingContext.shadowColor = 'white';
-                // drawingContext.filter = 'blur(100px)';
-                fill(...this.getColor(), this.getOpacity())
+                // decision: blur oder 3d
+                drawingContext.filter = 'blur(20px)';
+                // fill(...this.getColor(), this.getOpacity())
+                radialGradientBlurry(
+                    this.getParameter('position').x,
+                    this.getParameter('position').y,
+                    this.getSize() / 2, // radius
+                    // INNER & OUTER
+                    this.getColor(),
+                    0.9,
+                    // MIDDLE
+                    this.getColor(),
+                    this.getOpacity(),
+                    0.9,
+                    this.getParameter('inner_size'),
+                );
                 ellipse(this.getParameter('position').x, this.getParameter('position').y, this.getSize(), this.getSize())
                 break;
 
@@ -221,7 +239,6 @@ export class ChordShape extends BackgroundShape {
     constructor(chord) {
         super(new Note(chord.getBaseNote(), 0))
         this.chord = chord
-        this.colors = Conf.getChordColors(this.chord).getValue()
         this.setParameter('opacity', new AnimatedParameter(
             new InOutAnimation(
                 [200, 4000],
@@ -237,12 +254,25 @@ export class ChordShape extends BackgroundShape {
 
     drawShape() {
         noStroke()
-        linearGradient(0, 0, this.colors[0], this.getOpacity(), 0, height, this.colors[1], this.getOpacity())
+        linearGradient(0, 0, this.getColors()[0], this.getOpacity(), 0, height, this.getColors()[1], this.getOpacity())
         rect(0, 0, width, height)
     }
 
     getColors() {
-        Conf.getChordColors(this.chord)
+        if (this.colors !== undefined) return this.colors
+
+        // get colorschemes from conf
+        let color_schemes = Conf.getChordColors()
+
+        // apply harmony
+        let harmony = Music.getChordHarmony(this.chord) || 0
+        chord_color_scheme_index = (chord_color_scheme_index + harmony) % color_schemes.length
+        console.log("GLOBAL INDEX", chord_color_scheme_index)
+
+        // apply quality
+        let quality = simpleQuality(this.chord.getQuality())
+        this.colors = color_schemes[chord_color_scheme_index][quality]
+        return this.colors
     }
 
     getNote() {
