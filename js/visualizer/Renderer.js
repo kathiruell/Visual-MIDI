@@ -7,15 +7,12 @@ import { NoteShape, ChordShape, BlackoutShape } from "./Shape.js";
 export class Renderer {
     static canvas = undefined;
     static shapes = [];
-    // static texture = undefined;
 
     static init(canvas, frame_rate) {
         this.canvas = canvas
         this.setFramerate(frame_rate)
         this.background = new BlackoutShape()
 
-        // load textures
-        // TODO syntax check
         this.loadTexture()
     }
 
@@ -73,12 +70,10 @@ export class Renderer {
         return frameRate()
     }
 
-    // TOCHECK
     static loadTexture() {
         this.texture = loadImage("/doc/texture_grain_black.png", (img) => console.log("img loaded", img));
     }
 
-    // TOCHECK
     static drawTexture() {
         image(this.texture, 0, 0, width, height)
         // tint(255, 100);
