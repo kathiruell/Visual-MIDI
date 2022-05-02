@@ -21,6 +21,13 @@ export function radialGradientBlurry(x, y, r, color1, opacity1, color2, opacity2
     gradient.addColorStop(1, color(...color1, opacity1));
     drawingContext.fillStyle = gradient;
 }
+export function radialGradientDual(pos, radius, color1, color2, breakpoint, size) {
+    let gradient = drawingContext.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, radius);
+    gradient.addColorStop(0, color(color1));
+    gradient.addColorStop(breakpoint - size, color(color1));
+    gradient.addColorStop(breakpoint, color(color2));
+    drawingContext.fillStyle = gradient;
+}
 /**
  * returns duration of one frame in ms
  */

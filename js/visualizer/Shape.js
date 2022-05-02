@@ -1,7 +1,7 @@
 import { blend_modes, shape_types } from './constants.js';
 import { Conf } from './Conf.js'
 import { Renderer } from './Renderer.js'
-import { getFrameDuration, rgbModBrightness, linearGradient, radialGradient, radialGradientBlurry, simpleQuality } from './util.js'
+import { getFrameDuration, rgbModBrightness, linearGradient, radialGradientBlurry, simpleQuality, radialGradientDual } from './util.js'
 import { Parameter, AnimatedParameter } from './Parameter.js';
 import { Music } from './Music.js';
 import { Note } from './MusicalEvent.js';
@@ -83,8 +83,6 @@ export class NoteShape extends Shape {
         this.setParameter('shape_type', Conf.getShapeParameter('shape_type', this.note))
         this.setParameter('blend_mode', Conf.getShapeParameter('blend_mode', this.note))
         this.setParameter('position', Conf.getShapeParameter('position', this.note))
-
-        console.log("NEW NOTE", this.getParameter('position'))
     }
 
     /**
@@ -109,6 +107,10 @@ export class NoteShape extends Shape {
                 // pick random color from colorscheme
                 color = color_scheme[Math.ceil(Math.random() * color_scheme.length) - 1]
 
+                // let's calculate a dissonant color here in case we need that in the current pref mode
+                let color_scheme_dis = color_schemes[ ( color_scheme_index + 2 ) % color_schemes.length]
+                this.color_dissonant = color_scheme_dis[Math.ceil(Math.random() * color_scheme_dis.length) - 1]
+
                 // pitch -> parametric
                 color = rgbModBrightness(color, this.note.getOctave() / 7)
             }
@@ -118,8 +120,8 @@ export class NoteShape extends Shape {
         return this.color
     }
 
-    getColorSecondary() {
-        return [0,0,255];
+    getDissonantColor() {
+        return this.color_dissonant || Conf.UNDEFINED_COLOR
     }
 
     getOpacity() {
@@ -194,21 +196,16 @@ export class NoteShape extends Shape {
             case shape_types.texturized:
 
                 // decision: blur oder 3d
-                drawingContext.filter = 'blur(20px)';
-                // fill(...this.getColor(), this.getOpacity())
-                radialGradientBlurry(
-                    this.getParameter('position').x,
-                    this.getParameter('position').y,
-                    this.getSize() / 2, // radius
-                    // INNER & OUTER
-                    this.getColor(),
-                    0.9,
-                    // MIDDLE
-                    this.getColor(),
-                    this.getOpacity(),
-                    0.9,
-                    this.getParameter('inner_size'),
-                );
+                // drawingContext.filter = 'blur(20px)';
+
+                radialGradientDual(
+                    this.getParameter('position'),
+                    this.getSize() / 2,
+                    [ ...this.getColor(), this.getOpacity() ],
+                    [ ...this.getDissonantColor(), this.getOpacity() ],
+                    1,
+                    .2,
+                )
                 ellipse(this.getParameter('position').x, this.getParameter('position').y, this.getSize(), this.getSize())
                 break;
 
