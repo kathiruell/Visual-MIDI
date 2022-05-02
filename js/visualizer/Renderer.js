@@ -79,4 +79,11 @@ export class Renderer {
         // tint(255, 100);
         blendMode(MULTIPLY)
     }
+
+    static getWidth() {
+        return width
+    }
+    static getHeight() {
+        return height
+    }
 }

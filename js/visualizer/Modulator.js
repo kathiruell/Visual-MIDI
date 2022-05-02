@@ -1,3 +1,5 @@
+import { Renderer } from "./Renderer.js"
+
 class Modulator {
 
     constructor() {
@@ -32,8 +34,8 @@ export class LinearPositionModulator extends Modulator {
     // value is [x,y]
     modulate(value) {
         return {
-            x: value.x + (Date.now() - this.start) / 1000 * this.speed.x,
-            y: value.y + (Date.now() - this.start) / 1000 * this.speed.y,
+            x: value.x + (Date.now() - this.start) / 1000 * this.speed.x * Renderer.getWidth(),
+            y: value.y + (Date.now() - this.start) / 1000 * this.speed.y * Renderer.getHeight(),
         }
     }
 }

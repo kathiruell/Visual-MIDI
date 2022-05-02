@@ -34,7 +34,7 @@ export default {
             ),
         modulators: {
             opacity: note => new VelocityModulator(note.vel),
-            position: () => new LinearPositionModulator({x: 50, y: 50}),
+            position: () => new LinearPositionModulator({x: .05, y: .05}),
         }
     },
     // DETAILED, CLEAR, INTIMATE
