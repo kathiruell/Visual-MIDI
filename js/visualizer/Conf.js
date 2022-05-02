@@ -81,13 +81,10 @@ export class Conf {
             // value is animated ?
             value = raw(args)
             if (value instanceof Animation) {
-                console.log("CONF GET", "IS ANIMATION")
                 return new AnimatedParameter(value, modulator)
             }
         }
-        let res = new Parameter(value, modulator)
-        console.log("CONF GET", res)
-        return res
+        return new Parameter(value, modulator)
     }
 }
 
