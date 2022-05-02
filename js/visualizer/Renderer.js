@@ -16,7 +16,7 @@ export class Renderer {
 
         // load textures
         // TODO syntax check
-        this.loadTexture()
+        // this.loadTexture()
     }
 
     static renderShape(shape) {
@@ -37,10 +37,10 @@ export class Renderer {
         // note shapes
         this.shapes.filter(shape => shape instanceof NoteShape).forEach(shape => shape.draw())
 
-        // texture
-        if (Preferences.getShapeStyle() === styles.shapes.EMBOSSED) {
-            this.drawTexture()
-        }
+        // // texture
+        // if (Preferences.getShapeStyle() === styles.shapes.EMBOSSED) {
+        //     this.drawTexture()
+        // }
     }
 
     static noteOff(pitch) {
@@ -73,15 +73,15 @@ export class Renderer {
         return frameRate()
     }
 
-    // TOCHECK
-    static loadTexture() {
-        this.texture = loadImage("/doc/texture_grain_black.png", (img) => console.log("img loaded", img));
-    }
+    // // TOCHECK
+    // static loadTexture() {
+    //     this.texture = loadImage("/doc/texture_grain_black.png", (img) => console.log("img loaded", img));
+    // }
 
-    // TOCHECK
-    static drawTexture() {
-        image(this.texture, 0, 0, width, height)
-        // tint(255, 100);
-        blendMode(MULTIPLY)
-    }
+    // // TOCHECK
+    // static drawTexture() {
+    //     image(this.texture, 0, 0, width, height)
+    //     // tint(255, 100);
+    //     blendMode(MULTIPLY)
+    // }
 }
