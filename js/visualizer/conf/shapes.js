@@ -1,7 +1,8 @@
 // prettier-ignore
 import { blend_modes, shape_types } from '../constants.js';
+import { NotePositions } from '../NotePositions.js';
 import { AdsrAnimation, InOutAnimation, SimpleAnimation } from './../Animation.js';
-import { VelocityModulator } from './../Modulator.js';
+import { LinearPositionModulator, VelocityModulator } from './../Modulator.js';
 
 export default {
     default: {
@@ -10,9 +11,10 @@ export default {
         blend_mode: blend_modes.normal,
         scale: 1,
         opacity: 1,
+        position: (note) => NotePositions.getPosition(note),
         modulators: {
-            opacity: note => new VelocityModulator(note.vel)
-        }
+            opacity: (note) => new VelocityModulator(note.vel)
+        },
     },
     // DETAILED, MELLOW, INTIMATE
     "000": {
@@ -31,7 +33,8 @@ export default {
                 'linear'
             ),
         modulators: {
-            opacity: note => new VelocityModulator(note.vel)
+            opacity: note => new VelocityModulator(note.vel),
+            position: () => new LinearPositionModulator({x: 50, y: 50}),
         }
     },
     // DETAILED, CLEAR, INTIMATE
@@ -229,7 +232,7 @@ export default {
         ),
         modulators: {
             //TODO SCALE VELOCITY
-            scale: (note) => new VelocityModulator(5*note.vel)
+            scale: (note) => new VelocityModulator(5*note.vel),
         }
     },
     // BRISK, EMBOSSED, LUMINOUS

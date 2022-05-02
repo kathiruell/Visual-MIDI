@@ -3,7 +3,7 @@ import { Renderer } from "./Renderer.js"
 /**
  * abstract class
  */
-class Animation {
+export class Animation {
 
     getValue() {
         return this.value

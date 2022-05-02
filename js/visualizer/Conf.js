@@ -4,7 +4,7 @@ import harmonies from './conf/harmony.js';
 import bg_colors from './conf/backcolors.js';
 import { Preferences } from './Preferences.js';
 import { Parameter, AnimatedParameter } from './Parameter.js';
-import backcolors from './conf/backcolors.js';
+import { Animation } from './Animation.js';
 
 export class Conf {
 
@@ -71,14 +71,21 @@ export class Conf {
             modulator = array[style_id]['modulators'][key](args)
         } 
 
-        // console.log("Conf.get()", conf_id, style_id, key, raw, modulator)
+        // console.log("Conf.get()", array, style_id, key, raw, modulator)
 
-        // value is animated ?
+        // value is computed ?
+        let value = raw
         if (typeof raw === 'function') {
-            return new AnimatedParameter(raw(), modulator)
-        } else {
-            return new Parameter(raw, modulator)
+            // value is animated ?
+            value = raw(args)
+            if (value instanceof Animation) {
+                console.log("CONF GET", "IS ANIMATION")
+                return new AnimatedParameter(value, modulator)
+            }
         }
+        let res = new Parameter(value, modulator)
+        console.log("CONF GET", res)
+        return res
     }
 }
 

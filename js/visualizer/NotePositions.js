@@ -37,8 +37,8 @@ export class NotePositions {
         let max_x = width * .5 - this.margin
         let max_y = height * .5 - this.margin
         return {
-            x: (1 - 2 * this.randomG(this.distribution)) * max_x + .5 * width,
-            y: (1 - 2 * this.randomG(this.distribution)) * max_y + .5 * height,
+            x: Math.round((1 - 2 * this.randomG(this.distribution)) * max_x + .5 * width),
+            y: Math.round((1 - 2 * this.randomG(this.distribution)) * max_y + .5 * height),
         }
     }
 

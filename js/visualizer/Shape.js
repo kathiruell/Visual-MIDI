@@ -4,7 +4,6 @@ import { Renderer } from './Renderer.js'
 import { getFrameDuration, rgbModBrightness, linearGradient, radialGradientBlurry } from './util.js'
 import { Parameter, AnimatedParameter } from './Parameter.js';
 import { Music } from './Music.js';
-import { NotePositions } from './NotePositions.js';
 import { Note } from './MusicalEvent.js';
 import { InOutAnimation } from './Animation.js';
 
@@ -38,7 +37,7 @@ export class Shape {
 
     draw() {
         // console.log(this.constructor.name, this.id, "drawing frame", this.lifetime_frames, this.lifetime_ms, "ms")
-        // console.log("opacity", this.getShapeParameter('opacity', ), "shape type", Conf.getShapeParameter('shape_type', ), "color", this.getColor().join(','), "pos", this.getPosition(), "size", this.getSize())
+        // console.log("opacity", this.getShapeParameter('opacity', ), "shape type", Conf.getShapeParameter('shape_type', ), "color", this.getColor().join(','), "pos", this.getParameter('position'), "size", this.getSize())
 
         this.animate()
 
@@ -82,6 +81,9 @@ export class NoteShape extends Shape {
         this.setParameter('inner_size', Conf.getShapeParameter('inner_size', this.note))
         this.setParameter('shape_type', Conf.getShapeParameter('shape_type', this.note))
         this.setParameter('blend_mode', Conf.getShapeParameter('blend_mode', this.note))
+        this.setParameter('position', Conf.getShapeParameter('position', this.note))
+
+        console.log("NEW NOTE", this.getParameter('position'))
     }
 
     /**
@@ -123,10 +125,6 @@ export class NoteShape extends Shape {
         return Math.floor(this.getParameter('opacity') * 255)
     }
 
-    getPosition() {
-        return NotePositions.getPosition(this.note)
-    }
-
     getSize() {
         return 250 * this.getParameter('scale')
     }
@@ -140,7 +138,7 @@ export class NoteShape extends Shape {
     }
 
     drawShape() {
-        // console.log("NoteShape.draw()", this.getPosition(), this.getSize(), this.getColor(), this.getShapeParameter('opacity', ))
+        // console.log("NoteShape.draw()", this.getParameter('position'), this.getSize(), this.getParameter('inner_size'))
         noStroke()
         switch (this.getParameter('blend_mode')) {
             case blend_modes.difference: 
@@ -163,13 +161,13 @@ export class NoteShape extends Shape {
         switch (this.getParameter('shape_type')) {
             case shape_types.plain:
                 fill(...this.getColor(), this.getOpacity())
-                ellipse(this.getPosition().x, this.getPosition().y, this.getSize(), this.getSize())
+                ellipse(this.getParameter('position').x, this.getParameter('position').y, this.getSize(), this.getSize())
                 break;
 
             case shape_types.blurry:
                 radialGradientBlurry(
-                    this.getPosition().x,
-                    this.getPosition().y,
+                    this.getParameter('position').x,
+                    this.getParameter('position').y,
                     this.getSize() / 2, // radius
                     // INNER & OUTER
                     this.getColor(),
@@ -180,7 +178,7 @@ export class NoteShape extends Shape {
                     .7,
                     this.getParameter('inner_size'),
                 );
-                ellipse(this.getPosition().x, this.getPosition().y, this.getSize(), this.getSize())
+                ellipse(this.getParameter('position').x, this.getParameter('position').y, this.getSize(), this.getSize())
                 // rect(0,0,width, height)
                 break;
 
@@ -193,7 +191,7 @@ export class NoteShape extends Shape {
                 drawingContext.shadowColor = 'white';
                 // drawingContext.filter = 'blur(100px)';
                 fill(...this.getColor(), this.getOpacity())
-                ellipse(this.getPosition().x, this.getPosition().y, this.getSize(), this.getSize())
+                ellipse(this.getParameter('position').x, this.getParameter('position').y, this.getSize(), this.getSize())
                 break;
 
             default:
