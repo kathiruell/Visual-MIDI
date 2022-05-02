@@ -26,6 +26,11 @@ $(function () {
     .typeString(
       "COLOR <span class='other-font'>CHANGES</span> <br /> HOW WE FEEL.<br />SOUND <span class='other-font'>TRANSFORMS</span> WHAT WE SEE."
     )
+    .pauseFor(3000)
+    .deleteAll(deleteSpeed)
+    .typeString(
+      "<span class='other-font'>SETUP</span> YOUR PERFORMANCE AND CONNECT YOUR<br /> MIDI-DEVICE..."
+    )
     .callFunction(function () {
       document
         .querySelector(".typewriter")

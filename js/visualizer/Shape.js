@@ -1,7 +1,7 @@
 import { blend_modes, shape_types } from './constants.js';
 import { Conf } from './Conf.js'
 import { Renderer } from './Renderer.js'
-import { getFrameDuration, rgbModBrightness, linearGradient, radialGradientBlurry, simpleQuality } from './util.js'
+import { getFrameDuration, rgbModBrightness, linearGradient, radialGradient, radialGradientBlurry, simpleQuality } from './util.js'
 import { Parameter, AnimatedParameter } from './Parameter.js';
 import { Music } from './Music.js';
 import { NotePositions } from './NotePositions.js';
@@ -117,7 +117,7 @@ export class NoteShape extends Shape {
     }
 
     getColorSecondary() {
-        return [240,255,255];
+        return [0,0,255];
     }
 
     getOpacity() {
@@ -129,7 +129,7 @@ export class NoteShape extends Shape {
     }
 
     getSize() {
-        return 150 * this.getParameter('scale')
+        return 350 * this.getParameter('scale')
     }
 
     getInnerSize() {
@@ -154,6 +154,14 @@ export class NoteShape extends Shape {
                             
             case blend_modes.multiply:
                 blendMode(MULTIPLY)
+                break;
+
+            case blend_modes.exclusion:
+                blendMode(EXCLUSION)
+                break;
+
+            case blend_modes.screen:
+                blendMode(SCREEN)
                 break;
 
             case blend_modes.normal:
@@ -188,12 +196,21 @@ export class NoteShape extends Shape {
             case shape_types.texturized:
 
             // decision: blur oder 3d
-                drawingContext.shadowOffsetX = 10;
-                drawingContext.shadowOffsetY = -10;
-                drawingContext.shadowBlur = 5;
-                drawingContext.shadowColor = 'white';
-                // drawingContext.filter = 'blur(100px)';
-                fill(...this.getColor(), this.getOpacity())
+                drawingContext.filter = 'blur(20px)';
+                // fill(...this.getColor(), this.getOpacity())
+                radialGradientBlurry(
+                    this.getPosition().x,
+                    this.getPosition().y,
+                    this.getSize() / 2, // radius
+                    // INNER & OUTER
+                    this.getColor(),
+                    0.9,
+                    // MIDDLE
+                    this.getColor(),
+                    this.getOpacity(),
+                    0.9,
+                    this.getParameter('inner_size'),
+                );
                 ellipse(this.getPosition().x, this.getPosition().y, this.getSize(), this.getSize())
                 break;
 
