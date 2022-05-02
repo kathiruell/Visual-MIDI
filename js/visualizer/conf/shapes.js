@@ -34,7 +34,6 @@ export default {
             ),
         modulators: {
             opacity: note => new VelocityModulator(note.vel),
-            position: () => new LinearPositionModulator({x: .05, y: .05}),
         }
     },
     // DETAILED, CLEAR, INTIMATE
@@ -84,7 +83,8 @@ export default {
         ),
         modulators: {
             //TODO SCALE VELOCITY
-            scale: (note) => new VelocityModulator(note.vel)
+            scale: (note) => new VelocityModulator(note.vel),
+            position: () => new LinearPositionModulator({x: .05, y: .05}),
         }
     },
     // BRISK, CLEAR, INTIMATE
@@ -99,7 +99,8 @@ export default {
         ),
         modulators: {
             //TODO SCALE VELOCITY
-            scale: (note) => new VelocityModulator(note.vel)
+            scale: (note) => new VelocityModulator(note.vel),
+            position: () => new LinearPositionModulator({x: .05, y: .05}),
         }
     },
     // BRISK, EMBOSSED, INTIMATE
@@ -114,7 +115,8 @@ export default {
         ),
         modulators: {
             //TODO SCALE VELOCITY
-            scale: (note) => new VelocityModulator(note.vel)
+            scale: (note) => new VelocityModulator(note.vel),
+            position: () => new LinearPositionModulator({x: .05, y: .05}),
         }
     },
 
