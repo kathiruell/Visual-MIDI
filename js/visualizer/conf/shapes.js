@@ -34,7 +34,7 @@ export default {
             ),
         modulators: {
             opacity: note => new VelocityModulator(note.vel),
-            position: () => new LinearPositionModulator({x: 50, y: 50}),
+            position: () => new LinearPositionModulator({x: 50, y: 0}),
         }
     },
     // DETAILED, CLEAR, INTIMATE
@@ -232,7 +232,8 @@ export default {
     },
     // BRISK, CLEAR, LUMINOUS
     "111": {
-        blend_mode: blend_modes.lightest,
+        blend_mode: blend_modes.difference,
+        scale: 0.6,
         opacity: () => new AdsrAnimation(
             [100, 200, 5000, 2000],
             [1, .8, .6, 0],
@@ -241,6 +242,9 @@ export default {
         modulators: {
             //TODO SCALE VELOCITY
             scale: (note) => new VelocityModulator(note.vel),
+        },
+        modulators: {
+            position: () => new LinearPositionModulator({x: 300, y: 0}),
         }
     },
     // BRISK, EMBOSSED, LUMINOUS
