@@ -7,7 +7,6 @@ const sentences = [
   "SETUP YOUR PERFORMANCE AND CONNECT YOUR MIDI-DEVICE...",
 ];
 
-// Documentation for typewriter: https://github.com/tameemsafi/typewriterjs#examples
 $(function () {
   let typewriter = new Typewriter(document.querySelector(".typewriter"), {
     delay: 75, // Speed of the typewriting (time between each character).
