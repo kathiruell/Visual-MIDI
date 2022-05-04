@@ -236,7 +236,7 @@ export default {
     // BRISK, CLEAR, LUMINOUS
     "111": {
         blend_mode: blend_modes.difference,
-        scale: 0.6,
+        scale: 2,
         opacity: () => new AdsrAnimation(
             [100, 200, 5000, 2000],
             [1, .8, .6, 0],
@@ -245,8 +245,6 @@ export default {
         modulators: {
             //TODO SCALE VELOCITY
             scale: (note) => new VelocityModulator(note.vel),
-        },
-        modulators: {
             position: () => new LinearPositionModulator({x: 0.2, y: 0}),
         }
     },
