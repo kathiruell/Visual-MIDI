@@ -12,8 +12,6 @@ export class Renderer {
         this.canvas = canvas
         this.setFramerate(frame_rate)
         this.background = new BlackoutShape()
-
-        this.loadTexture()
     }
 
     static renderShape(shape) {
@@ -34,10 +32,6 @@ export class Renderer {
         // note shapes
         this.shapes.filter(shape => shape instanceof NoteShape).forEach(shape => shape.draw())
 
-        // texture
-        // if (Preferences.getShapeStyle() === styles.shapes.EMBOSSED) {
-        //     this.drawTexture()
-        // }
     }
 
     static noteOff(pitch) {
@@ -70,15 +64,15 @@ export class Renderer {
         return frameRate()
     }
 
-    static loadTexture() {
-        this.texture = loadImage("/doc/texture_grain_black.png", (img) => console.log("img loaded", img));
-    }
+    // static loadTexture() {
+    //     this.texture = loadImage("/doc/texture_grain_black.png", (img) => console.log("img loaded", img));
+    // }
 
-    static drawTexture() {
-        image(this.texture, 0, 0, width, height)
-        // tint(255, 100);
-        blendMode(MULTIPLY)
-    }
+    // static drawTexture() {
+    //     image(this.texture, 0, 0, width, height)
+    //     // tint(255, 100);
+    //     blendMode(MULTIPLY)
+    // }
 
     static getWidth() {
         return width
