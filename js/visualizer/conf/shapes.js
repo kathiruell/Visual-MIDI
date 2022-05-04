@@ -23,7 +23,7 @@ export default {
         blend_mode: blend_modes.exclusion,
         scale: () => new AdsrAnimation(
             [200, 400, 800, 1400],
-            [.8, .5, .2, 0],
+            [1.2, .8, .6, 0],
             'linear'
         ),
         opacity: 
@@ -58,7 +58,7 @@ export default {
         blend_mode: blend_modes.exclusion,
         scale: () => new AdsrAnimation(
             [400, 800, 850, 1600],
-            [2, 1, 0.9, 0],
+            [1.5, 0.9, 0.4, 0],
             'linear'
         ),
         opacity: 
@@ -91,7 +91,7 @@ export default {
     "110": {
         shape_type: shape_types.plain,
         blend_mode: blend_modes.normal,
-        scale: 3,
+        scale: 2,
         opacity: () => new AdsrAnimation(
             [100, 200, 5000, 2000],
             [1, .8, .6, 0],
@@ -154,12 +154,12 @@ export default {
     "220": {
         shape_type: shape_types.texturized,
         scale: () => new AdsrAnimation(
-            [100, 400, 600, 800],
-            [0, 0.8, 1.5, 2],
+            [100, 400, 600, 2000],
+            [0, 1, 2, 5],
             'linear'
         ),
         opacity: () => new AdsrAnimation(
-            [100, 200, 800, 1500],
+            [100, 200, 800, 1000],
             [0.8, 1, .5, 0],
             'linear'
         ),
@@ -202,7 +202,7 @@ export default {
     "021": {
         shape_type: shape_types.texturized,
         scale: () => new AdsrAnimation(
-            [200, 400, 800, 1400],
+            [400, 600, 800, 1400],
             [1.5, .8, .4, 0],
             'linear'
         ),
@@ -304,7 +304,7 @@ export default {
         shape_type: shape_types.texturized,
         blend_mode: blend_modes.lightest,
         scale: () => new AdsrAnimation(
-            [100, 400, 600, 800],
+            [100, 400, 600, 1500],
             [0, 0.8, 2.5, 3],
             'linear'
         ),
@@ -381,11 +381,11 @@ export default {
             [1, .8, .6, 0],
             'linear'
         ),
-        scale:5,
+        scale:3,
         modulators: {
             //TODO SCALE VELOCITY
             scale: (note) => new VelocityModulator(note.vel),
-            position: () => new LinearPositionModulator({x: 0.2, y: 0})
+            position: () => new LinearPositionModulator({x: 0.15, y: 0})
         }
     },
     // BRISK, CLEAR, GLOOM
@@ -396,10 +396,11 @@ export default {
             [1, .8, .6, 0],
             'linear'
         ),
+        scale:3,
         modulators: {
             //TODO SCALE VELOCITY
             scale: (note) => new VelocityModulator(note.vel),
-            position: () => new LinearPositionModulator({x: 0.2, y: 0})
+            position: () => new LinearPositionModulator({x: 0.15, y: 0})
         }
     },
     // BRISK, EMBOSSED, GLOOM
@@ -411,10 +412,11 @@ export default {
             [1, .8, .6, 0],
             'linear'
         ),
+        scale:3,
         modulators: {
             //TODO SCALE VELOCITY
             scale: (note) => new VelocityModulator(note.vel),
-            position: () => new LinearPositionModulator({x: 0.2, y: 0})
+            position: () => new LinearPositionModulator({x: 0.15, y: 0})
         }
     },
 
@@ -426,13 +428,13 @@ export default {
         blend_mode: blend_modes.difference,
         inner_size: 0.6,
         scale: () => new AdsrAnimation(
-            [100, 400, 600, 800],
-            [0, 0.8, 2.5, 3],
+            [100, 400, 600, 1000],
+            [2, 3, 4, 5],
             'linear'
         ),
         opacity: () => new AdsrAnimation(
-            [100, 200, 800, 1500],
-            [0.8, 1, .5, 0],
+            [100, 200, 200, 1000],
+            [0.8, 1, 0.4, 0],
             'linear'
         ),
     },
@@ -440,13 +442,13 @@ export default {
     "212": {
         blend_mode: blend_modes.difference,
         scale: () => new AdsrAnimation(
-            [100, 400, 600, 800],
-            [0, 0.8, 2.5, 3],
+            [100, 400, 600, 1000],
+            [2, 3, 4, 5],
             'linear'
         ),
         opacity: () => new AdsrAnimation(
-            [100, 200, 800, 1500],
-            [0.8, 1, .5, 0],
+            [100, 200, 200, 1000],
+            [0.8, 1, 0.4, 0],
             'linear'
         ),
     },
@@ -456,13 +458,13 @@ export default {
         shape_type: shape_types.texturized,
         blend_mode: blend_modes.difference,
         scale: () => new AdsrAnimation(
-            [100, 400, 600, 800],
-            [0, 0.8, 2.5, 3],
+            [100, 400, 600, 1000],
+            [2, 3, 4, 5],
             'linear'
         ),
         opacity: () => new AdsrAnimation(
-            [100, 200, 800, 1500],
-            [0.8, 1, .5, 0],
+            [100, 200, 200, 1000],
+            [0.8, 1, 0.4, 0],
             'linear'
         ),
     },
