@@ -31,7 +31,7 @@
   font-family: inherit;
   font-style: inherit;
   font-size: clamp(1rem, 10vw, 8.6rem);
-  line-height: 9.2vw;
+  line-height: 1em;
   cursor: pointer;
   height: 1.1em;
   margin-top: -0.1em;
