@@ -5,9 +5,9 @@ import { NotePositions } from "./NotePositions.js";
 import { Renderer } from "./Renderer.js";
 import { Note, Chord } from "./MusicalEvent.js";
 import { NoteShape, ChordShape } from "./Shape.js";
-import * as p5 from "./../lib/p5.js";
+// import * as p5 from "./../lib/p5.js";
 // import * as tonal from "./../lib/tonal.js";
-import * as midi from "./../lib/midi.js";
+import * as midi from "./midi.js";
 
 // interface to p5
 window.setup = function() {

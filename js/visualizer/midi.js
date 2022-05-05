@@ -1,6 +1,6 @@
 // Listener fuction
 // function ON(channel, note, velocity){...}
-import { MidiKeys } from './MIDIKeys/midikeys.js'
+import { MidiKeys } from './../lib/MIDIKeys/midikeys.js'
 
 let MIDI_PUSHED = [];
 
